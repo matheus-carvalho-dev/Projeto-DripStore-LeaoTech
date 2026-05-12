@@ -1,0 +1,33 @@
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+
+$primary: #C92071;    
+$secondary: #B5B6F2;  
+$tertiary: #991956;  
+$error:#EE4266;
+$sucess:#52CA76;
+$warning:#F6AA1C;
+
+
+
+$theme-colors: map-merge($theme-colors, (
+  "primary": $primary,
+  "secondary": $secondary,
+  "tertiary": $tertiary,
+  "error": $error,
+  "success": $success,
+  "warning": $warning
+));
+
+
+@import "bootstrap/scss/bootstrap";
+
+.bg-gradient-primary {
+    background: linear-gradient(180deg, $primary 0%, rgba(201, 32, 113, 0) 100%) !important;
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(180deg, $secondary 0%, rgba(181, 182, 242, 0) 100%) !important;
+}
