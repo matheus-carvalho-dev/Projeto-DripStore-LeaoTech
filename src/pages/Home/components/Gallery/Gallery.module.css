@@ -1,0 +1,13 @@
+.carousel :global(.carousel-indicators [data-bs-target]){
+    background-color: #CCC;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+}
+.carousel :global(.carousel-indicators .active){
+    background-color: #C92071;
+}
+.carousel{
+    background-color: chocolate;
+    
+}
