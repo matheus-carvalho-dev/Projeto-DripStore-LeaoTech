@@ -7,7 +7,3 @@
 .carousel :global(.carousel-indicators .active){
     background-color: #C92071;
 }
-.carousel{
-    background-color: chocolate;
-    
-}

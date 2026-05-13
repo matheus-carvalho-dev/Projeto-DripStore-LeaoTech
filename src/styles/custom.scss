@@ -1,15 +1,21 @@
 
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
-@import "bootstrap/scss/maps";
+
 
 $primary: #C92071;    
 $secondary: #B5B6F2;  
 $tertiary: #991956;  
 $error:#EE4266;
-$sucess:#52CA76;
+$success:#52CA76;
 $warning:#F6AA1C;
-
+$dark-gray:#1F1F1F;
+$dark-gray-2:#474747;
+$dark-gray-3:#666666;
+$light-gray:#8F8F8F;
+$light-gray-2:#CCCCCC;
+$light-gray-3:#F5F5F5;
+$white-pure:#FFFFFF;
 
 
 $theme-colors: map-merge($theme-colors, (
@@ -18,10 +24,17 @@ $theme-colors: map-merge($theme-colors, (
   "tertiary": $tertiary,
   "error": $error,
   "success": $success,
-  "warning": $warning
+  "warning": $warning,
+  "dark-gray":$dark-gray,
+  "dark-gray-2":$dark-gray-2,
+  "dark-gray-3":$dark-gray-3,
+  "light-gray":$light-gray,
+  "light-gray-2":$light-gray-2,
+  "light-gray-3":$light-gray-3,
+  "white-pure":$white-pure
 ));
 
-
+@import "bootstrap/scss/maps";
 @import "bootstrap/scss/bootstrap";
 
 .bg-gradient-primary {

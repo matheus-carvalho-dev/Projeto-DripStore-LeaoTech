@@ -12,18 +12,18 @@ function Gallery() {
 
   return (
     <Carousel
-      className={`${styles.carousel} container-fluid`}
+      className={styles.carousel}
       activeIndex={index}
       onSelect={handleSelect}
       controls={false}
     >
-      <Carousel.Item className="container">
-        <ConteudoSlide />
-      </Carousel.Item >
-      <Carousel.Item className="container">
+      <Carousel.Item>
         <ConteudoSlide />
       </Carousel.Item>
-      <Carousel.Item className="container">
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+      <Carousel.Item>
         <ConteudoSlide />
       </Carousel.Item>
     </Carousel>
