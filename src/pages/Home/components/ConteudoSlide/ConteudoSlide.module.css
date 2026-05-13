@@ -1,7 +1,29 @@
 .productImg {
-  transform:rotate(-19.34deg) scale(1.2);
-
+  transform: rotate(-19.34deg) scale(1.05) translateX(-11.5%);
 }
-p{
+#upperText{
+  color: #C92071;
+}
+p {
+  font-size: 14px;
   letter-spacing: 0.75px;
+}
+h1 {
+  font-size: 40px;
+}
+@media (min-width: 992px) {
+  .productImg {
+    transform: rotate(-19.34deg) scale(1.2) translateX();
+  }
+
+  #upperText {
+    color: #F6AA1C;
+    font-size: 16px;
+  }
+  #bottomText {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 64px;
+  }
 }
