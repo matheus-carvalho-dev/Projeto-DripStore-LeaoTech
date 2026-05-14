@@ -4,8 +4,8 @@ import FeaturedCollection from './components/FeaturedCollection/FeaturedCollecti
 
 const Home = () => {
   return (
-    <main>
-        <Gallery/>
+    <main className='container'>
+        <FeaturedCollection/>
     </main>
   )
 }

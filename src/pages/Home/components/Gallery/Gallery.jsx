@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import ConteudoSlide from "../ConteudoSlide/ConteudoSlide";
-import styles from "./Gallery.module.css";
+import styles from "./Gallery.module.scss";
 function Gallery() {
   const [index, setIndex] = useState(0);
 

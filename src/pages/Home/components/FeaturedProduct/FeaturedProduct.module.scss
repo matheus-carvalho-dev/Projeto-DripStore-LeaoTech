@@ -1,0 +1,23 @@
+.featuredProduct {
+  border-radius: 8px;
+}
+.title {
+  font-size: 28px;
+}
+.label {
+  font-size: 14px;
+  background: #e7ff86;
+  width: fit-content;
+  border-radius: 29px;
+  font-weight: 600;
+}
+.image {
+  transform: rotate(-21.92deg) scale(2.5);
+  position: absolute;
+  top: 50px;
+  right: 60px;
+  z-index: 1;
+}
+.productContentContainer{
+  overflow: hidden;
+}
