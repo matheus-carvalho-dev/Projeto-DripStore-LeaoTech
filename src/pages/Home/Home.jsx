@@ -4,9 +4,11 @@ import FeaturedCollection from './components/FeaturedCollection/FeaturedCollecti
 
 const Home = () => {
   return (
-    <main className='container'>
-        <FeaturedCollection/>
-    </main>
+    <div>
+      <main className='container'>
+          <FeaturedCollection/>
+      </main>
+    </div>
   )
 }
 

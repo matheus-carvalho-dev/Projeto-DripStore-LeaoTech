@@ -1,9 +1,15 @@
 .featuredProduct {
   border-radius: 8px;
+  background-color: #D8E3F2;
+  overflow: hidden;
+  position: relative;
 }
+
 .title {
-  font-size: 28px;
+  font-size: clamp(1.75rem,2.5vw,2rem);
+  white-space: pre-line;
 }
+
 .label {
   font-size: 14px;
   background: #e7ff86;
@@ -11,13 +17,19 @@
   border-radius: 29px;
   font-weight: 600;
 }
+
 .image {
-  transform: rotate(-21.92deg) scale(2.5);
   position: absolute;
-  top: 50px;
-  right: 60px;
-  z-index: 1;
+  z-index: 2;
 }
-.productContentContainer{
-  overflow: hidden;
+
+.productContentContainer {
+  background-color: inherit;
+}
+
+.Button {
+  position: relative;
+  z-index: 3;
+  letter-spacing: 0.75px;
+  width: 144px;
 }
