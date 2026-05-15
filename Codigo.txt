@@ -1,0 +1,1966 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+Codigo_DripStore.txt
+eslint.config.js
+index.html
+package.json
+public/assets/Cap-icon.svg
+public/assets/Headphones.png
+public/assets/Sneaker-Black-White-Green.png
+public/assets/Sneaker-Black-White.png
+public/assets/Sneaker-Red-White.png
+public/assets/Sneaker-White-Blue-Orange.png
+public/assets/Supreme-Tshirt.png
+README.md
+src/App.css
+src/App.jsx
+src/components/Button/Button.jsx
+src/components/Button/Button.module.css
+src/components/Footer/Footer.jsx
+src/components/Footer/Footer.module.css
+src/components/Header/Header.jsx
+src/components/Header/Header.module.css
+src/index.css
+src/main.jsx
+src/pages/Home/components/Categories/Categories.jsx
+src/pages/Home/components/Categories/Categories.module.scss
+src/pages/Home/components/ConteudoSlide/ConteudoSlide.jsx
+src/pages/Home/components/ConteudoSlide/ConteudoSlide.module.scss
+src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx
+src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss
+src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx
+src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss
+src/pages/Home/components/Gallery/Gallery.jsx
+src/pages/Home/components/Gallery/Gallery.module.scss
+src/pages/Home/components/Icons/Icons.jsx
+src/pages/Home/components/Icons/Icons.module.scss
+src/pages/Home/Home.jsx
+src/pages/Home/Home.module.scss
+src/pages/Product/Product.jsx
+src/pages/Product/Product.module.css
+src/pages/Search/Search.jsx
+src/pages/Search/Search.module.css
+src/routes/index.jsx
+src/styles/custom.scss
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="public/assets/Cap-icon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920">
+    <style>
+        .st0{fill:#fff}.st1{fill:none;stroke:#231f20;stroke-width:50;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}
+    </style>
+    <path class="st0" d="M1166.2 365.9c-11.6-2-23.4-3.9-35.5-5.7 0 0-514.4-123.1-659.5 417.7 0 0-48.4 257.2-33 336.3L217 1438.1c3.2-3.9 131.4-160.9 341.3-81.9 212.6 80 359.8 298.7 611.2 182.2 251.4-116.5 292.3-314.7 292.3-314.7 6.4-.4 12.5-.9 18.4-1.7 169.3-22 208.8-65.9 208.8-65.9s148.8-671.4-522.8-790.2z" id="Layer_5"/>
+    <g id="STROKES">
+        <path class="st1" d="M438.2 1114.2s120.9-83.5 296.8-46.2c175.9 37.4 576 175.9 745.2 153.9S1689 1156 1689 1156s153.9-694.7-558.4-795.8c0 0-514.4-123.1-659.5 417.7.1 0-48.3 257.2-32.9 336.3z"/>
+        <path class="st1" d="M438.2 1114.2l-221.3 324s128.8-162 341.4-82 359.8 298.7 611.2 182.2 292.3-314.7 292.3-314.7"/>
+        <path class="st1" d="M1413.4 1223.6s55.1-386.8 23-503.7c-32.1-116.9-132.5-320.6-270.2-354"/>
+    </g>
+</svg>
+</file>
+
+<file path="src/pages/Home/components/Categories/Categories.jsx">
+import React from "react";
+import styles from "./Categories.module.scss";
+import { Icon } from "../Icons/Icons";
+const Categories = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Icon name="camisetas" color="var(--primary)" />
+          <h2></h2>
+        </li>
+        <li>
+          <img src="" />
+          <h2></h2>
+        </li>
+        <li>
+          <img src="" />
+          <h2></h2>
+        </li>
+        <li>
+          <img src="" />
+          <h2></h2>
+        </li>
+        <li>
+          <img src="" />
+          <h2></h2>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default Categories;
+</file>
+
+<file path="src/pages/Home/components/Categories/Categories.module.scss">
+ul,li{
+  list-style: none;
+}
+</file>
+
+<file path="src/pages/Home/components/Icons/Icons.jsx">
+import React from "react";
+
+const Icons = {
+  camisetas: (
+    <path d="M14.9326 2.31177C11.5589 3.57274 8.51709 4.74522 8.18525 4.9222C7.2893 5.37571 6.30486 6.41545 5.84029 7.41096C5.32041 8.50601 0 24.5226 0 24.9982C0 25.9937 0.829586 27.1772 1.71448 27.4206C1.94676 27.4759 4.23642 27.6971 6.81367 27.8851L11.5036 28.2502V40.8156C11.5036 51.7994 11.5257 53.4032 11.6695 53.6134C12.0124 54.1001 16.4258 55.361 19.722 55.903C22.9408 56.445 24.5668 56.5667 28.3719 56.5667C32.1769 56.5667 33.9688 56.4229 37.0549 55.903C40.2626 55.361 44.6317 54.089 44.9636 53.6134C45.1074 53.4032 45.1295 51.8768 45.1295 40.8156V28.2612L49.8084 27.8962C52.3746 27.6971 54.6753 27.4869 54.9186 27.4206C55.8035 27.1772 56.6331 26.0048 56.6331 24.9871C56.6331 24.788 55.3611 20.806 53.8125 16.1493C51.733 9.92184 50.8813 7.49945 50.5716 6.97957C50.0738 6.13893 49.1889 5.29828 48.3483 4.87796C48.0054 4.70098 44.9857 3.53955 41.6342 2.27858L35.5505 -1.14441e-05H28.3055H21.0715L14.9326 2.31177ZM34.4002 1.99099C34.4002 2.31177 33.9246 3.55062 33.5817 4.14792C32.8516 5.39783 31.2256 6.55925 29.7434 6.91321C27.6971 7.38884 25.496 6.78047 24.0027 5.29828C23.2727 4.5793 22.8634 3.9267 22.4873 2.90907C22.0228 1.63704 21.337 1.76977 28.3165 1.76977C34.2785 1.76977 34.4002 1.76977 34.4002 1.99099ZM20.618 2.87589C20.7175 3.27409 21.0051 4.01519 21.2595 4.53506C21.6356 5.28722 21.9232 5.6633 22.6754 6.41545C23.7372 7.47733 24.6442 8.05251 25.9384 8.48389C26.7237 8.74936 26.9892 8.78254 28.3165 8.78254C29.6439 8.78254 29.9094 8.74936 30.6947 8.48389C31.9888 8.05251 32.8959 7.47733 33.9577 6.41545C34.7099 5.6633 34.9975 5.28722 35.3736 4.53506C35.628 4.01519 35.9156 3.26303 36.0151 2.86483L36.1921 2.13479L36.9885 2.43344C37.442 2.61042 37.7849 2.80952 37.807 2.90907C37.8734 3.22984 37.1876 4.98857 36.6456 5.88452C34.1679 10.0325 28.9028 11.7359 24.4783 9.82229C22.0006 8.7383 19.9986 6.58137 19.1137 4.03731C18.9367 3.51743 18.804 3.00862 18.8261 2.90907C18.8482 2.80952 19.18 2.61042 19.6335 2.43344C20.0649 2.26752 20.4189 2.14585 20.4189 2.14585C20.4299 2.15691 20.5184 2.47768 20.618 2.87589ZM17.3439 4.29171C18.4058 7.7981 21.1489 10.5966 24.6774 11.7691C26.1817 12.2668 27.3764 12.4327 28.9139 12.3553C31.0155 12.2447 32.9401 11.6142 34.6656 10.4638C36.8447 9.01482 38.5149 6.79153 39.2781 4.31384C39.4219 3.86033 39.5436 3.46213 39.5547 3.45107C39.61 3.37364 47.4081 6.34909 47.7842 6.58137C48.2819 6.89108 48.9345 7.62112 49.2 8.15205C49.3217 8.38434 50.649 12.2668 52.1533 16.7908C54.0558 22.4984 54.8633 25.0867 54.8191 25.2747C54.7859 25.4185 54.6531 25.5955 54.5425 25.6619C54.3545 25.7503 46.4126 26.4361 45.4613 26.4361H45.1295V23.2284V20.0096L44.853 19.7441C44.499 19.3791 43.9902 19.3791 43.6362 19.7441L43.3597 20.0096V36.2584V52.5073L42.2315 52.8502C39.4883 53.6908 36.723 54.2439 33.4932 54.6089C31.1261 54.8744 25.507 54.8744 23.1399 54.6089C19.9322 54.2439 17.4213 53.7461 14.6339 52.9165L13.2734 52.5073V36.2584V20.0096L12.9858 19.722C12.7535 19.4897 12.6318 19.4566 12.3 19.5119C11.5036 19.6335 11.5036 19.6557 11.5036 23.2395V26.4361H11.2049C10.2758 26.4361 2.26754 25.7503 2.09056 25.6619C1.97995 25.5955 1.84721 25.4185 1.81403 25.2747C1.76978 25.0867 2.57725 22.4984 4.47977 16.7908C5.98408 12.2668 7.31142 8.38434 7.43309 8.15205C7.73174 7.55475 8.47284 6.76941 9.01484 6.49288C9.45728 6.2606 16.7687 3.46213 16.9789 3.44001C17.0452 3.44001 17.2112 3.81609 17.3439 4.29171Z" />
+  ),
+  calcas: <path d="" />,
+  bones: <path d="" />,
+  headphones: <path d="" />,
+  tenis: <path d="" />,
+};
+
+export const Icon = ({ name, color , size = 57 }) => {
+  const selectedPath = Icons[name];
+  if (!selectedPath) return null;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 57 57"
+      style={{ fill: color }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {selectedPath}
+    </svg>
+  );
+};
+
+export default Icon;
+</file>
+
+<file path="src/pages/Home/components/Icons/Icons.module.scss">
+
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="Codigo_DripStore.txt">
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+eslint.config.js
+index.html
+package.json
+public/assets/Headphones.png
+public/assets/Sneaker-Black-White-Green.png
+public/assets/Sneaker-Black-White.png
+public/assets/Sneaker-Red-White.png
+public/assets/Sneaker-White-Blue-Orange.png
+public/assets/Supreme-Tshirt.png
+README.md
+src/App.css
+src/App.jsx
+src/components/Button/Button.jsx
+src/components/Button/Button.module.css
+src/components/Footer/Footer.jsx
+src/components/Footer/Footer.module.css
+src/components/Header/Header.jsx
+src/components/Header/Header.module.css
+src/index.css
+src/main.jsx
+src/pages/Home/components/ConteudoSlide/ConteudoSlide.jsx
+src/pages/Home/components/ConteudoSlide/ConteudoSlide.module.scss
+src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx
+src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss
+src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx
+src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss
+src/pages/Home/components/Gallery/Gallery.jsx
+src/pages/Home/components/Gallery/Gallery.module.scss
+src/pages/Home/Home.jsx
+src/pages/Home/Home.module.scss
+src/pages/Product/Product.jsx
+src/pages/Product/Product.module.css
+src/pages/Search/Search.jsx
+src/pages/Search/Search.module.css
+src/routes/index.jsx
+src/styles/custom.scss
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+])
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+#   P r o j e t o - D r i p S t o r e - L e a o T e c h  
+ 
+</file>
+
+<file path="src/App.css">
+
+</file>
+
+<file path="src/components/Button/Button.jsx">
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <div className="container-fluid my-5">
+      <footer
+        className="text-center text-lg-start text-white"
+        style={{ backgroundColor: '#3e4551' }}
+      >
+        <div className="container-fluid p-4 pb-0">
+          <section>
+            <div className="row">
+              <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase">FOOTER CONTENT</h5>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Molestiae modi cum ipsam ad, illo possimus laborum ut
+                  reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
+                  Reiciendis assumenda iusto sapiente inventore animi?
+                </p>
+              </div>
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                  <h5 className="text-uppercase">Links</h5>
+                  <ul className="list-unstyled mb-0">
+                    <li><a href="#!" className="text-white">Link 1</a></li>
+                    <li><a href="#!" className="text-white">Link 2</a></li>
+                    <li><a href="#!" className="text-white">Link 3</a></li>
+                    <li><a href="#!" className="text-white">Link 4</a></li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section>
+            <p className="d-flex justify-content-center align-items-center">
+              <span className="me-3">Register for free</span>
+              <button type="button" className="btn btn-outline-light btn-rounded">
+                Sign up!
+              </button>
+            </p>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section className="mb-4 text-center">
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-google"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-github"></i>
+            </a>
+          </section>
+        </div>
+
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        >
+          © 2020 Copyright: 
+          <a className="text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="src/components/Button/Button.module.css">
+
+</file>
+
+<file path="src/components/Footer/Footer.jsx">
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <div className="container-fluid my-5">
+      <footer
+        className="text-center text-lg-start text-white"
+        style={{ backgroundColor: '#3e4551' }}
+      >
+        <div className="container-fluid p-4 pb-0">
+          <section>
+            <div className="row">
+              <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase">FOOTER CONTENT</h5>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Molestiae modi cum ipsam ad, illo possimus laborum ut
+                  reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
+                  Reiciendis assumenda iusto sapiente inventore animi?
+                </p>
+              </div>
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                  <h5 className="text-uppercase">Links</h5>
+                  <ul className="list-unstyled mb-0">
+                    <li><a href="#!" className="text-white">Link 1</a></li>
+                    <li><a href="#!" className="text-white">Link 2</a></li>
+                    <li><a href="#!" className="text-white">Link 3</a></li>
+                    <li><a href="#!" className="text-white">Link 4</a></li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section>
+            <p className="d-flex justify-content-center align-items-center">
+              <span className="me-3">Register for free</span>
+              <button type="button" className="btn btn-outline-light btn-rounded">
+                Sign up!
+              </button>
+            </p>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section className="mb-4 text-center">
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-google"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-github"></i>
+            </a>
+          </section>
+        </div>
+
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        >
+          © 2020 Copyright: 
+          <a className="text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="src/components/Footer/Footer.module.css">
+
+</file>
+
+<file path="src/components/Header/Header.jsx">
+import React from 'react';
+
+const Header = () => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">Navbar</a>
+        
+        {/* Note o data-bs-toggle e data-bs-target para Bootstrap 5 */}
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Link</a>
+            </li>
+            <li className="nav-item dropdown">
+              <a 
+                className="nav-link dropdown-toggle" 
+                href="#" 
+                id="navbarDropdown" 
+                role="button" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a className="dropdown-item" href="#">Action</a></li>
+                <li><a className="dropdown-item" href="#">Another action</a></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><a className="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          
+          <form className="d-flex">
+            <input 
+              className="form-control me-2" 
+              type="search" 
+              placeholder="Search" 
+              aria-label="Search" 
+            />
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Header;
+</file>
+
+<file path="src/components/Header/Header.module.css">
+
+</file>
+
+<file path="src/pages/Home/components/ConteudoSlide/ConteudoSlide.module.scss">
+.productImg {
+  transform: rotate(-19.34deg) scale(1.05) translateX(-11.5%);
+}
+#upperText{
+  color: #C92071;
+}
+p {
+  font-size: 14px;
+  letter-spacing: 0.75px;
+}
+h1 {
+  font-size: 40px;
+}
+@media (min-width: 992px) {
+  .productImg {
+    transform: rotate(-19.34deg) scale(1.2) translateX();
+  }
+
+  #upperText {
+    color: #F6AA1C;
+    font-size: 16px;
+  }
+  #bottomText {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 64px !important; 
+  }
+}
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss">
+.featuredProduct{
+  border-radius: 8px;
+}
+.title{
+  font-size: 40px;
+  padding-left: 0;
+}
+</file>
+
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss">
+.featuredProduct {
+  border-radius: 8px;
+  background-color: #D8E3F2;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  font-size: 28px;
+  white-space: pre-line;
+}
+
+.label {
+  font-size: 14px;
+  background: #e7ff86;
+  width: fit-content;
+  border-radius: 29px;
+  font-weight: 600;
+}
+
+.image {
+  position: absolute;
+  z-index: 2;
+}
+
+.productContentContainer {
+  background-color: inherit;
+}
+
+.Button {
+  position: relative;
+  z-index: 3;
+  letter-spacing: 0.75px;
+  width: 144px;
+}
+
+@media (min-width:992px){
+  .title{
+    font-size: 32px;
+  }
+  .label{
+    font-size: 14px !important;
+  }
+  .image{
+    transform: scale();
+  }
+}
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.module.scss">
+.carousel :global(.carousel-indicators [data-bs-target]){
+    background-color: #CCC;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+}
+.carousel :global(.carousel-indicators .active){
+    background-color: #C92071;
+}
+</file>
+
+<file path="src/pages/Home/Home.module.scss">
+
+</file>
+
+<file path="src/pages/Product/Product.module.css">
+
+</file>
+
+<file path="src/pages/Search/Search.module.css">
+
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx">
+import React from "react";
+import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
+
+const FeaturedCollection = () => {
+  const featuredProducts = [
+    {
+      id: "Supreme",
+      srcImage: "/assets/Supreme-Tshirt.png",
+      title: "Novo drop Supreme",
+      customStyles: {
+        transform: "scale(0.78) rotate(-21.92deg)",
+        top: "25px",
+        left: "112px",
+      },
+    },
+    {
+      id: "Sneaker-Black-White",
+      srcImage: "/assets/Sneaker-Black-White.png",
+      title: "Coleção\nAdidas",
+      customStyles: {
+        transform: "scaleX(-1) scale(0.6) rotate(12.18deg)",
+        top: "5px",
+        left: "97px", 
+      },
+    },
+    {
+      id: "Headphones",
+      srcImage: "/assets/Headphones.png",
+      title: "Novo\nBeats Bass",
+      customStyles: {
+        transform: "scale(0.45) rotate(30deg)",
+        top: "-65px",
+        left: "102px", 
+      },
+    },
+  ];
+
+  return (
+    <section>
+      <h2 className="pt-2 fs-6 text-dark-gray-2 fw-bold ms-2">
+          Coleções em destaque
+        </h2>
+      <div className="container-fluid px-0">
+      
+        <div className="row gy-2 g-0 justify-content-center">
+          {featuredProducts.map((product) => {
+            return (
+              <div
+                className="col-12 col-lg-4 d-flex justify-content-center"
+                key={product.id}
+              >
+                <FeaturedProduct
+                  title={product.title}
+                  srcImage={product.srcImage}
+                  customStyles={product.customStyles}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedCollection;
+</file>
+
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx">
+import React from "react";
+import styles from "./FeaturedProduct.module.scss";
+
+const FeaturedProduct = ({ title, srcImage, customStyles }) => {
+  return (
+    <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
+      <div className={`row align-items-center py-4 ps-2 g-0 ${styles.productContentContainer}`}>
+        <div className="col-9 align-items-center">
+          <div className={`row gap-2 ${styles.text}`}>
+            <p className={`col-4 py-2 ${styles.label} text-center px-2 m-0`}>30% OFF</p>
+            <h3 className={`${styles.title} fw-bold m-0`}>{title}</h3>
+            <button className={`btn bg-light-gray-3 text-primary fw-bold col-6 ms-2 py-2 ${styles.Button}`}>
+              Comprar
+            </button>
+          </div>
+        </div>
+        <div className={`col-3 ${styles.imageContainer} p-0`}>
+          <img
+            src={srcImage}
+            alt=""
+            className={`img-fluid ${styles.image}`}
+            style={{ ...customStyles }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FeaturedProduct;
+</file>
+
+<file path="src/pages/Product/Product.jsx">
+import React from 'react'
+
+const Product = () => {
+  return (
+    <div>Product</div>
+  )
+}
+
+export default Product
+</file>
+
+<file path="src/pages/Search/Search.jsx">
+import React from 'react'
+
+const Search = () => {
+  return (
+    <div>Search</div>
+  )
+}
+
+export default Search
+</file>
+
+<file path="src/routes/index.jsx">
+import { createBrowserRouter } from "react-router-dom";
+// import Layout from "../components/Layout/Layout";
+import Home from "../pages/Home/Home";
+import Search from "../pages/Search/Search";
+import Product from "../pages/Product/Product";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    // element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/search", element: <Search /> },
+      { path: "/product/:id", element: <Product /> }, 
+    ],
+  },
+]);
+</file>
+
+<file path="package.json">
+{
+  "name": "react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.5",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "sass": "^1.99.0",
+    "vite": "^8.0.10"
+  }
+}
+</file>
+
+<file path="src/App.jsx">
+import { useState } from 'react'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import Home from './pages/Home/Home'
+
+
+
+function App() {
+  return <Home/>
+}
+
+export default App
+</file>
+
+<file path="src/index.css">
+
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.jsx">
+import React from "react";
+import { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import ConteudoSlide from "../ConteudoSlide/ConteudoSlide";
+import styles from "./Gallery.module.scss";
+function Gallery() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  return (
+    <Carousel
+      className={styles.carousel}
+      activeIndex={index}
+      onSelect={handleSelect}
+      controls={false}
+    >
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+    </Carousel>
+  );
+}
+
+export default Gallery;
+</file>
+
+<file path="src/styles/custom.scss">
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+$font-family-sans-serif: 'Inter', sans-serif;
+$primary: #C92071;    
+$secondary: #B5B6F2;  
+$tertiary: #991956;  
+$error:#EE4266;
+$success:#52CA76;
+$warning:#F6AA1C;
+$dark-gray:#1F1F1F;
+$dark-gray-2:#474747;
+$dark-gray-3:#666666;
+$light-gray:#8F8F8F;
+$light-gray-2:#CCCCCC;
+$light-gray-3:#F5F5F5;
+$white-pure:#FFFFFF;
+
+
+$theme-colors: map-merge($theme-colors, (
+  "primary": $primary,
+  "secondary": $secondary,
+  "tertiary": $tertiary,
+  "error": $error,
+  "success": $success,
+  "warning": $warning,
+  "dark-gray":$dark-gray,
+  "dark-gray-2":$dark-gray-2,
+  "dark-gray-3":$dark-gray-3,
+  "light-gray":$light-gray,
+  "light-gray-2":$light-gray-2,
+  "light-gray-3":$light-gray-3,
+  "white-pure":$white-pure
+));
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/bootstrap";
+
+.bg-gradient-primary {
+    background: linear-gradient(180deg, $primary 0%, rgba(201, 32, 113, 0) 100%) !important;
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(180deg, $secondary 0%, rgba(181, 182, 242, 0) 100%) !important;
+}
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
+import './styles/custom.scss';
+import './index.css';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router}/>
+  </StrictMode>
+);
+</file>
+
+<file path="src/pages/Home/components/ConteudoSlide/ConteudoSlide.jsx">
+import React from "react";
+import { useState } from "react";
+
+import styles from "./ConteudoSlide.module.scss";
+function ConteudoSlide() {
+  return (
+    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
+      <div className="container">
+        <div className="row align-items-center gap-3 gap-lg-0">
+          <div className="col-12 col-lg-5 order-2 order-lg-1">
+            <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start pt-5">
+              <p
+                id={styles.upperText}
+                className="fw-bold m-0 text-center text-lg-start "
+              >
+                Melhores ofertas personalizadas
+              </p>
+              <h1
+                id={styles.title}
+                className="fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0"
+              >
+                Queima de estoque Nike 🔥
+              </h1>
+              <p
+                id={styles.bottomText}
+                className="text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5"
+              >
+                Consequat culpa exercitation mollit nisi excepteur do do tempor
+                laboris eiusmod irure consectetur.
+              </p>
+              <button className=" btn btn-primary text-white py-2 w-lg-50 mt-2">
+                Ver Ofertas
+              </button>
+            </div>
+          </div>
+
+          <div className="col-12 col-lg-7 position-relative text-center order-lg-1">
+            <img
+              className={`px-0 ${styles.productImg} w-75`}
+              src="/assets/Sneaker-Red-White.png"
+              alt="Sneaker"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ConteudoSlide;
+</file>
+
+<file path="src/pages/Home/Home.jsx">
+import React from 'react'
+import Gallery from './components/Gallery/Gallery'
+import FeaturedCollection from './components/FeaturedCollection/FeaturedCollection'
+
+const Home = () => {
+  return (
+    <div>
+      <Gallery/>
+      <main className='container'>
+          <FeaturedCollection/>
+      </main>
+    </div>
+  )
+}
+
+export default Home
+</file>
+
+</files>
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+])
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+#   P r o j e t o - D r i p S t o r e - L e a o T e c h  
+ 
+</file>
+
+<file path="src/App.css">
+
+</file>
+
+<file path="src/components/Button/Button.jsx">
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <div className="container-fluid my-5">
+      <footer
+        className="text-center text-lg-start text-white"
+        style={{ backgroundColor: '#3e4551' }}
+      >
+        <div className="container-fluid p-4 pb-0">
+          <section>
+            <div className="row">
+              <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase">FOOTER CONTENT</h5>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Molestiae modi cum ipsam ad, illo possimus laborum ut
+                  reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
+                  Reiciendis assumenda iusto sapiente inventore animi?
+                </p>
+              </div>
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                  <h5 className="text-uppercase">Links</h5>
+                  <ul className="list-unstyled mb-0">
+                    <li><a href="#!" className="text-white">Link 1</a></li>
+                    <li><a href="#!" className="text-white">Link 2</a></li>
+                    <li><a href="#!" className="text-white">Link 3</a></li>
+                    <li><a href="#!" className="text-white">Link 4</a></li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section>
+            <p className="d-flex justify-content-center align-items-center">
+              <span className="me-3">Register for free</span>
+              <button type="button" className="btn btn-outline-light btn-rounded">
+                Sign up!
+              </button>
+            </p>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section className="mb-4 text-center">
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-google"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-github"></i>
+            </a>
+          </section>
+        </div>
+
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        >
+          © 2020 Copyright: 
+          <a className="text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="src/components/Button/Button.module.css">
+
+</file>
+
+<file path="src/components/Footer/Footer.jsx">
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <div className="container-fluid my-5">
+      <footer
+        className="text-center text-lg-start text-white"
+        style={{ backgroundColor: '#3e4551' }}
+      >
+        <div className="container-fluid p-4 pb-0">
+          <section>
+            <div className="row">
+              <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase">FOOTER CONTENT</h5>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Molestiae modi cum ipsam ad, illo possimus laborum ut
+                  reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
+                  Reiciendis assumenda iusto sapiente inventore animi?
+                </p>
+              </div>
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                  <h5 className="text-uppercase">Links</h5>
+                  <ul className="list-unstyled mb-0">
+                    <li><a href="#!" className="text-white">Link 1</a></li>
+                    <li><a href="#!" className="text-white">Link 2</a></li>
+                    <li><a href="#!" className="text-white">Link 3</a></li>
+                    <li><a href="#!" className="text-white">Link 4</a></li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section>
+            <p className="d-flex justify-content-center align-items-center">
+              <span className="me-3">Register for free</span>
+              <button type="button" className="btn btn-outline-light btn-rounded">
+                Sign up!
+              </button>
+            </p>
+          </section>
+
+          <hr className="mb-4" />
+
+          <section className="mb-4 text-center">
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-google"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+              <i className="fab fa-github"></i>
+            </a>
+          </section>
+        </div>
+
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        >
+          © 2020 Copyright: 
+          <a className="text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="src/components/Footer/Footer.module.css">
+
+</file>
+
+<file path="src/components/Header/Header.jsx">
+import React from 'react';
+
+const Header = () => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">Navbar</a>
+        
+        {/* Note o data-bs-toggle e data-bs-target para Bootstrap 5 */}
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Link</a>
+            </li>
+            <li className="nav-item dropdown">
+              <a 
+                className="nav-link dropdown-toggle" 
+                href="#" 
+                id="navbarDropdown" 
+                role="button" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a className="dropdown-item" href="#">Action</a></li>
+                <li><a className="dropdown-item" href="#">Another action</a></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><a className="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          
+          <form className="d-flex">
+            <input 
+              className="form-control me-2" 
+              type="search" 
+              placeholder="Search" 
+              aria-label="Search" 
+            />
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Header;
+</file>
+
+<file path="src/components/Header/Header.module.css">
+
+</file>
+
+<file path="src/pages/Home/components/ConteudoSlide/ConteudoSlide.module.scss">
+.productImg {
+  transform: rotate(-19.34deg) scale(1.05) translateX(-11.5%);
+}
+#upperText{
+  color: #C92071;
+}
+p {
+  font-size: 14px;
+  letter-spacing: 0.75px;
+}
+h1 {
+  font-size: 40px;
+}
+@media (min-width: 992px) {
+  .productImg {
+    transform: rotate(-19.34deg) scale(1.2) translateX();
+  }
+
+  #upperText {
+    color: #F6AA1C;
+    font-size: 16px;
+  }
+  #bottomText {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 64px !important; 
+  }
+}
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.module.scss">
+.carousel :global(.carousel-indicators [data-bs-target]){
+    background-color: #CCC;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+}
+.carousel :global(.carousel-indicators .active){
+    background-color: #C92071;
+}
+</file>
+
+<file path="src/pages/Home/Home.module.scss">
+
+</file>
+
+<file path="src/pages/Product/Product.module.css">
+
+</file>
+
+<file path="src/pages/Search/Search.module.css">
+
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss">
+.featuredProduct{
+  border-radius: 8px;
+}
+</file>
+
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss">
+.featuredProduct {
+  border-radius: 8px;
+  background-color: #d8e3f2;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 351/209;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.textContainer {
+  width: 40%;
+}
+.title {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  white-space: pre-line;
+}
+
+.badge {
+  font-size: clamp(0.625rem, 3vw, 0.875rem);
+  background: #e7ff86;
+  border-radius: 29px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.imageContainer {
+  width: 40%;
+}
+.image {
+  position: absolute;
+  z-index: 2;
+}
+
+.productContentContainer {
+  background-color: inherit;
+  width: 100%;
+}
+
+.Button {
+  position: relative;
+  z-index: 3;
+  letter-spacing: 0.75px;
+  min-width: 50%;
+  box-sizing: border-box;
+}
+</file>
+
+<file path="src/pages/Product/Product.jsx">
+import React from 'react'
+
+const Product = () => {
+  return (
+    <div>Product</div>
+  )
+}
+
+export default Product
+</file>
+
+<file path="src/pages/Search/Search.jsx">
+import React from 'react'
+
+const Search = () => {
+  return (
+    <div>Search</div>
+  )
+}
+
+export default Search
+</file>
+
+<file path="src/routes/index.jsx">
+import { createBrowserRouter } from "react-router-dom";
+// import Layout from "../components/Layout/Layout";
+import Home from "../pages/Home/Home";
+import Search from "../pages/Search/Search";
+import Product from "../pages/Product/Product";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    // element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/search", element: <Search /> },
+      { path: "/product/:id", element: <Product /> }, 
+    ],
+  },
+]);
+</file>
+
+<file path="package.json">
+{
+  "name": "react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.5",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "sass": "^1.99.0",
+    "vite": "^8.0.10"
+  }
+}
+</file>
+
+<file path="src/App.jsx">
+import { useState } from 'react'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import Home from './pages/Home/Home'
+
+
+
+function App() {
+  return <Home/>
+}
+
+export default App
+</file>
+
+<file path="src/index.css">
+
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx">
+import React from "react";
+import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
+
+const FeaturedCollection = () => {
+  const featuredProducts = [
+    {
+      id: "Supreme",
+      srcImage: "/assets/Supreme-Tshirt.png",
+      title: "Novo drop\nSupreme",
+      customStyles: {
+        transform: "scale(0.78) rotate(-21.92deg)",
+        top: "11.91%",
+        left: "31.89%",
+      },
+    },
+    {
+      id: "Sneaker-Black-White",
+      srcImage: "/assets/Sneaker-Black-White.png",
+      title: "Coleção\nAdidas",
+      customStyles: {
+        transform: "scaleX(-1) scale(0.6) rotate(12.18deg)",
+        top: "2.38%",
+        left: "27.57%",
+      },
+    },
+    {
+      id: "Headphones",
+      srcImage: "/assets/Headphones.png",
+      title: "Novo\nBeats Bass",
+      customStyles: {
+        transform: "scale(0.45) rotate(30deg)",
+        top: "-30.98%",
+        left: "28.99%",
+      },
+    },
+  ];
+
+  return (
+    <section>
+      <h2 className="pt-2 fs-6 text-dark-gray-2 fw-bold ms-2">
+          Coleções em destaque
+        </h2>
+      <div className="container">
+      
+        <div className="row gy-2 gx-2 justify-content-center">
+          {featuredProducts.map((product) => {
+            return (
+              <div
+                className="col-12 col-md-6 col-lg-4"
+                key={product.id}
+              >
+                <FeaturedProduct
+                  title={product.title}
+                  srcImage={product.srcImage}
+                  customStyles={product.customStyles}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedCollection;
+</file>
+
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx">
+import React from "react";
+import styles from "./FeaturedProduct.module.scss";
+import supreme from "../../../../../public/assets/Supreme-Tshirt.png";
+const FeaturedProduct = ({ title, srcImage, customStyles }) => {
+  return (
+    <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
+      <div
+        className={`row align-items-center py-4 ps-2 g-0 ${styles.productContentContainer} h-100`}
+      >
+        <div className={`col-9 align-items-center ${styles.textContainer}`}>
+          <div className="d-flex flex-column justify-content-center align-items-start gap-2 h-100">
+            <span
+              className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
+            >
+              30% OFF
+            </span>
+
+            <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
+
+            <button
+              className={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
+            >
+              Comprar
+            </button>
+          </div>
+        </div>
+        <div className={`col-3 ${styles.imageContainer} p-0`}>
+          <img
+            src={srcImage}
+            alt=""
+            className={`img-fluid ${styles.image}`}
+            style={{ ...customStyles }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FeaturedProduct;
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.jsx">
+import React from "react";
+import { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import ConteudoSlide from "../ConteudoSlide/ConteudoSlide";
+import styles from "./Gallery.module.scss";
+function Gallery() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  return (
+    <Carousel
+      className={styles.carousel}
+      activeIndex={index}
+      onSelect={handleSelect}
+      controls={false}
+    >
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+      <Carousel.Item>
+        <ConteudoSlide />
+      </Carousel.Item>
+    </Carousel>
+  );
+}
+
+export default Gallery;
+</file>
+
+<file path="src/styles/custom.scss">
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+$font-family-sans-serif: 'Inter', sans-serif;
+$primary: #C92071;    
+$secondary: #B5B6F2;  
+$tertiary: #991956;  
+$error:#EE4266;
+$success:#52CA76;
+$warning:#F6AA1C;
+$dark-gray:#1F1F1F;
+$dark-gray-2:#474747;
+$dark-gray-3:#666666;
+$light-gray:#8F8F8F;
+$light-gray-2:#CCCCCC;
+$light-gray-3:#F5F5F5;
+$white-pure:#FFFFFF;
+
+
+$theme-colors: map-merge($theme-colors, (
+  "primary": $primary,
+  "secondary": $secondary,
+  "tertiary": $tertiary,
+  "error": $error,
+  "success": $success,
+  "warning": $warning,
+  "dark-gray":$dark-gray,
+  "dark-gray-2":$dark-gray-2,
+  "dark-gray-3":$dark-gray-3,
+  "light-gray":$light-gray,
+  "light-gray-2":$light-gray-2,
+  "light-gray-3":$light-gray-3,
+  "white-pure":$white-pure
+));
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/bootstrap";
+
+.bg-gradient-primary {
+    background: linear-gradient(180deg, $primary 0%, rgba(201, 32, 113, 0) 100%) !important;
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(180deg, $secondary 0%, rgba(181, 182, 242, 0) 100%) !important;
+}
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
+import './styles/custom.scss';
+import './index.css';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router}/>
+  </StrictMode>
+);
+</file>
+
+<file path="src/pages/Home/components/ConteudoSlide/ConteudoSlide.jsx">
+import React from "react";
+import { useState } from "react";
+
+import styles from "./ConteudoSlide.module.scss";
+function ConteudoSlide() {
+  return (
+    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
+      <div className="container">
+        <div className="row align-items-center gap-3 gap-lg-0">
+          <div className="col-12 col-lg-5 order-2 order-lg-1">
+            <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start pt-5">
+              <p
+                id={styles.upperText}
+                className="fw-bold m-0 text-center text-lg-start "
+              >
+                Melhores ofertas personalizadas
+              </p>
+              <h1
+                id={styles.title}
+                className="fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0"
+              >
+                Queima de estoque Nike 🔥
+              </h1>
+              <p
+                id={styles.bottomText}
+                className="text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5"
+              >
+                Consequat culpa exercitation mollit nisi excepteur do do tempor
+                laboris eiusmod irure consectetur.
+              </p>
+              <button className=" btn btn-primary text-white py-2 w-lg-50 mt-2">
+                Ver Ofertas
+              </button>
+            </div>
+          </div>
+
+          <div className="col-12 col-lg-7 position-relative text-center order-lg-1">
+            <img
+              className={`px-0 ${styles.productImg} w-75`}
+              src="/assets/Sneaker-Red-White.png"
+              alt="Sneaker"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ConteudoSlide;
+</file>
+
+<file path="src/pages/Home/Home.jsx">
+import React from 'react'
+import Gallery from './components/Gallery/Gallery'
+import FeaturedCollection from './components/FeaturedCollection/FeaturedCollection'
+import Categories from './components/Categories/Categories'
+
+const Home = () => {
+  return (
+    <div>
+      <main className='container'>
+          <Categories/>
+      </main>
+    </div>
+  )
+}
+
+export default Home
+</file>
+
+</files>

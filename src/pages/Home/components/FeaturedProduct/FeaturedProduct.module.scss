@@ -1,23 +1,31 @@
 .featuredProduct {
   border-radius: 8px;
-  background-color: #D8E3F2;
+  background-color: #d8e3f2;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 351/209;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
-
+.textContainer {
+  width: 40%;
+}
 .title {
-  font-size: clamp(1.75rem,2.5vw,2rem);
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
   white-space: pre-line;
 }
 
-.label {
-  font-size: 14px;
+.badge {
+  font-size: clamp(0.625rem, 3vw, 0.875rem);
   background: #e7ff86;
-  width: fit-content;
   border-radius: 29px;
   font-weight: 600;
+  white-space: nowrap;
 }
-
+.imageContainer {
+  width: 40%;
+}
 .image {
   position: absolute;
   z-index: 2;
@@ -25,11 +33,13 @@
 
 .productContentContainer {
   background-color: inherit;
+  width: 100%;
 }
 
 .Button {
   position: relative;
   z-index: 3;
   letter-spacing: 0.75px;
-  width: 144px;
+  min-width: 50%;
+  box-sizing: border-box;
 }
