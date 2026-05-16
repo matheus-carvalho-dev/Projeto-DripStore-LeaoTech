@@ -5,7 +5,7 @@ import FeaturedCollection from './components/FeaturedCollection/FeaturedCollecti
 const Home = () => {
   return (
     <main className='container'>
-        <FeaturedCollection/>
+        <Gallery/>
     </main>
   )
 }
