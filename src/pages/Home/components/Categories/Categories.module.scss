@@ -1,3 +1,7 @@
 ul,li{
   list-style: none;
 }
+.categories{
+  gap: 20px;
+    overflow-x: auto;
+}
