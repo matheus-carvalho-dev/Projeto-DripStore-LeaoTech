@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 import styles from "./ConteudoSlide.module.scss";
+import Button from "../../../../components/Button/Button";
 function ConteudoSlide() {
   return (
     <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
@@ -28,9 +29,10 @@ function ConteudoSlide() {
                 Consequat culpa exercitation mollit nisi excepteur do do tempor
                 laboris eiusmod irure consectetur.
               </p>
-              <button className=" btn btn-primary text-white py-2 w-lg-50 mt-2">
-                Ver Ofertas
-              </button>
+              <Button
+                text="Ver Ofertas"
+                style=" btn btn-primary text-white py-2 w-50 mt-2"
+              />
             </div>
           </div>
 

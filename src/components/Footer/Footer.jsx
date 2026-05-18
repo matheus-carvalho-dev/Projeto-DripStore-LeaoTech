@@ -2,7 +2,6 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="container-fluid my-5">
       <footer
         className="text-center text-lg-start text-white"
         style={{ backgroundColor: '#3e4551' }}
@@ -76,7 +75,6 @@ const Footer = () => {
           <a className="text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
         </div>
       </footer>
-    </div>
   );
 };
 

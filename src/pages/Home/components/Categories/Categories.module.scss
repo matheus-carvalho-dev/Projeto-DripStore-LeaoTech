@@ -1,7 +1,11 @@
-ul,li{
+ul,
+li {
   list-style: none;
 }
-.categories{
+.categories {
   gap: 20px;
-    overflow-x: auto;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

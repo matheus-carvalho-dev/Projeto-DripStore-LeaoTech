@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./FeaturedProduct.module.scss";
 import supreme from "../../../../../public/assets/Supreme-Tshirt.png";
+import Button from "../../../../components/Button/Button";
 const FeaturedProduct = ({ title, srcImage, customStyles }) => {
   return (
     <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
@@ -17,11 +18,11 @@ const FeaturedProduct = ({ title, srcImage, customStyles }) => {
 
             <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
 
-            <button
-              className={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
-            >
-              Comprar
-            </button>
+            
+            <Button
+              text="Comprar"
+              style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
+            />
           </div>
         </div>
         <div className={`col-3 ${styles.imageContainer} p-0`}>
