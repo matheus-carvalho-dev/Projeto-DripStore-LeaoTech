@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className={`${styles.body}`}>
       <Header/>
-      <main className='container'><Gallery/> <FeaturedCollection/> <Categories/> </main>
+      {/* <main className='container'><Gallery/> <FeaturedCollection/> <Categories/> </main> */}
       <Footer/>
     </div>
   )

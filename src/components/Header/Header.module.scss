@@ -1,4 +1,27 @@
 .offCanvas{
     top:56px !important;
+    padding: 30px;
 
+}
+@media (min-width:992px){
+    .offCanvas{
+        padding: 0px;
+    }
+}
+.badge{
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    top: -7%;
+    right: -60%;
+}
+.badgeNumber{
+    font-size: 12px;
+    color: white;
+    
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Button = ({text,style}) => {
+const Button = ({text,style,customStyle}) => {
   return (
-    <button className={`${style}`}>
+    <button className={`${style}`} style={customStyle}>
       {text}
     </button>
   );

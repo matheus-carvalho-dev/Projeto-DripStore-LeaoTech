@@ -1,80 +1,51 @@
-import React from 'react';
-
+import React from "react";
+import Icon from "../../../public/assets/Icons/Icons";
 const Footer = () => {
   return (
-      <footer
-        className="text-center text-lg-start text-white"
-        style={{ backgroundColor: '#3e4551' }}
-      >
-        <div className="container-fluid p-4 pb-0">
-          <section>
-            <div className="row">
-              <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase">FOOTER CONTENT</h5>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestiae modi cum ipsam ad, illo possimus laborum ut
-                  reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
-                  Reiciendis assumenda iusto sapiente inventore animi?
-                </p>
+    <footer
+      className="text-center text-lg-start text-white bg-dark-gray"
+      
+    >
+      <div className="container-fluid p-4 pb-0">
+        <section>
+          <div className="row">
+            <div>
+              <div
+                href="#"
+                className="d-flex me-0 align-items-center text-white fw-bold gap-2"
+              >
+                <Icon
+                  name="logo"
+                  size="clamp(18px, 2vw + 0.5rem, 28px)"
+                  color="#FFFFFF"
+                />
+                <span
+                  style={{
+                    paddingTop: "1px",
+                    fontSize: "clamp(20px, 1.5vw + 0.5rem, 24px)",
+                  }}
+                >
+                  Digital Store
+                </span>
               </div>
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="col-lg-2 col-md-6 mb-4 mb-md-0">
-                  <h5 className="text-uppercase">Links</h5>
-                  <ul className="list-unstyled mb-0">
-                    <li><a href="#!" className="text-white">Link 1</a></li>
-                    <li><a href="#!" className="text-white">Link 2</a></li>
-                    <li><a href="#!" className="text-white">Link 3</a></li>
-                    <li><a href="#!" className="text-white">Link 4</a></li>
-                  </ul>
-                </div>
-              ))}
+              <p className="text-start" style={{fontSize:'12px'}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
             </div>
-          </section>
+            
+          </div>
+        </section>
 
-          <hr className="mb-4" />
 
-          <section>
-            <p className="d-flex justify-content-center align-items-center">
-              <span className="me-3">Register for free</span>
-              <button type="button" className="btn btn-outline-light btn-rounded">
-                Sign up!
-              </button>
-            </p>
-          </section>
+        <hr className="mb-4" />
 
-          <hr className="mb-4" />
+      </div>
 
-          <section className="mb-4 text-center">
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-              <i className="fab fa-google"></i>
-            </a>
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-              <i className="fab fa-github"></i>
-            </a>
-          </section>
-        </div>
-
-        <div
-          className="text-center p-3"
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
-        >
-          © 2020 Copyright: 
-          <a className="text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-        </div>
-      </footer>
+      <div
+        className="text-center p-3"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)", fontSize: "13px" }}
+      >
+        © 2020 Copyright: Digital College
+      </div>
+    </footer>
   );
 };
 
