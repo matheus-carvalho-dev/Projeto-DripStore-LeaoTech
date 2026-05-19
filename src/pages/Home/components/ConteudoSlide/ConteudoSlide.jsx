@@ -9,7 +9,7 @@ function ConteudoSlide() {
       <div className="container">
         <div className="row align-items-center gap-3 gap-lg-0">
           <div className="col-12 col-lg-5 order-2 order-lg-1">
-            <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start pt-5">
+            <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start align-items-center pt-5">
               <p
                 id={styles.upperText}
                 className="fw-bold m-0 text-center text-lg-start "
