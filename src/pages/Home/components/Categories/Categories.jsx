@@ -5,7 +5,7 @@ const Categories = () => {
   const [activeCategory, setActiveCategory] = useState("");
   return (
     <div>
-      <h2 className="text-start text-sm-center fw-bold text-dark-gray-2">
+      <h2 className="text-start text-sm-center fw-bold text-dark-gray-2 fs-4">
         Categorias
       </h2>
       <ul

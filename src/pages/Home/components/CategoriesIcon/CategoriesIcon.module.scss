@@ -7,3 +7,12 @@
   width: clamp(92px, 10vw, 104px);
   height: clamp(92px, 10vw, 104px);
 }
+.categoryItem{
+  cursor: pointer;
+  &:hover{
+    .containerIcon svg{
+      fill:#ff007b !important;
+    }
+    
+  }
+}

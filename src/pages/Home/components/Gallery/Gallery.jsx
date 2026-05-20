@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import ConteudoSlide from "../ConteudoSlide/ConteudoSlide";
+import SlideContent from "../SlideContent/SlideContent";
 import styles from "./Gallery.module.scss";
 function Gallery() {
   const [index, setIndex] = useState(0);
@@ -18,13 +18,13 @@ function Gallery() {
       controls={false}
     >
       <Carousel.Item>
-        <ConteudoSlide />
+        <SlideContent />
       </Carousel.Item>
       <Carousel.Item>
-        <ConteudoSlide />
+        <SlideContent />
       </Carousel.Item>
       <Carousel.Item>
-        <ConteudoSlide />
+        <SlideContent />
       </Carousel.Item>
     </Carousel>
   );
