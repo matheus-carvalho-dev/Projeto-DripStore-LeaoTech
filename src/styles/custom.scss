@@ -1,47 +1,56 @@
-
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
-$font-family-sans-serif: 'Inter', sans-serif;
-$primary: #C92071;    
-$secondary: #B5B6F2;  
-$tertiary: #991956;  
-$error:#EE4266;
-$success:#52CA76;
-$warning:#F6AA1C;
-$dark-gray:#1F1F1F;
-$dark-gray-2:#474747;
-$dark-gray-3:#666666;
-$light-gray:#8F8F8F;
-$light-gray-2:#CCCCCC;
-$light-gray-3:#F5F5F5;
-$white-pure:#FFFFFF;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+$font-family-sans-serif: "Inter", sans-serif;
+$primary: #c92071;
+$secondary: #b5b6f2;
+$tertiary: #991956;
+$error: #ee4266;
+$success: #52ca76;
+$warning: #f6aa1c;
+$dark-gray: #1f1f1f;
+$dark-gray-2: #474747;
+$dark-gray-3: #666666;
+$light-gray: #8f8f8f;
+$light-gray-2: #cccccc;
+$light-gray-3: #f5f5f5;
+$white-pure: #ffffff;
 
-
-$theme-colors: map-merge($theme-colors, (
-  "primary": $primary,
-  "secondary": $secondary,
-  "tertiary": $tertiary,
-  "error": $error,
-  "success": $success,
-  "warning": $warning,
-  "dark-gray":$dark-gray,
-  "dark-gray-2":$dark-gray-2,
-  "dark-gray-3":$dark-gray-3,
-  "light-gray":$light-gray,
-  "light-gray-2":$light-gray-2,
-  "light-gray-3":$light-gray-3,
-  "white-pure":$white-pure
-));
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "tertiary": $tertiary,
+    "error": $error,
+    "success": $success,
+    "warning": $warning,
+    "dark-gray": $dark-gray,
+    "dark-gray-2": $dark-gray-2,
+    "dark-gray-3": $dark-gray-3,
+    "light-gray": $light-gray,
+    "light-gray-2": $light-gray-2,
+    "light-gray-3": $light-gray-3,
+    "white-pure": $white-pure,
+  )
+);
 
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/bootstrap";
 
 .bg-gradient-primary {
-    background: linear-gradient(180deg, $primary 0%, rgba(201, 32, 113, 0) 100%) !important;
+  background: linear-gradient(
+    180deg,
+    $primary 0%,
+    rgba(201, 32, 113, 0) 100%
+  ) !important;
 }
 
 .bg-gradient-secondary {
-    background: linear-gradient(180deg, $secondary 0%, rgba(181, 182, 242, 0) 100%) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(181, 182, 242, 0.5) 0%,
+    rgba(181, 182, 242, 0) 50%
+  ) !important;
 }

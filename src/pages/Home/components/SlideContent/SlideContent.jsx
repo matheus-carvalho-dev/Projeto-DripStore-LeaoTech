@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-
-import styles from "./ConteudoSlide.module.scss";
+import styles from "./SlideContent.module.scss";
 import Button from "../../../../components/Button/Button";
-function ConteudoSlide() {
+function ContentSlide() {
   return (
     <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
       <div className="container">
@@ -49,4 +48,4 @@ function ConteudoSlide() {
   );
 }
 
-export default ConteudoSlide;
+export default ContentSlide;
