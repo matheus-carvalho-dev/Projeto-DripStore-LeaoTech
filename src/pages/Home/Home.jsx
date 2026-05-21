@@ -7,17 +7,19 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
 import ProductCardd from "../../components/ProductCardd/ProductCardd";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import Produtos from "../Produtos/Produtos";
+import { href } from "react-router-dom";
 const Home = () => {
   return (
-    <div className={`${styles.body}`}>
-      {/* <Gallery />
+    <>
+      {/* <Gallery /> */}
       <main className="container">
-        <FeaturedCollection />
+        {/* <FeaturedCollection />
         <Categories />
-        <SpecialOffer />
-      </main> */}
-      <ProductCardd/>
-    </div>
+        <SpecialOffer /> */}
+      </main>
+    </>
   );
 };
 

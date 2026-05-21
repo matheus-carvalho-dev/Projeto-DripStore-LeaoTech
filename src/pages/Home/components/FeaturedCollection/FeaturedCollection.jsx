@@ -37,7 +37,7 @@ const FeaturedCollection = () => {
 
   return (
     <section className="my-5">
-      <h2 className="pt-2 fs-4 text-dark-gray-2 fw-bold ms-2">
+      <h2 className="pt-2 fs-4 text-dark-gray-2 fw-bold ms-4">
           Coleções em destaque
         </h2>
       <div className="container">

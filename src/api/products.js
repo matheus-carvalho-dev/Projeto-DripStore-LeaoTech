@@ -1,4 +1,4 @@
-const sneaker = "/assets/tenis.png";
+const sneaker = "/assets/Sneaker-White-Blue-Orange.png";
 
 export const products = [
   {
