@@ -6,7 +6,7 @@ import styles from "./Home.module.scss";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCardd from "../../components/ProductCardd/ProductCardd";
 const Home = () => {
   return (
     <div className={`${styles.body}`}>
@@ -16,7 +16,7 @@ const Home = () => {
         <Categories />
         <SpecialOffer />
       </main> */}
-      <ProductCard/>
+      <ProductCardd/>
     </div>
   );
 };

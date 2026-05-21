@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './ProductCard.module.scss'
-const ProductCard = () => {
+import styles from './ProductCardd.module.scss'
+const ProductCardd = () => {
   return (
     <div className={`d-flex flex-column align-items-start ${styles.containerCard}`}>
       <div className={`${styles.containerImg} bg-white`}>
@@ -20,4 +20,4 @@ const ProductCard = () => {
   );
 }
 
-export default ProductCard
+export default ProductCardd
