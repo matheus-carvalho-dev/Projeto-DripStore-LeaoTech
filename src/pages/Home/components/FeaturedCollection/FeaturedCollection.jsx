@@ -37,18 +37,14 @@ const FeaturedCollection = () => {
 
   return (
     <section className="my-5">
-      <h2 className="pt-2 fs-4 text-dark-gray-2 fw-bold ms-2">
-          Coleções em destaque
-        </h2>
-      <div className="container">
-      
+      <h2 className="py-2 fs-4 text-dark-gray-2 fw-bold">
+        Coleções em destaque
+      </h2>
+      <div>
         <div className="row gy-2 gx-2 justify-content-center">
           {featuredProducts.map((product) => {
             return (
-              <div
-                className="col-12 col-md-6 col-lg-4"
-                key={product.id}
-              >
+              <div className="col-12 col-md-6 col-lg-4" key={product.id}>
                 <FeaturedProduct
                   title={product.title}
                   srcImage={product.srcImage}

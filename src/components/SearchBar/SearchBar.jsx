@@ -1,5 +1,6 @@
 import Form from "react-bootstrap/Form";
-import Icon from "../../../public/assets/Icons/Icons"; // Verifique se o caminho do import confere com a nova pasta
+import Icon from "../Icons/Icons";
+
 
 function SearchBar() {
   return (
@@ -42,4 +43,4 @@ function SearchBar() {
     </Form>
   );
 }
-export default SearchBar
+export default SearchBar;
