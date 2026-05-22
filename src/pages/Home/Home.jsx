@@ -3,14 +3,32 @@ import FeaturedCollection from "./components/FeaturedCollection/FeaturedCollecti
 import Categories from "./components/Categories/Categories";
 import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
 import TrendingProducts from "./components/TrendingProducts/TrendingProducts";
+import { use, useEffect, useState } from "react";
+import { fetchProduct } from "../../api/products";
 const Home = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("camisetas");
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        const resp = await fetchProduct();
+        setData(resp);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadData()
+    
+  }, []);
   return (
     <>
-    <Gallery/>
+      <Gallery />
       <main className={`container`}>
         <FeaturedCollection />
-        <Categories />
-        <TrendingProducts />
+        <Categories activeCategory={activeCategory} setActiveCategory={setActiveCategory}   />
+        <TrendingProducts activeCategory={activeCategory} data={data}/>
         <SpecialOffer />
       </main>
     </>

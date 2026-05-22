@@ -1,4 +1,4 @@
-.img {
+.img[alt='K-Swiss V8 Masculino']{
   transform: rotate(-30deg);
   left: -8%;
   position: absolute;
@@ -12,11 +12,10 @@
   position: relative;
   box-shadow: 6px 16px 30px 0px #6962620D;
   border-radius: 5px;
+  overflow: hidden;
 
 }
-.originalPrice {
-  color: gray;
-}
+
 .price{
   font-size: clamp(1rem,2vw,1.5rem);
 }

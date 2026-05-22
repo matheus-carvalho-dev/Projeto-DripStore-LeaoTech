@@ -8,4 +8,11 @@ li {
   &::-webkit-scrollbar {
     display: none;
   }
-}
+    @media (max-width: 767px) {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: calc(50% - 50vw);
+    padding-right: calc(50% - 50vw);
+    }
+    }
+

@@ -1,7 +1,7 @@
 
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import Offcanvas from "react-bootstrap/Offcanvas";
+import Offcanvas from "../OffCanvas/OffCanvas";
 import Icon from "../Icons/Icons";
 import styles from "./Header.module.scss";
 import { useState } from "react";
@@ -14,7 +14,7 @@ function Header() {
   const [offCanvas, setOffCanvas] = useState(false);
 
   return (
-    <header className="container-fluid bg-white" style={{ zIndex: 1050 }}>
+    <header className="container-fluid bg-white position-relative" style={{ zIndex: 1051 }}>
       <Navbar
         expand="lg"
         className="bg-white position-relative d-flex flex-column container-lg"
@@ -55,28 +55,7 @@ function Header() {
               </span>
             </Navbar.Brand>
           </Link>
-
-          <Navbar.Offcanvas
-            className={`${styles.offCanvas} w-75 justify-content-between d-lg-none order-lg-2`}
-            id={`offcanvasNavbar-expand-lg`}
-            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
-            placement="start"
-            show={offCanvas}
-            onHide={() => setOffCanvas(false)}
-          >
-            <Offcanvas.Header className={`p-0`}>
-              <Offcanvas.Title
-                className={`fs-5 p-0 fw-bold text-dark-gray-2`}
-                id={`offcanvasNavbarLabel-expand-lg`}
-              >
-                Páginas
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body className={`p-0`}>
-              <Navb />
-            </Offcanvas.Body>
-            <AuthUser />
-          </Navbar.Offcanvas>
+          <Offcanvas offCanvas={offCanvas} setOffCanvas={setOffCanvas}/>
           <div className=" mx-1 d-none d-lg-block w-50">
             <SearchBar />
           </div>
