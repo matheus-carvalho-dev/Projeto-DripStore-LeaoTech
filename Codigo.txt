@@ -40,60 +40,148 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
+public/
+  assets/
+    Headphones.png
+    Sneaker-Black-White-Green.png
+    Sneaker-Black-White.png
+    Sneaker-Red-White.png
+    Sneaker-White-Blue-Orange.png
+    Supreme-Tshirt.png
+src/
+  components/
+    AuthUser/
+      AuthUser.jsx
+    Button/
+      Button.jsx
+    ErrorBoundary/
+      ErrorBoundary.jsx
+    Footer/
+      Footer.jsx
+      Footer.module.scss
+    Head/
+      Head.jsx
+    Header/
+      Header.jsx
+      Header.module.scss
+    Icons/
+      Icons.jsx
+    Navbar/
+      Navbar.jsx
+      Navbar.module.scss
+    ProductCardd/
+      ProductCardd.jsx
+      ProductCardd.module.scss
+    SearchBar/
+      SearchBar.jsx
+  Layouts/
+    Layout.jsx
+  pages/
+    Home/
+      components/
+        Categories/
+          Categories.jsx
+          Categories.module.scss
+        CategoriesIcon/
+          CategoriesIcon.jsx
+          CategoriesIcon.module.scss
+        FeaturedCollection/
+          FeaturedCollection.jsx
+          FeaturedCollection.module.scss
+        FeaturedProduct/
+          FeaturedProduct.jsx
+          FeaturedProduct.module.scss
+        Gallery/
+          Gallery.jsx
+          Gallery.module.scss
+        SlideContent/
+          SlideContent.jsx
+          SlideContent.module.scss
+        SpecialOffer/
+          SpecialOffer.jsx
+          SpecialOffer.module.scss
+        TrendingProducts/
+          TrendingProducts.jsx
+          TrendingProducts.module.scss
+      Home.jsx
+    Product/
+      Product.jsx
+      Product.module.css
+    Search/
+      Search.jsx
+      Search.module.css
+  routes/
+    index.jsx
+  styles/
+    custom.scss
+  main.jsx
 .gitignore
 eslint.config.js
 index.html
 package.json
-public/assets/Headphones.png
-public/assets/Sneaker-Black-White-Green.png
-public/assets/Sneaker-Black-White.png
-public/assets/Sneaker-Red-White.png
-public/assets/Sneaker-White-Blue-Orange.png
-public/assets/Supreme-Tshirt.png
 README.md
-src/components/Button/Button.jsx
-src/components/ErrorBoundary/ErrorBoundary.jsx
-src/components/Footer/Footer.jsx
-src/components/Footer/Footer.module.scss
-src/components/Header/Header.jsx
-src/components/Header/Header.module.scss
-src/components/Icons/Icons.jsx
-src/components/Icons/Icons.module.scss
-src/components/Navbar/Navbar.jsx
-src/components/Navbar/Navbar.module.scss
-src/components/ProductCardd/ProductCardd.jsx
-src/components/ProductCardd/ProductCardd.module.scss
-src/components/SearchBar/SearchBar.jsx
-src/Layouts/Layout.jsx
-src/main.jsx
-src/pages/Home/components/Categories/Categories.jsx
-src/pages/Home/components/Categories/Categories.module.scss
-src/pages/Home/components/CategoriesIcon/CategoriesIcon.jsx
-src/pages/Home/components/CategoriesIcon/CategoriesIcon.module.scss
-src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx
-src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss
-src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx
-src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss
-src/pages/Home/components/Gallery/Gallery.jsx
-src/pages/Home/components/Gallery/Gallery.module.scss
-src/pages/Home/components/SlideContent/SlideContent.jsx
-src/pages/Home/components/SlideContent/SlideContent.module.scss
-src/pages/Home/components/SpecialOffer/SpecialOffer.jsx
-src/pages/Home/components/SpecialOffer/SpecialOffer.module.scss
-src/pages/Home/components/TrendingProducts/TrendingProducts.jsx
-src/pages/Home/components/TrendingProducts/TrendingProducts.module.scss
-src/pages/Home/Home.jsx
-src/pages/Product/Product.jsx
-src/pages/Product/Product.module.css
-src/pages/Search/Search.jsx
-src/pages/Search/Search.module.css
-src/routes/index.jsx
-src/styles/custom.scss
 vite.config.js
 </directory_structure>
 
 <files>
 This section contains the contents of the repository's files.
+
+<file path="src/components/AuthUser/AuthUser.jsx">
+import React from "react";
+import Button from "../Button/Button";
+import { Link } from "react-router-dom";
+const AuthUser = ({ text, style, customStyle }) => {
+  return (
+    <>
+      <div
+        className={`border-top border-light-gray-2 d-flex flex-column justify-content-center d-lg-none`}
+      >
+        <Button
+          text="Entrar"
+          style="btn btn-primary text-white py-2 w-100 mt-2"
+          customStyle={{ fontSize: "14px" }}
+        />
+        <span
+          className={`text-center mt-3 text-decoration-underline text-dark-gray-2`}
+        >
+          Cadastre-se
+        </span>
+      </div>
+      <div className={` gap-4 d-none d-lg-flex`}>
+        <Link
+          className={`text-decoration-underline text-dark-gray-2 align-self-center`}
+        >
+          Cadastre-se
+        </Link>
+        <Button
+          text="Entrar"
+          style="btn btn-primary text-white py-2 px-5"
+          customStyle={{ fontSize: "14px" }}
+        />
+      </div>
+    </>
+  );
+};
+
+export default AuthUser;
+</file>
+
+<file path="src/components/Head/Head.jsx">
+import React from 'react'
+
+const Head = (props) => {
+  React.useEffect(() => {
+    document.title = props.title;
+    document
+      .querySelector("meta[name='description']")
+      .setAttribute('content', props.description);
+  }, [props]);
+
+  return <></>;
+};
+
+export default Head
+</file>
 
 <file path="src/components/ErrorBoundary/ErrorBoundary.jsx">
 import { useRouteError } from "react-router-dom";
@@ -118,7 +206,6 @@ export function ErrorBoundary() {
 
 <file path="src/components/Icons/Icons.jsx">
 import React from "react";
-import stlyes from "./Icons.module.scss";
 const Icons = {
   camisetas: {
     path: (
@@ -234,10 +321,8 @@ export const Icon = ({
 export default Icon;
 </file>
 
-<file path="src/components/Icons/Icons.module.scss">
-#hover:hover{
-    fill: aqua;
-}
+<file path="src/components/Navbar/Navbar.module.scss">
+
 </file>
 
 <file path="src/Layouts/Layout.jsx">
@@ -249,14 +334,79 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <>
         <Outlet />
-      </>
       <Footer />
     </>
   );
 };
 export default Layout
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.module.scss">
+.carousel :global(.carousel-indicators [data-bs-target]){
+    background-color: #CCC;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+
+}
+.carousel :global(.carousel-indicators .active){
+    background-color: #C92071;
+}
+</file>
+
+<file path="src/pages/Home/components/SpecialOffer/SpecialOffer.jsx">
+import React from "react";
+import styles from "./SpecialOffer.module.scss";
+import Button from "../../../../components/Button/Button";
+
+const SpecialOffer = () => {
+  return (
+    <div className="container-fluid py-5">
+      <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
+        <div
+          className={`bg-gradient-secondary rounded-circle d-flex justify-content-center align-items-center ${styles.containerImg}`}
+        >
+          <img
+            src="/assets/Sneaker-Black-White-Green.png"
+            className="img-fluid"
+            alt="Sneaker Air Jordan"
+          />
+        </div>
+
+        <div
+          className="d-flex flex-column align-items-start"
+          style={{ maxWidth: "500px" }}
+        >
+          <p className="text-warning fw-bold m-0">Oferta especial</p>
+          <h4 className="fw-bold text-dark-gray-2 fs-1 my-3">
+            Air Jordan edição de colecionador
+          </h4>
+          <p className="text-dark-gray-2 mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip
+          </p>
+          <Button
+            text="Ver Oferta"
+            style="btn btn-primary px-5 py-2 fw-bold text-white"
+            customStyle={{ fontSize: "14px" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SpecialOffer;
+</file>
+
+<file path="src/pages/Home/components/SpecialOffer/SpecialOffer.module.scss">
+.containerImg {
+  height: clamp(281px,40vw,466px);
+  width: clamp(281px,40vw,466px);
+}
 </file>
 
 <file path="src/pages/Home/components/TrendingProducts/TrendingProducts.jsx">
@@ -280,7 +430,7 @@ const TrendingProducts = () => {
       </div>
       <div className="row">
         {produtos.map((produto) => (
-          <div key={produto} className="col-6 col-lg-3 justify-content-between">
+          <div key={produto} className="col-6 col-lg-3">
             <Link className="text-decoration-none text-reset">
               <ProductCardd />
             </Link>
@@ -295,6 +445,14 @@ export default TrendingProducts;
 </file>
 
 <file path="src/pages/Home/components/TrendingProducts/TrendingProducts.module.scss">
+
+</file>
+
+<file path="src/pages/Product/Product.module.css">
+
+</file>
+
+<file path="src/pages/Search/Search.module.css">
 
 </file>
 
@@ -349,22 +507,6 @@ export default defineConfig([
 ])
 </file>
 
-<file path="index.html">
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
-</file>
-
 <file path="README.md">
 # React + Vite
 
@@ -386,37 +528,75 @@ If you are developing a production application, we recommend using TypeScript wi
  
 </file>
 
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
 <file path="src/components/Footer/Footer.module.scss">
 p{
   font-size: clamp(14px,1vw,16px);
 }
 </file>
 
+<file path="src/components/Header/Header.module.scss">
+.offCanvas{
+    top:56px !important;
+    padding: 30px;
+
+}
+@media (min-width:992px){
+    .offCanvas{
+        padding: 0px;
+    }
+}
+.badge{
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    top: -7%;
+    right: -60%;
+}
+.badgeNumber{
+    font-size: 12px;
+    color: white;
+    
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+</file>
+
 <file path="src/components/Navbar/Navbar.jsx">
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Navb = () => {
-  const [currentPage, setCurrentPage] = useState("/");
-  function handleClick(path) {
-    setCurrentPage(path);
-  }
+  const location = useLocation()
   const navLinks = [
     { path: "/", text: "Home" },
-    { path: "/Product", text: "Produtos" },
+    { path: "/Products", text: "Produtos" },
     { path: "/Categories", text: "Categories" },
     { path: "/Orders", text: "Meus pedidos" },
   ];
+  console.log(location)
 return (
   <Nav className="justify-content-end flex-grow-1 gap-5">
     {navLinks.map((link) => (
       <Link
-        onClick={() => handleClick("/")}
+      key={link.text}
         className="text-decoration-none"
         to={link.path}
       >
         <span
-          className={`${currentPage === link.path ? 'text-primary text-decoration-underline':'text-dark-gray-2'}`}
+          className={`${location.pathname === link.path ? 'text-primary text-decoration-underline':'text-dark-gray-2'}`}
           style={{ lineHeight: "1.75rem", letterSpacing: "0.75px" }}
         >
           {link.text}
@@ -429,10 +609,6 @@ return (
 export default Navb;
 </file>
 
-<file path="src/components/Navbar/Navbar.module.scss">
-
-</file>
-
 <file path="src/components/ProductCardd/ProductCardd.jsx">
 import React from 'react'
 import styles from './ProductCardd.module.scss'
@@ -441,14 +617,13 @@ const ProductCardd = () => {
     <div className={`d-flex flex-column align-items-start ${styles.containerCard}`}>
       <div className={`${styles.containerImg} bg-white`}>
         <img
-          src="/assets/Sneaker-White-Blue-Orange.png
-        "
+          src="/assets/Sneaker-White-Blue-Orange.png"
           alt=""
           className={`${styles.img} img-fluid`}
         />
       </div>
       <p className={`${styles.category} my-2`}>Tênis</p>
-      <div className='d-flex flex-column align w-100'>
+      <div className='d-flex flex-column w-100'>
         <h3 className={` pb-0 text-truncate w-100 h-100 ${styles.productName}`}>K-Swiss V8 - Masculino</h3>
         <p className={`fw-bold ${styles.price}`}><span className={`${styles.originalPrice} text-decoration-line-through`}>$200</span> $100</p>
       </div>
@@ -473,6 +648,7 @@ export default ProductCardd
   align-items: center;
   position: relative;
   box-shadow: 6px 16px 30px 0px #6962620D;
+  border-radius: 5px;
 
 }
 .originalPrice {
@@ -501,10 +677,14 @@ export default ProductCardd
 import Form from "react-bootstrap/Form";
 import Icon from "../Icons/Icons";
 
-
 function SearchBar() {
   return (
-    <Form className="d-flex position-relative w-100">
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+      className="d-flex position-relative w-100"
+    >
       <Form.Control
         type="search"
         placeholder="Pesquisar produto..."
@@ -518,9 +698,6 @@ function SearchBar() {
       />
       <button
         type="submit"
-        onClick={(e) => {
-          e.preventDefault();
-        }}
         className="position-absolute border-0 bg-transparent"
         style={{
           right: "15px",
@@ -546,26 +723,33 @@ function SearchBar() {
 export default SearchBar;
 </file>
 
-<file path="src/pages/Home/components/Gallery/Gallery.module.scss">
-.carousel :global(.carousel-indicators [data-bs-target]){
-    background-color: #CCC;
-    width: 0.7rem;
-    height: 0.7rem;
-    border-radius: 50%;
+<file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.module.scss">
+.containerIcon{
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(92px, 10vw, 104px);
+  height: clamp(92px, 10vw, 104px);
 }
-.carousel :global(.carousel-indicators .active){
-    background-color: #C92071;
+.categoryItem{
+  cursor: pointer;
+  &:hover{
+    .containerIcon svg{
+      fill:#ff007b !important;
+    }
+    
+  }
 }
 </file>
 
 <file path="src/pages/Home/components/SlideContent/SlideContent.jsx">
-import React from "react";
-import { useState } from "react";
 import styles from "./SlideContent.module.scss";
 import Button from "../../../../components/Button/Button";
 function ContentSlide() {
   return (
-    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
+    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-4 flex-lg-row">
       <div className="container">
         <div className="row align-items-center gap-3 gap-lg-0">
           <div className="col-12 col-lg-5 order-2 order-lg-1">
@@ -641,153 +825,6 @@ h1 {
 }
 </file>
 
-<file path="src/pages/Home/components/SpecialOffer/SpecialOffer.jsx">
-import React from "react";
-import styles from "./SpecialOffer.module.scss";
-import Button from "../../../../components/Button/Button";
-
-const SpecialOffer = () => {
-  return (
-    <div className="container-fluid py-5">
-      <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
-        <div
-          className={`bg-gradient-secondary rounded-circle d-flex justify-content-center align-items-center ${styles.containerImg}`}
-        >
-          <img
-            src="/assets/Sneaker-Black-White-Green.png"
-            className="img-fluid"
-            alt="Sneaker Air Jordan"
-          />
-        </div>
-
-        <div
-          className="d-flex flex-column align-items-start"
-          style={{ maxWidth: "500px" }}
-        >
-          <p className="text-warning fw-bold m-0">Oferta especial</p>
-          <h4 className="fw-bold text-dark-gray-2 fs-1 my-3">
-            Air Jordan edição de colecionador
-          </h4>
-          <p className="text-dark-gray-2 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip
-          </p>
-          <Button
-            text="Ver Oferta"
-            style="btn btn-primary px-5 py-2 fw-bold text-white"
-            customStyle={{ fontSize: "14px" }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default SpecialOffer;
-</file>
-
-<file path="src/pages/Home/components/SpecialOffer/SpecialOffer.module.scss">
-.containerImg {
-  height: clamp(281px,40vw,466px);
-  width: clamp(281px,40vw,466px);
-}
-</file>
-
-<file path="src/pages/Product/Product.module.css">
-
-</file>
-
-<file path="src/pages/Search/Search.module.css">
-
-</file>
-
-<file path="vite.config.js">
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-})
-</file>
-
-<file path="src/components/Header/Header.module.scss">
-.offCanvas{
-    top:56px !important;
-    padding: 30px;
-
-}
-@media (min-width:992px){
-    .offCanvas{
-        padding: 0px;
-    }
-}
-.badge{
-    width: 17px;
-    height: 17px;
-    position: absolute;
-    top: -7%;
-    right: -60%;
-}
-.badgeNumber{
-    font-size: 12px;
-    color: white;
-    
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  display: none;
-}
-</file>
-
-<file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.jsx">
-import React, { useState } from "react";
-import styles from "./CategoriesIcon.module.scss";
-import Icon from "../../../../components/Icons/Icons";
-
-const CategoriesIcon = ({ name, color, onClick, isActive }) => {
-  return (
-    <li onClick={onClick} className={styles.categoryItem}>
-      <div
-        style={isActive ? { boxShadow: "0px 4px 25px 0px #0000000D" } : {}}
-        className={`${styles.containerIcon}`}
-      >
-        <Icon isActive={isActive} name={name} color={color} />
-      </div>
-      <p className={`text-center fw-bold text-dark-gray-2`}>
-        {name.toUpperCase()}
-      </p>
-    </li>
-  );
-};
-
-export default CategoriesIcon;
-</file>
-
-<file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.module.scss">
-.containerIcon{
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: clamp(92px, 10vw, 104px);
-  height: clamp(92px, 10vw, 104px);
-}
-.categoryItem{
-  cursor: pointer;
-  &:hover{
-    .containerIcon svg{
-      fill:#ff007b !important;
-    }
-    
-  }
-}
-</file>
-
 <file path="src/pages/Product/Product.jsx">
 import React from 'react'
 
@@ -810,6 +847,64 @@ const Search = () => {
 }
 
 export default Search
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="src/components/Button/Button.jsx">
+import React from 'react';
+
+const Button = ({text,style,customStyle}) => {
+  return (
+    <button className={`${style}`} style={customStyle}>
+      {text}
+    </button>
+  );
+};
+
+export default Button;
+</file>
+
+<file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.jsx">
+import styles from "./CategoriesIcon.module.scss";
+import Icon from "../../../../components/Icons/Icons";
+
+const CategoriesIcon = ({ name, color, onClick, isActive }) => {
+  return (
+    <li onClick={onClick} className={styles.categoryItem}>
+      <div
+        style={isActive ? { boxShadow: "0px 4px 25px 0px #0000000D" } : {}}
+        className={`${styles.containerIcon}`}
+      >
+        <Icon isActive={isActive} name={name} color={color} />
+      </div>
+      <p className={`text-center fw-bold text-dark-gray-2 pt-2`}>
+        {name.toUpperCase()}
+      </p>
+    </li>
+  );
+};
+
+export default CategoriesIcon;
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss">
+.featuredProduct{
+  border-radius: 8px;
+}
 </file>
 
 <file path="src/routes/index.jsx">
@@ -867,26 +962,6 @@ export const router = createBrowserRouter([
 }
 </file>
 
-<file path="src/components/Button/Button.jsx">
-import React from 'react';
-
-const Button = ({text,style,customStyle}) => {
-  return (
-    <button className={`${style}`} style={customStyle}>
-      {text}
-    </button>
-  );
-};
-
-export default Button;
-</file>
-
-<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss">
-.featuredProduct{
-  border-radius: 8px;
-}
-</file>
-
 <file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss">
 .featuredProduct {
   border-radius: 8px;
@@ -934,6 +1009,42 @@ export default Button;
 }
 </file>
 
+<file path="src/pages/Home/components/Gallery/Gallery.jsx">
+import React from "react";
+import { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import SlideContent from "../SlideContent/SlideContent";
+import styles from "./Gallery.module.scss";
+function Gallery() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  return (
+    <Carousel
+      className={styles.carousel}
+      activeIndex={index}
+      onSelect={handleSelect}
+      controls={false}
+    >
+      <Carousel.Item>
+        <SlideContent />
+      </Carousel.Item>
+      <Carousel.Item>
+        <SlideContent />
+      </Carousel.Item>
+      <Carousel.Item>
+        <SlideContent />
+      </Carousel.Item>
+    </Carousel>
+  );
+}
+
+export default Gallery;
+</file>
+
 <file path="src/components/Footer/Footer.jsx">
 import React from "react";
 import Icon from "../Icons/Icons";
@@ -953,7 +1064,7 @@ const Footer = () => {
     <footer className="text-center text-lg-start text-white bg-dark-gray py-4">
       <div className="container-fluid p-4 pb-0">
         <section className="container-lg py-3">
-          <div className="row d-lg-flex align-items-start justify-items-start">
+          <div className="row d-lg-flex align-items-start">
             <div className="col-lg-4">
               <div>
                 <div className="d-flex me-0 align-items-center text-white fw-bold gap-2 mb-4">
@@ -1054,7 +1165,6 @@ export default Footer;
 </file>
 
 <file path="src/components/Header/Header.jsx">
-import Button from "../Button/Button";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -1063,16 +1173,17 @@ import styles from "./Header.module.scss";
 import { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import Navb from "../Navbar/Navbar";
+import AuthUser from "../AuthUser/AuthUser";
+import { Link } from "react-router-dom";
 function Header() {
   const [search, setSearch] = useState(false);
   const [offCanvas, setOffCanvas] = useState(false);
 
   return (
-    <header className="container-fluid bg-white">
+    <header className="container-fluid bg-white" style={{ zIndex: 1050 }}>
       <Navbar
         expand="lg"
         className="bg-white position-relative d-flex flex-column container-lg"
-        style={{ zIndex: 1050 }}
       >
         <Container fluid className="justify-content-between">
           <Navbar.Toggle
@@ -1095,24 +1206,22 @@ function Header() {
               className="me-2"
             />
           </Navbar.Toggle>
-          <Navbar.Brand
-            href="#"
-            className="d-flex me-0 align-items-center text-primary fw-bold gap-2"
-          >
-            <Icon
-              name="logo"
-              size="clamp(18px, 3vw, 33px)"
-              color="#C92071"
-            />
-            <span
-              style={{
-                paddingTop: "1px",
-                fontSize: "clamp(20px, 5vw, 36px)",
-              }}
+          <Link to="/" className="text-decoration-none">
+            <Navbar.Brand
+              href="#"
+              className="d-flex me-0 align-items-center text-primary fw-bold gap-2"
             >
-              Digital Store
-            </span>
-          </Navbar.Brand>
+              <Icon name="logo" size="clamp(18px, 3vw, 33px)" color="#C92071" />
+              <span
+                style={{
+                  paddingTop: "1px",
+                  fontSize: "clamp(20px, 5vw, 36px)",
+                }}
+              >
+                Digital Store
+              </span>
+            </Navbar.Brand>
+          </Link>
 
           <Navbar.Offcanvas
             className={`${styles.offCanvas} w-75 justify-content-between d-lg-none order-lg-2`}
@@ -1133,35 +1242,13 @@ function Header() {
             <Offcanvas.Body className={`p-0`}>
               <Navb />
             </Offcanvas.Body>
-            <div
-              className={`border-top border-light-gray-2 d-flex flex-column justify-content-center d-lg-none`}
-            >
-              <Button
-                text="Entrar"
-                style="btn btn-primary text-white py-2 w-100 mt-2"
-                customStyle={{ fontSize: "14px" }}
-              />
-              <span
-                className={`text-center mt-3 text-decoration-underline text-dark-gray-2`}
-              >
-                Cadastre-se
-              </span>
-            </div>
+            <AuthUser />
           </Navbar.Offcanvas>
           <div className=" mx-1 d-none d-lg-block w-50">
             <SearchBar />
           </div>
-          <div className={` gap-4 d-none d-lg-flex`}>
-            <span
-              className={`text-decoration-underline text-dark-gray-2 align-self-center`}
-            >
-              Cadastre-se
-            </span>
-            <Button
-              text="Entrar"
-              style="btn btn-primary text-white py-2 px-5"
-              customStyle={{ fontSize: "14px" }}
-            />
+          <div className="d-none d-lg-block">
+            <AuthUser />
           </div>
           <div className="d-flex align-items-center gap-2  me-1">
             <div
@@ -1222,72 +1309,27 @@ function Header() {
 export default Header;
 </file>
 
-<file path="src/main.jsx">
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './routes';
-import './styles/custom.scss';
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>
-);
-</file>
-
 <file path="src/pages/Home/components/Categories/Categories.jsx">
 import React, { useState } from "react";
 import styles from "./Categories.module.scss";
 import CategoriesIcon from "../CategoriesIcon/CategoriesIcon";
 const Categories = () => {
   const [activeCategory, setActiveCategory] = useState("");
+  const categories = ['camisetas','calcas','headphones','bones','tenis']
   return (
     <section>
       <h2 className="pt-2 fs-4 text-dark-gray-2 fw-bold text-center py-2">Categorias</h2>
       <ul
         className={`d-flex ps-0 justify-content-sm-center ${styles.categories}`}
       >
-        <CategoriesIcon
+        {categories.map((category)=>(<CategoriesIcon
           onClick={() => {
-            setActiveCategory("camisetas");
+            setActiveCategory(category);
           }}
-          isActive={activeCategory === "camisetas"}
-          name={"camisetas"}
+          isActive={activeCategory === category}
+          name={category}
           color={"#8F8F8F"}
-        />
-        <CategoriesIcon
-          onClick={() => {
-            setActiveCategory("calcas");
-          }}
-          isActive={activeCategory === "calcas"}
-          name={"calcas"}
-          color={"#8F8F8F"}
-        />
-        <CategoriesIcon
-          onClick={() => {
-            setActiveCategory("headphones");
-          }}
-          isActive={activeCategory === "headphones"}
-          name={"headphones"}
-          color={"#8F8F8F"}
-        />
-        <CategoriesIcon
-          onClick={() => {
-            setActiveCategory("bones");
-          }}
-          isActive={activeCategory === "bones"}
-          name={"bones"}
-          color={"#8F8F8F"}
-        />
-        <CategoriesIcon
-          onClick={() => {
-            setActiveCategory("tenis");
-          }}
-          isActive={activeCategory === "tenis"}
-          name={"tenis"}
-          color={"#8F8F8F"}
-        />
+        />))}
       </ul>
     </section>
   );
@@ -1310,40 +1352,47 @@ li {
 }
 </file>
 
-<file path="src/pages/Home/components/Gallery/Gallery.jsx">
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx">
 import React from "react";
-import { useState } from "react";
-import Carousel from "react-bootstrap/Carousel";
-import SlideContent from "../SlideContent/SlideContent";
-import styles from "./Gallery.module.scss";
-function Gallery() {
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
-
+import styles from "./FeaturedProduct.module.scss";
+import Button from "../../../../components/Button/Button";
+const FeaturedProduct = ({ title, srcImage, customStyles }) => {
   return (
-    <Carousel
-      className={styles.carousel}
-      activeIndex={index}
-      onSelect={handleSelect}
-      controls={false}
-    >
-      <Carousel.Item>
-        <SlideContent />
-      </Carousel.Item>
-      <Carousel.Item>
-        <SlideContent />
-      </Carousel.Item>
-      <Carousel.Item>
-        <SlideContent />
-      </Carousel.Item>
-    </Carousel>
-  );
-}
+    <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
+      <div
+        className={`row align-items-center py-4 ps-2 g-0 ${styles.productContentContainer} h-100`}
+      >
+        <div className={`col-9 align-items-center ${styles.textContainer}`}>
+          <div className="d-flex flex-column justify-content-center align-items-start gap-2 h-100">
+            <span
+              className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
+            >
+              30% OFF
+            </span>
 
-export default Gallery;
+            <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
+
+            
+            <Button
+              text="Comprar"
+              style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
+            />
+          </div>
+        </div>
+        <div className={`col-3 ${styles.imageContainer} p-0`}>
+          <img
+            src={srcImage}
+            alt=""
+            className={`img-fluid ${styles.image}`}
+            style={{ ...customStyles }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FeaturedProduct;
 </file>
 
 <file path="src/styles/custom.scss">
@@ -1408,12 +1457,24 @@ body{
 }
 </file>
 
+<file path="src/main.jsx">
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/index';
+import './styles/custom.scss';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router}/>
+  </StrictMode>
+);
+</file>
+
 <file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx">
 import React from "react";
 import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
-
-const FeaturedCollection = () => {
-  const featuredProducts = [
+const featuredProducts = [
     {
       id: "Supreme",
       srcImage: "/assets/Supreme-Tshirt.png",
@@ -1445,6 +1506,8 @@ const FeaturedCollection = () => {
       },
     },
   ];
+const FeaturedCollection = () => {
+  
 
   return (
     <section className="my-5">
@@ -1471,50 +1534,6 @@ const FeaturedCollection = () => {
 };
 
 export default FeaturedCollection;
-</file>
-
-<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx">
-import React from "react";
-import styles from "./FeaturedProduct.module.scss";
-import supreme from "../../../../../public/assets/Supreme-Tshirt.png";
-import Button from "../../../../components/Button/Button";
-const FeaturedProduct = ({ title, srcImage, customStyles }) => {
-  return (
-    <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
-      <div
-        className={`row align-items-center py-4 ps-2 g-0 ${styles.productContentContainer} h-100`}
-      >
-        <div className={`col-9 align-items-center ${styles.textContainer}`}>
-          <div className="d-flex flex-column justify-content-center align-items-start gap-2 h-100">
-            <span
-              className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
-            >
-              30% OFF
-            </span>
-
-            <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
-
-            
-            <Button
-              text="Comprar"
-              style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
-            />
-          </div>
-        </div>
-        <div className={`col-3 ${styles.imageContainer} p-0`}>
-          <img
-            src={srcImage}
-            alt=""
-            className={`img-fluid ${styles.image}`}
-            style={{ ...customStyles }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default FeaturedProduct;
 </file>
 
 <file path="src/pages/Home/Home.jsx">

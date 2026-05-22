@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./FeaturedProduct.module.scss";
-import supreme from "../../../../../public/assets/Supreme-Tshirt.png";
 import Button from "../../../../components/Button/Button";
 const FeaturedProduct = ({ title, srcImage, customStyles }) => {
   return (

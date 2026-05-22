@@ -18,7 +18,7 @@ const TrendingProducts = () => {
       </div>
       <div className="row">
         {produtos.map((produto) => (
-          <div key={produto} className="col-6 col-lg-3 justify-content-between">
+          <div key={produto} className="col-6 col-lg-3">
             <Link className="text-decoration-none text-reset">
               <ProductCardd />
             </Link>
