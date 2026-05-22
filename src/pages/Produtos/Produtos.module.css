@@ -1,0 +1,48 @@
+.topBar {
+  background-color: #f5f5f5;
+
+  padding: 20px;
+
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultText {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.grayText {
+  color: #8f8f8f;
+}
+
+.select {
+  width: 240px;
+
+  height: 40px;
+
+  border: 1px solid #cfcfcf;
+
+  border-radius: 4px;
+
+  padding-left: 10px;
+
+  background-color: white;
+
+  font-size: 14px;
+
+  outline: none;
+}

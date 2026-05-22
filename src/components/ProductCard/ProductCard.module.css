@@ -1,0 +1,47 @@
+.card {
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.discount {
+  position: absolute;
+  margin-top: 8px;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: #d8ffb2;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.imageContainer {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.image {
+  width: 90%;
+  object-fit: contain;
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #8f8f8f;
+}
+.old {
+  color: #8f8f8f;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+}

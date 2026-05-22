@@ -1,78 +1,46 @@
 import Card from 'react-bootstrap/Card'
+import styles from './ProductCard.module.css'
 
 function ProductCard({ product }) {
 
   return (
 
-    <Card className="border-0 shadow-sm h-100">
+    <Card className={styles.card}>
 
-      
       {product.discount && (
 
-        <div
-          className="position-absolute mt-2 ms-2 px-2 py-1 rounded"
-          style={{
-            backgroundColor: '#d8ffb2',
-            fontSize: '12px',
-            fontWeight: 'bold'
-          }}
-        >
+        <div className={styles.discount}>
           30% OFF
         </div>
 
       )}
 
-    
-      <div
-        className="bg-light d-flex justify-content-center align-items-center"
-        style={{
-          height: '200px'
-        }}
-      >
+      <div className={styles.imageContainer}>
 
         <Card.Img
           src={product.image}
-          style={{
-            width: '90%',
-            objectFit: 'contain'
-          }}
+          className={styles.image}
         />
 
       </div>
 
-    
       <Card.Body>
 
-        
-        <small className="text-secondary">
+        <small className={styles.old}>
           Tênis
         </small>
 
-      
-        <Card.Title
-          className="mt-2"
-          style={{
-            fontSize: '18px'
-          }}
-        >
+        <Card.Title className={styles.title}>
           {product.name}
         </Card.Title>
 
-        
         <div className="d-flex gap-2 align-items-center">
 
-          
-          <span
-            className="text-secondary"
-            style={{
-              textDecoration: 'line-through'
-            }}
-          >
+          <span className={styles.oldPrice}>
             $200
           </span>
 
-          
-          <span className="fw-bold fs-4">
+          <span className={styles.price}>
             ${product.price}
           </span>
 

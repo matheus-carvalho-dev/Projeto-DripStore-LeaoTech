@@ -4,39 +4,35 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import SidebarFilter from "../../components/SidebarFilter/SidebarFilter";
 
 import { products as productsData } from "../../api/products";
+
+import styles from "./Produtos.module.css";
+
 function Produtos() {
 
   const [products] = useState(productsData);
 
   return (
 
-    <div className="container py-4 mb-5">
+    <div className="container">
 
-      
-      <div
-        className="bg-light p-4 mb-4 rounded d-flex justify-content-between align-items-center"
-      >
+      <div className={styles.topBar}>
+         
 
-        
-        <div>
+        <div className={styles.resultText}>
 
-          <span className="fw-bold">
-            Resultados para "Tênis"
+          <span className={styles.bold}>
+           Resultados para "Tênis" -
           </span>
 
-          <span className="text-secondary ms-2">
-            - 389 produtos
+          <span className={styles.grayText}>
+              389 produtos
           </span>
+
+          
 
         </div>
 
-        
-        <select
-          className="form-select"
-          style={{
-            width: '220px'
-          }}
-        >
+        <select className={styles.select}>
 
           <option>
             Ordenar por: mais relevantes
@@ -54,17 +50,14 @@ function Produtos() {
 
       </div>
 
-      
       <div className="row">
 
-        
         <div className="col-md-3">
 
           <SidebarFilter />
 
         </div>
 
-      
         <div className="col-md-9">
 
           <div className="row g-4">
@@ -76,9 +69,7 @@ function Produtos() {
                 className="col-md-4"
               >
 
-                <ProductCard
-                  product={product}
-                />
+                <ProductCard product={product} />
 
               </div>
 
@@ -95,4 +86,4 @@ function Produtos() {
   )
 }
 
-export default Produtos
+export default Produtos;

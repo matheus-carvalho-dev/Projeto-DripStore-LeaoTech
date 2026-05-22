@@ -1,4 +1,3 @@
-
 function SidebarFilter() {
 
   return (
@@ -17,36 +16,56 @@ function SidebarFilter() {
         </h6>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox"  />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="adidas"
+          />
+          <label className="form-check-label" htmlFor="adidas">
             Adidas
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="balenciaga"
+          />
+          <label className="form-check-label" htmlFor="balenciaga">
             Calenciaga
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="kswiss"
+          />
+          <label className="form-check-label" htmlFor="kswiss">
             K-Swiss
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="nike"
+          />
+          <label className="form-check-label" htmlFor="nike">
             Nike
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="puma"
+          />
+          <label className="form-check-label" htmlFor="puma">
             Puma
           </label>
         </div>
@@ -61,29 +80,45 @@ function SidebarFilter() {
         </h6>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox"  />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="esporte"
+          />
+          <label className="form-check-label" htmlFor="esporte">
             Esporte e lazer
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="casual"
+          />
+          <label className="form-check-label" htmlFor="casual">
             Casual
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="utilitario"
+          />
+          <label className="form-check-label" htmlFor="utilitario">
             Utilitário
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="corrida"
+          />
+          <label className="form-check-label" htmlFor="corrida">
             Corrida
           </label>
         </div>
@@ -98,22 +133,34 @@ function SidebarFilter() {
         </h6>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox"  />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="masculino"
+          />
+          <label className="form-check-label" htmlFor="masculino">
             Masculino
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox"  />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="feminino"
+          />
+          <label className="form-check-label" htmlFor="feminino">
             Feminino
           </label>
         </div>
 
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" />
-          <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="unisex"
+          />
+          <label className="form-check-label" htmlFor="unisex">
             Unisex
           </label>
         </div>
@@ -132,10 +179,10 @@ function SidebarFilter() {
             className="form-check-input"
             type="radio"
             name="estado"
-        
+            id="novo"
           />
 
-          <label className="form-check-label">
+          <label className="form-check-label" htmlFor="novo">
             Novo
           </label>
         </div>
@@ -145,9 +192,10 @@ function SidebarFilter() {
             className="form-check-input"
             type="radio"
             name="estado"
+            id="usado"
           />
 
-          <label className="form-check-label">
+          <label className="form-check-label" htmlFor="usado">
             Usado
           </label>
         </div>
