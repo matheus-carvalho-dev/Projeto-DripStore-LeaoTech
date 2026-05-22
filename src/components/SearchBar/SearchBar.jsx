@@ -1,9 +1,14 @@
 import Form from "react-bootstrap/Form";
-import Icon from "../../../public/assets/Icons/Icons"; // Verifique se o caminho do import confere com a nova pasta
+import Icon from "../Icons/Icons";
 
 function SearchBar() {
   return (
-    <Form className="d-flex position-relative w-100">
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+      className="d-flex position-relative w-100"
+    >
       <Form.Control
         type="search"
         placeholder="Pesquisar produto..."
@@ -17,9 +22,6 @@ function SearchBar() {
       />
       <button
         type="submit"
-        onClick={(e) => {
-          e.preventDefault();
-        }}
         className="position-absolute border-0 bg-transparent"
         style={{
           right: "15px",
@@ -42,4 +44,4 @@ function SearchBar() {
     </Form>
   );
 }
-export default SearchBar
+export default SearchBar;

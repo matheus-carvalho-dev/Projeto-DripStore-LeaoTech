@@ -12,7 +12,6 @@ const SpecialOffer = () => {
           <img
             src="/assets/Sneaker-Black-White-Green.png"
             className="img-fluid"
-            alt="Sneaker Air Jordan"
           />
         </div>
 

@@ -1,29 +1,24 @@
-import React from "react";
-import { useState } from "react";
 import styles from "./SlideContent.module.scss";
 import Button from "../../../../components/Button/Button";
 function ContentSlide() {
   return (
-    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
+    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-4 flex-lg-row">
       <div className="container">
         <div className="row align-items-center gap-3 gap-lg-0">
           <div className="col-12 col-lg-5 order-2 order-lg-1">
             <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start align-items-center pt-5">
               <p
-                id={styles.upperText}
-                className="fw-bold m-0 text-center text-lg-start "
+                className={`fw-bold m-0 text-center text-lg-start ${styles.upperText}`}
               >
                 Melhores ofertas personalizadas
               </p>
               <h1
-                id={styles.title}
-                className="fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0"
+                className={`fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0 ${styles.title}`}
               >
                 Queima de estoque Nike 🔥
               </h1>
               <p
-                id={styles.bottomText}
-                className="text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5"
+                className={`text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5 ${styles.bottomText}`}
               >
                 Consequat culpa exercitation mollit nisi excepteur do do tempor
                 laboris eiusmod irure consectetur.

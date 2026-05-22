@@ -1,25 +1,23 @@
-import Button from "../Button/Button";
+
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Icon from "../../../public/assets/Icons/Icons";
+import Icon from "../Icons/Icons";
 import styles from "./Header.module.scss";
 import { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import Navb from "../Navbar/Navbar";
+import AuthUser from "../AuthUser/AuthUser";
+import { Link } from "react-router-dom";
 function Header() {
   const [search, setSearch] = useState(false);
   const [offCanvas, setOffCanvas] = useState(false);
 
   return (
-    <header>
+    <header className="container-fluid bg-white" style={{ zIndex: 1050 }}>
       <Navbar
         expand="lg"
         className="bg-white position-relative d-flex flex-column container-lg"
-        style={{ zIndex: 1050 }}
       >
         <Container fluid className="justify-content-between">
           <Navbar.Toggle
@@ -42,13 +40,21 @@ function Header() {
               className="me-2"
             />
           </Navbar.Toggle>
-          <Navbar.Brand
-            href="#"
-            className="d-flex me-0 align-items-center text-primary fw-bold gap-2"
-          >
-            <Icon name="logo" size="clamp(18px, 2vw + 0.5rem, 28px)" color="#C92071" />
-            <span style={{ paddingTop: "1px", fontSize: "clamp(20px, 1.5vw + 0.5rem, 24px)"}}>Digital Store</span>
-          </Navbar.Brand>
+          <Link to="/" className="text-decoration-none">
+            <Navbar.Brand
+              className="d-flex me-0 align-items-center text-primary fw-bold gap-2"
+            >
+              <Icon name="logo" size="clamp(18px, 3vw, 33px)" color="#C92071" />
+              <span
+                style={{
+                  paddingTop: "1px",
+                  fontSize: "clamp(20px, 5vw, 36px)",
+                }}
+              >
+                Digital Store
+              </span>
+            </Navbar.Brand>
+          </Link>
 
           <Navbar.Offcanvas
             className={`${styles.offCanvas} w-75 justify-content-between d-lg-none order-lg-2`}
@@ -67,40 +73,16 @@ function Header() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className={`p-0`}>
-              <Navb/>
+              <Navb />
             </Offcanvas.Body>
-            <div
-              className={`border-top border-light-gray-2 d-flex flex-column justify-content-center d-lg-none`}
-            >
-              <Button
-                text="Entrar"
-                style="btn btn-primary text-white py-2 w-100 mt-2"
-                customStyle={{ fontSize: "14px" }}
-              />
-              <span
-                className={`text-center mt-3 text-decoration-underline text-dark-gray-2`}
-              >
-                Cadastre-se
-              </span>
-            </div>
+            <AuthUser />
           </Navbar.Offcanvas>
           <div className=" mx-1 d-none d-lg-block w-50">
             <SearchBar />
           </div>
-          <div
-              className={` gap-4 d-none d-lg-flex`}
-            ><span
-                className={`text-decoration-underline text-dark-gray-2 align-self-center`}
-              >
-                Cadastre-se
-              </span>
-              <Button
-                text="Entrar"
-                style="btn btn-primary text-white py-2 px-5"
-                customStyle={{ fontSize: "14px" }}
-              />
-              
-            </div>
+          <div className="d-none d-lg-block">
+            <AuthUser />
+          </div>
           <div className="d-flex align-items-center gap-2  me-1">
             <div
               className={`d-lg-none`}
@@ -137,7 +119,9 @@ function Header() {
               <div
                 className={`d-flex bg-error rounded-circle justify-content-center  ${styles.badge}`}
               >
-                <span className={`${styles.badgeNumber}`} style={{}}>2</span>
+                <span className={`${styles.badgeNumber}`} style={{}}>
+                  2
+                </span>
               </div>
             </div>
           </div>
@@ -147,7 +131,9 @@ function Header() {
             </div>
           )}
         </Container>
-        <div className="align-self-start d-none d-lg-block"><Navb/></div>
+        <div className="align-self-start d-none d-lg-block mt-2">
+          <Navb />
+        </div>
       </Navbar>
     </header>
   );
