@@ -1,0 +1,32 @@
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mainImageWrapper {
+  padding: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnailList {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: clamp(61px,10vw,117px);
+  height: clamp(58px,5vw,96px);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+
+  &.active {
+    border-color: #C92071;
+    background-color: #ffffff;
+  }
+}

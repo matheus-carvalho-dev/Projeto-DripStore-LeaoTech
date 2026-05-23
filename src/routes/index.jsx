@@ -4,6 +4,8 @@ import Search from "../pages/Search/Search";
 import Produtos from "../pages/Produtos/Produtos";
 import Layout from '../Layouts/Layout'
 import { ErrorBoundary } from "../components/ErrorBoundary/ErrorBoundary";
+import Product from "../pages/Product/Product";
+import CarouselComponent from '../pages/Product/components/CarouselComponent/CarouselComponent'
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,7 +15,7 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/produtos", element: <Produtos />},
       { path: "/search", element: <Search /> },
-      // { path: "/product/:id", element: <Product /> }, 
+      { path: "/product", element: <Product/>}, 
     ],
   },
 ]);

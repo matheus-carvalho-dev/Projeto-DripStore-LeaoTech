@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Icon from "../../../../components/Icons/Icons";
 
 import ProductCardd from "../../../../components/ProductCardd/ProductCardd";
+import ProductList from "../../../../components/ProductListItem/ProductListItem";
 const TrendingProducts = ({ activeCategory, data }) => {
   const products = data.filter(
     (dataItem) => dataItem.category == activeCategory
@@ -20,19 +21,7 @@ const TrendingProducts = ({ activeCategory, data }) => {
       </div>
       <div className="row">
         {products.map((product) => (
-          <div key={product.id} className="col-6 col-lg-3">
-            <Link className="text-decoration-none text-reset">
-              <ProductCardd
-                imgSrc={product.image}
-                category={product.category}
-                name={product.name}
-                price={product.price}
-                discount={product.discount}
-                discountAmount={product.discountAmount}
-                alt={product.name}
-              />
-            </Link>
-          </div>
+          <ProductList product={product}/>
         ))}
       </div>
     </section>
