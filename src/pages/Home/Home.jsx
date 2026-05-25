@@ -2,7 +2,7 @@ import Gallery from "./components/Gallery/Gallery";
 import FeaturedCollection from "./components/FeaturedCollection/FeaturedCollection";
 import Categories from "./components/Categories/Categories";
 import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
-import TrendingProducts from "../../components/TrendingProducts/TrendingProducts";
+import TrendingProducts from "../../components/ProductList/ProductList";
 import { use, useEffect, useState } from "react";
 import { fetchProduct } from "../../api/products";
 const Home = () => {
@@ -17,9 +17,15 @@ const Home = () => {
         setData(resp);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     loadData();
+    ;
+  }, [activeCategory]);
+  useEffect(() => {
+    setActiveCategory("camisetas");
   }, []);
   return (
     <>
@@ -35,6 +41,7 @@ const Home = () => {
           activeCategory={activeCategory}
           data={data}
           limit={8}
+          loading={loading}
         />
         <SpecialOffer />
       </main>

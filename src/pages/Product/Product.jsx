@@ -1,52 +1,67 @@
 import React, { useState, useEffect } from "react";
-import StarRating from "./components/StarRating/StarRating";
-import Icon from "../../components/Icons/Icons";
-import ProductListItem from "../../components/ProductListItem/ProductListItem";
-import TrendingProducts from "../../components/TrendingProducts/TrendingProducts";
+import TrendingProducts from "../../components/ProductList/ProductList";
 import { fetchProduct, fetchProductById } from "../../api/products";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import { useParams } from "react-router-dom";
+import NotFound from "../NotFound/NotFound";
 
-const Product = ({ id = 19 }) => {
+const Product = () => {
+  const { id } = useParams();
   const [product, setProduct] = useState({});
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentColor, setCurrentColor] = useState("rosa");
-  const [currentSize, setCurrentSize] = useState(39);
+  const [currentColor, setCurrentColor] = useState("");
+  const [currentSize, setCurrentSize] = useState("");
   useEffect(() => {
     const loadData = async () => {
       try {
-        setLoading(true);
         const resp = await fetchProduct();
         setData(resp);
       } catch (error) {
         console.log(error);
       }
     };
+
     const loadProduct = async () => {
       try {
         setLoading(true);
         const resp = await fetchProductById(id);
-        setProduct(resp);
-        console.log(resp);
+
+        if (resp && resp.productDetails) {
+          setProduct(resp);
+          setCurrentColor(resp.productDetails.availableColors[0].name);
+          setCurrentSize(resp.productDetails.availableSizes[0]);
+        }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     loadData();
     loadProduct();
-    setLoading(false);
-  }, []);
+  }, [id]);
   const products = data.filter(
-    (dataItem) => dataItem.category == product.category,
+    (dataItem) => dataItem.category == product.category
   );
-  if (loading || !product || !product.productDetails) {
+  if (loading) {
     return <div className="text-center py-5">Carregando produto...</div>;
   }
+
+  // 2. Após o loading terminar (loading === false), validamos se o produto existe
+  // Se o produto estiver vazio ou faltar detalhes, mostramos o NotFound
+  if (
+    !product ||
+    Object.keys(product).length === 0 ||
+    !product.productDetails
+  ) {
+    return <NotFound />;
+  }
   return (
-    <div className="min-vh-100 bg-light container p-0">
-      <main className="">
+    <div className="min-vh-100 bg-light container">
+      <main>
         <BreadCrumb
           paths={[
             "Home",
@@ -56,10 +71,15 @@ const Product = ({ id = 19 }) => {
             product.name,
           ]}
         />
-      <ProductDetails product={product} currentColor={currentColor} setCurrentColor={setCurrentColor} currentSize={currentSize} setCurrentSize={setCurrentSize}/>
-        
+        <ProductDetails
+          product={product}
+          currentColor={currentColor}
+          setCurrentColor={setCurrentColor}
+          currentSize={currentSize}
+          setCurrentSize={setCurrentSize}
+        />
       </main>
-      <section className="container">
+      <section className="">
         <TrendingProducts
           limit={4}
           data={products}

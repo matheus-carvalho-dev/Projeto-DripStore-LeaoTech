@@ -1,3 +1,10 @@
-p{
-  font-size: clamp(14px,1vw,16px);
+p {
+  font-size: clamp(14px, 1vw, 16px);
+}
+.logoText {
+  padding-top: 1px;
+  font-size: clamp(20px, 3vw, 44px);
+}
+.sectionTitle{
+  font-size: 1.125rem
 }

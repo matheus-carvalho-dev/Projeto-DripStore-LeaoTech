@@ -9,6 +9,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Navb from "../Navbar/Navbar";
 import AuthUser from "../AuthUser/AuthUser";
 import { Link } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
 function Header() {
   const [search, setSearch] = useState(false);
   const [offCanvas, setOffCanvas] = useState(false);
@@ -46,10 +47,7 @@ function Header() {
             >
               <Icon name="logo" size="clamp(18px, 3vw, 33px)" color="#C92071" />
               <span
-                style={{
-                  paddingTop: "1px",
-                  fontSize: "clamp(20px, 5vw, 36px)",
-                }}
+                className={styles.logoTitle}
               >
                 Digital Store
               </span>
@@ -82,27 +80,7 @@ function Header() {
                 }}
               />
             </div>
-            <div className="position-relative">
-              <Icon
-                name="cart"
-                color="#C92071"
-                size="18px"
-                attributes={{
-                  stroke: "#C92071",
-                  strokeWidth: "1.5",
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  fill: "none",
-                }}
-              />
-              <div
-                className={`d-flex bg-error rounded-circle justify-content-center  ${styles.badge}`}
-              >
-                <span className={`${styles.badgeNumber}`} style={{}}>
-                  2
-                </span>
-              </div>
-            </div>
+            <CartWidget/>
           </div>
           {search && (
             <div className="w-100 mt-lg-0 my-2 d-lg-none">

@@ -40,149 +40,188 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
-public/
-  assets/
-    Headphones.png
-    Sneaker-.png
-    Sneaker-Black-White-Green.png
-    Sneaker-Black-White.png
-    Sneaker-Red-White.png
-    Sneaker-White-Blue-Orange.png
-    Supreme-Tshirt.png
-src/
-  api/
-    products.js
-  components/
-    AuthUser/
-      AuthUser.jsx
-    Button/
-      Button.jsx
-    ErrorBoundary/
-      ErrorBoundary.jsx
-    Footer/
-      Footer.jsx
-      Footer.module.scss
-    Head/
-      Head.jsx
-    Header/
-      Header.jsx
-      Header.module.scss
-    Icons/
-      Icons.jsx
-    Navbar/
-      Navbar.jsx
-      Navbar.module.scss
-    OffCanvas/
-      OffCanvas.jsx
-      OffCanvas.module.scss
-    ProductCard/
-      ProductCard.jsx
-    ProductCardd/
-      ProductCardd.jsx
-      ProductCardd.module.scss
-    ProductListItem/
-      ProductListItem.jsx
-    SearchBar/
-      SearchBar.jsx
-    SectionTitle/
-      SectionTitle.jsx
-      SectionTitle.module.scss
-    SidebarFilter/
-      SidebarFilter.jsx
-    TrendingProducts/
-      TrendingProducts.jsx
-      TrendingProducts.module.scss
-  Layouts/
-    Layout.jsx
-  pages/
-    Home/
-      components/
-        Categories/
-          Categories.jsx
-          Categories.module.scss
-        CategoriesIcon/
-          CategoriesIcon.jsx
-          CategoriesIcon.module.scss
-        FeaturedCollection/
-          FeaturedCollection.jsx
-          FeaturedCollection.module.scss
-        FeaturedProduct/
-          FeaturedProduct.jsx
-          FeaturedProduct.module.scss
-        Gallery/
-          Gallery.jsx
-          Gallery.module.scss
-        SlideContent/
-          SlideContent.jsx
-          SlideContent.module.scss
-        SpecialOffer/
-          SpecialOffer.jsx
-          SpecialOffer.module.scss
-      Home.jsx
-    Product/
-      components/
-        CarouselComponent/
-          CarouselComponent.jsx
-          CarouselComponent.module.scss
-        StarRating/
-          StarRating.jsx
-      Product.jsx
-      Product.module.css
-    Produtos/
-      Produtos.jsx
-      Produtos.module.css
-    Search/
-      Search.jsx
-      Search.module.css
-  routes/
-    index.jsx
-  styles/
-    custom.scss
-  main.jsx
 .gitignore
 eslint.config.js
 index.html
 package.json
+public/assets/Headphones.png
+public/assets/Sneaker-.png
+public/assets/Sneaker-Black-White-Green.png
+public/assets/Sneaker-Black-White.png
+public/assets/Sneaker-Red-White.png
+public/assets/Sneaker-White-Blue-Orange.png
+public/assets/Supreme-Tshirt.png
 README.md
+src/api/products.js
+src/components/AuthUser/AuthUser.jsx
+src/components/BreadCrumb/BreadCrumb.jsx
+src/components/Button/Button.jsx
+src/components/CartWidget/CartWidget.jsx
+src/components/CartWidget/CartWidget.module.scss
+src/components/DiscountBadge/DiscountBadge.jsx
+src/components/DiscountBadge/DiscountBadge.module.scss
+src/components/ErrorBoundary/ErrorBoundary.jsx
+src/components/Footer/Footer.jsx
+src/components/Footer/Footer.module.scss
+src/components/Head/Head.jsx
+src/components/Header/Header.jsx
+src/components/Header/Header.module.scss
+src/components/Icons/Icons.jsx
+src/components/Navbar/Navbar.jsx
+src/components/Navbar/Navbar.module.scss
+src/components/OffCanvas/OffCanvas.jsx
+src/components/OffCanvas/OffCanvas.module.scss
+src/components/ProductCard/ProductCard.jsx
+src/components/ProductCardd/ProductCardd.jsx
+src/components/ProductCardd/ProductCardd.module.scss
+src/components/ProductList/ProductList.jsx
+src/components/ProductListItem/ProductListItem.jsx
+src/components/ScrollToTop/ScrollToTop.jsx
+src/components/SearchBar/SearchBar.jsx
+src/components/SearchBar/SearchBar.module.scss
+src/components/SectionTitle/SectionTitle.jsx
+src/components/SectionTitle/SectionTitle.module.scss
+src/components/SidebarFilter/SidebarFilter.jsx
+src/contexts/CartContext.jsx
+src/Layouts/Layout.jsx
+src/main.jsx
+src/pages/Home/components/Categories/Categories.jsx
+src/pages/Home/components/Categories/Categories.module.scss
+src/pages/Home/components/CategoriesIcon/CategoriesIcon.jsx
+src/pages/Home/components/CategoriesIcon/CategoriesIcon.module.scss
+src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx
+src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss
+src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx
+src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss
+src/pages/Home/components/Gallery/Gallery.jsx
+src/pages/Home/components/Gallery/Gallery.module.scss
+src/pages/Home/components/SlideContent/SlideContent.jsx
+src/pages/Home/components/SlideContent/SlideContent.module.scss
+src/pages/Home/components/SpecialOffer/SpecialOffer.jsx
+src/pages/Home/components/SpecialOffer/SpecialOffer.module.scss
+src/pages/Home/Home.jsx
+src/pages/NotFound/NotFound.jsx
+src/pages/Product/components/ProductDetails/ProductDetails.jsx
+src/pages/Product/components/ProductDetails/ProductDetails.module.scss
+src/pages/Product/components/ProductInfo/ProductInfo.jsx
+src/pages/Product/components/ProductInfo/ProductInfo.module.scss
+src/pages/Product/components/StarRating/StarRating.jsx
+src/pages/Product/Product.jsx
+src/pages/Produtos/Produtos.jsx
+src/pages/Search/Search.jsx
+src/routes/index.jsx
+src/styles/custom.scss
 vite.config.js
 </directory_structure>
 
 <files>
 This section contains the contents of the repository's files.
 
-<file path="src/components/SectionTitle/SectionTitle.jsx">
-import React from "react";
-import styles from './SectionTitle.module.scss'
-const SectionTitle = ({ text, className }) => {
-  return <h2 className={`py-2 text-dark-gray-2 fw-bold ${styles.title} ${className}`}>{text}</h2>;
+<file path="src/components/CartWidget/CartWidget.jsx">
+import React, { useContext } from "react";
+import Icon from "../Icons/Icons";
+import styles from "./CartWidget.module.scss";
+import { CartContext } from "../../contexts/CartContext";
+const CartWidget = () => {
+  const { totalItems, setCartItems } = useContext(CartContext);
+  return (
+    <div onClick={()=>{setCartItems([])}} className="position-relative">
+      <Icon
+        name="cart"
+        color="#C92071"
+        size="18px"
+        attributes={{
+          stroke: "#C92071",
+          strokeWidth: "1.5",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          fill: "none",
+        }}
+      />
+      {totalItems>0 && (
+        <div
+          className={`d-flex bg-error rounded-circle justify-content-center  ${styles.badge}`}
+        >
+          <span className={` fw-bold ${styles.badgeNumber}`} style={{}}>{totalItems}</span>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default SectionTitle;
+export default CartWidget;
 </file>
 
-<file path="src/components/SectionTitle/SectionTitle.module.scss">
-.title{
-    font-size: clamp(16px, 2vw, 24px);
+<file path="src/components/CartWidget/CartWidget.module.scss">
+.badge{
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: -7%;
+  right: -60%;
+}
+.badgeNumber{
+  font-size: 12px;
+  color: white;
+  
 }
 </file>
 
-<file path="src/components/TrendingProducts/TrendingProducts.jsx">
+<file path="src/components/DiscountBadge/DiscountBadge.jsx">
+import React from 'react'
+import styles from './DiscountBadge.module.scss'
+const DiscountBadge = ({discountAmount}) => {
+  return (
+    <span
+                  className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
+                >
+                  {discountAmount}% OFF
+                </span>
+  )
+}
+
+export default DiscountBadge
+</file>
+
+<file path="src/components/DiscountBadge/DiscountBadge.module.scss">
+.badge {
+  font-size: clamp(0.625rem, 3vw, 0.875rem);
+  background: #e7ff86;
+  border-radius: 29px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+</file>
+
+<file path="src/components/ProductList/ProductList.jsx">
 import React from "react";
-import styles from "./TrendingProducts.module.scss";
 import { Link } from "react-router-dom";
 import Icon from "../Icons/Icons";
-
-import ProductCardd from "../ProductCardd/ProductCardd";
-import ProductList from "../ProductListItem/ProductListItem";
 import ProductListItem from "../ProductListItem/ProductListItem";
 import SectionTitle from "../SectionTitle/SectionTitle";
-const TrendingProducts = ({ activeCategory, data, limit, text }) => {
-  const productsToRender = data.slice(0, limit);
+
+
+const ProductList = ({ activeCategory, data, limit, text, loading }) => {
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center py-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Carregando...</span>
+        </div>
+      </div>
+    );
+  }
+
+  const filteredData = data.filter(
+    (product) => product.category === activeCategory,
+  );
+  const productsToRender = filteredData.slice(0, limit);
 
   return (
-    <section className="py-5">
+    <section className="">
       <div className="d-flex justify-content-between align-items-center">
-        <SectionTitle text={'Produtos em alta'}/>
+        <SectionTitle text={text} />
         <Link
           to={`/search?q=${activeCategory}`}
           className="text-decoration-none text-primary d-flex align-items-center gap-1"
@@ -200,11 +239,161 @@ const TrendingProducts = ({ activeCategory, data, limit, text }) => {
   );
 };
 
-export default TrendingProducts;
+export default ProductList;
 </file>
 
-<file path="src/components/TrendingProducts/TrendingProducts.module.scss">
+<file path="src/components/ScrollToTop/ScrollToTop.jsx">
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+</file>
+
+<file path="src/components/SearchBar/SearchBar.module.scss">
+.input {
+  outline: none;
+  box-shadow: none;
+  border-radius: 8px;
+}
+.button {
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</file>
+
+<file path="src/contexts/CartContext.jsx">
+import { createContext, useState } from "react";
+import { useEffect } from 'react'
+export const CartContext = createContext();
+
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem("CartItems");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  const totalItems = Array.isArray(cartItems)
+    ? cartItems.reduce((acc, item) => acc + (item.quantity || 1), 0)
+    : 0;
+  useEffect(() => {
+    localStorage.setItem("CartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+  return (
+    <CartContext.Provider value={{ cartItems, setCartItems, totalItems }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+</file>
+
+<file path="src/pages/NotFound/NotFound.jsx">
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
+
+const NotFound = () => {
+  return (
+    <div className="container py-5 my-5 d-flex flex-column align-items-center justify-content-center text-center">
+      <h1 className="fw-bold display-1 text-primary mb-0">404</h1>
+      <h2 className="fw-bold text-dark-gray mb-3">
+        Ops! Página não encontrada
+      </h2>
+      <p className="text-muted mb-4" style={{ maxWidth: "400px" }}>
+        Desculpe, não conseguimos encontrar a página que você está procurando.
+        Ela pode ter sido removida ou o endereço está incorreto.
+      </p>
+
+      <Link to="/" className="text-decoration-none">
+        <Button
+          text="Voltar para Home"
+          style="btn btn-primary text-white py-2 px-5 fw-bold"
+        />
+      </Link>
+    </div>
+  );
+};
+
+export default NotFound;
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+])
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+#   P r o j e t o - D r i p S t o r e - L e a o T e c h  
+ 
 </file>
 
 <file path="src/components/AuthUser/AuthUser.jsx">
@@ -245,6 +434,36 @@ const AuthUser = () => {
 };
 
 export default AuthUser;
+</file>
+
+<file path="src/components/BreadCrumb/BreadCrumb.jsx">
+import React from "react";
+import Button from "../Button/Button";
+import { Link } from "react-router-dom";
+const BreadCrumb = ({ paths }) => {
+  return (
+    <nav aria-label="breadcrumb" className="my-3">
+      <ol className="breadcrumb small">
+        {paths.map((item, idx) => (
+          <li
+            key={idx}
+            className={`breadcrumb-item ${idx === 4 ? "active fw-bold" : ""}`}
+          >
+            {idx === 4 ? (
+              item
+            ) : (
+              <a href="#" className="text-decoration-none text-muted">
+                {item}
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+};
+
+export default BreadCrumb;
 </file>
 
 <file path="src/components/ErrorBoundary/ErrorBoundary.jsx">
@@ -354,30 +573,20 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 </file>
 
-<file path="src/components/ProductListItem/ProductListItem.jsx">
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ProductCardd from '../ProductCardd/ProductCardd'
-const ProductListItem = ({product}) => {
-  
-  return (
-    <div className="col-6 col-lg-3">
-            <Link className="text-decoration-none text-reset">
-              <ProductCardd
-                imgSrc={product.image}
-                category={product.category}
-                name={product.name}
-                price={product.price}
-                discount={product.discount}
-                discountAmount={product.discountAmount}
-                alt={product.name}
-              />
-            </Link>
-          </div>
-  )
-}
+<file path="src/components/SectionTitle/SectionTitle.jsx">
+import React from "react";
+import styles from './SectionTitle.module.scss'
+const SectionTitle = ({ text, className }) => {
+  return <h2 className={`py-2 text-dark-gray-2 fw-bold ${styles.title} ${className}`}>{text}</h2>;
+};
 
-export default ProductListItem
+export default SectionTitle;
+</file>
+
+<file path="src/components/SectionTitle/SectionTitle.module.scss">
+.title{
+    font-size: clamp(16px, 2vw, 24px);
+}
 </file>
 
 <file path="src/pages/Home/components/SpecialOffer/SpecialOffer.module.scss">
@@ -387,11 +596,19 @@ export default ProductListItem
 }
 </file>
 
-<file path="src/pages/Product/components/CarouselComponent/CarouselComponent.jsx">
+<file path="src/pages/Product/components/ProductDetails/ProductDetails.jsx">
 import { useState, useEffect } from "react";
-import styles from "./CarouselComponent.module.scss";
+import styles from "./ProductDetails.module.scss";
+import ProductInfo from "../ProductInfo/ProductInfo";
 
-const CarouselComponent = ({ images }) => {
+const ProductDetails = ({
+  product,
+  currentSize,
+  currentColor,
+  setCurrentColor,
+  setCurrentSize,
+}) => {
+  const images = product.productDetails.images;
   const [mainImage, setMainImage] = useState(images[0]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -406,32 +623,51 @@ const CarouselComponent = ({ images }) => {
     return <div className="text-center py-5">Carregando produto...</div>;
   }
 
-  const handleClick = (src, index) => {
-    setMainImage(images[index]);
+  const handleClick = (image, index) => {
+    setMainImage(image);
     setActiveIndex(index);
   };
 
   return (
-    <div   className={` text-center ${styles.carouselContainer}`}>
-      <div className={`${styles.mainImageWrapper}`} style={{ backgroundColor: mainImage.color }}>
-        <img
-          src={mainImage.src}
-          alt="Produto selecionado"
-          className={`img-fluid ${styles.mainImage}`}
-        />
-      </div>
-
-      <div className={`w-100 ${styles.thumbnailList} justify-content-between`}>
-        {images.map(({ src, color, index }) => (
+    <div className="row rounded-4 align-items-stretch mb-5 g-0 ">
+      <div className="col-12 col-lg-7 mb-lg-0">
+        <div className={` text-center ${styles.carouselContainer}`}>
           <div
-            key={index}
-            className={`${styles.thumbnail} d-flex flex-column ${index === activeIndex ? styles.active : ""}`}
-            onClick={() => handleClick(src, index)}
-            style={{ backgroundColor: color }}
+            className={`${styles.mainImageWrapper}`}
+            style={{ backgroundColor: mainImage.color }}
           >
             <img
-              src={src}
-              alt={`Miniatura ${index + 1}`}
+              src={mainImage.src}
+              alt="Produto selecionado"
+              className={`img-fluid ${styles.mainImage}`}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-12 col-lg-5  order-2 order-lg-0 mt-2 mt-lg-0 align-items-stretch">
+        <ProductInfo
+          product={product}
+          currentColor={currentColor}
+          setCurrentColor={setCurrentColor}
+          currentSize={currentSize}
+          setCurrentSize={setCurrentSize}
+        />
+      </div>
+      <div
+        className={`col-12 col-lg-7 ${styles.thumbnailList} justify-content-between mt-2`}
+      >
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`${styles.thumbnail} d-flex flex-column ${
+              index === activeIndex ? styles.active : ""
+            }`}
+            onClick={() => handleClick(image, index)}
+            style={{ backgroundColor: image.color }}
+          >
+            <img
+              src={image.src}
+              alt={`Miniatura ${image.index + 1}`}
               className="img-fluid"
             />
           </div>
@@ -441,10 +677,199 @@ const CarouselComponent = ({ images }) => {
   );
 };
 
-export default CarouselComponent;
+export default ProductDetails;
 </file>
 
-<file path="src/pages/Product/components/CarouselComponent/CarouselComponent.module.scss">
+<file path="src/pages/Product/components/ProductDetails/ProductDetails.module.scss">
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  }
+
+.mainImageWrapper {
+  min-height: 0;
+  border-radius: 5px;
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 700/450;
+  .mainImage{
+    object-fit: contain;
+    max-height: 75%;
+    max-width: 75%;
+    align-self: center;
+  }
+}
+
+.thumbnailList {
+  width: auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  top: 102%;
+}
+
+.thumbnail {
+  width:20%;
+max-height: 100px;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  padding: 5px;
+img {
+    object-fit: contain;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+
+  }
+  &.active {
+    border-color: #C92071;
+    background-color: #ffffff;
+  }
+}
+</file>
+
+<file path="src/pages/Product/components/ProductInfo/ProductInfo.jsx">
+import React from "react";
+import StarRating from "../StarRating/StarRating";
+import Icon from "../../../../components/Icons/Icons";
+import { useContext } from "react";
+import { CartContext } from "../../../../contexts/CartContext";
+
+const ProductInfo = ({
+  product,
+  currentSize,
+  currentColor,
+  setCurrentColor,
+  setCurrentSize,
+}) => {
+  const { cartItems, setCartItems } = useContext(CartContext);
+  return (
+    <div className="h-100 d-flex flex-column justify-content-between align-content-between ms-lg-3">
+      <div className="d-flex flex-column mb-1 mb-lg-0">
+        <h1 className="fw-bold text-dark fs-2">{product.name}</h1>
+        <span className="small text-muted">
+          {product.productDetails.brand} | REF: {product.productDetails.ref}
+        </span>
+      </div>
+      <div className="d-flex gap-2 mb-1 mb-lg-0">
+        <StarRating rating={product.productDetails.rating} />
+        <div className="d-flex align-items-center justify-content-center  gap-2">
+          <span className="d-flex align-items-center bg-warning text-light px-2 rounded-2">
+            {product.productDetails.rating}
+            <Icon name="star" size="13" color="#FFFFFF" />
+          </span>
+          <span className="text-light-gray">
+            ({product.productDetails.reviews} avaliações )
+          </span>
+        </div>
+      </div>
+      <div className="d-flex align-items-baseline gap-2 mb-3 mb-lg-0">
+        <span className=" fw-bold text-dark">
+          <span className="fs-6">R$</span>
+          <span className="fs-2">
+            {product.discount
+              ? Math.round(
+                  product.price - product.price * (product.discountAmount / 100)
+                )
+              : product.price}
+          </span>
+          <span className="fs-6">,00</span>
+        </span>
+        {product.discount && (
+          <span className="fs-6 text-decoration-line-through text-light-gray-2">
+            {product.price},00
+          </span>
+        )}
+      </div>
+      <div className="justify-content-center align-content-center mb-3 mb-lg-0">
+        <h3 className="text-light-gray fs-6">Descrição do produto</h3>
+        <span className="text-muted mb-3" style={{ fontSize: "0.9rem" }}>
+          {product.productDetails.description}
+        </span>
+      </div>
+
+      <div className="d-flex flex-column">
+        <h6 className="fw-semibold text-secondary small text-uppercase">
+          Tamanho
+        </h6>
+        <div className="d-flex gap-2 mb-3 mb-lg-0">
+          {product.productDetails.availableSizes.map((size) => (
+            <button
+              onClick={() => {
+                setCurrentSize(size);
+              }}
+              key={size}
+              className="text-center btn rounded-3 fw-bold"
+              style={{
+                width: "fit-content",
+                height: "40px",
+                backgroundColor:
+                  size === currentSize ? "#C92071" : "transparent",
+                color: size === currentSize ? "#fff" : "#333",
+                border: `1px solid ${
+                  size === currentSize ? "#C92071" : "#ced4da"
+                }`,
+              }}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="d-flex flex-column mb-3 mb-lg-0">
+        <h6 className="fw-semibold text-secondary small text-uppercase">Cor</h6>
+        <div className="d-flex gap-3">
+          {product.productDetails.availableColors.map((color) => (
+            <button
+              onClick={() => {
+                setCurrentColor(color.name);
+              }}
+              key={color.name}
+              className="btn p-0 rounded-circle"
+              style={{
+                width: "36px",
+                height: "36px",
+                backgroundColor: color.hex,
+                border:
+                  currentColor === color.name
+                    ? `3px solid ${color.hex}`
+                    : "3px solid transparent",
+                outline:
+                  currentColor === color.name
+                    ? `3px solid ${color.hex}`
+                    : "none",
+                outlineOffset: "2px",
+                transformBox: "border-box",
+                transition: "all 0.2s ease",
+              }}
+              title={`Color ${color.name}`}
+            />
+          ))}
+        </div>
+      </div>
+      <button
+        onClick={() => {
+          setCartItems([...cartItems , 1]);
+        }}
+        className="btn text-white w-100 ounded-1 py-2 fw-bold text-uppercase border-0 mt-1"
+        style={{ backgroundColor: "#f19c3a", letterSpacing: "3px" }}
+      >
+        Comprar
+      </button>
+    </div>
+  );
+};
+
+export default ProductInfo;
+</file>
+
+<file path="src/pages/Product/components/ProductInfo/ProductInfo.module.scss">
 .carouselContainer {
   display: flex;
   flex-direction: column;
@@ -554,86 +979,6 @@ const StarRating = ({ rating }) => {
 export default StarRating;
 </file>
 
-<file path="src/pages/Produtos/Produtos.module.css">
-
-</file>
-
-<file path="src/pages/Search/Search.module.css">
-
-</file>
-
-<file path=".gitignore">
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-</file>
-
-<file path="eslint.config.js">
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      globals: globals.browser,
-      parserOptions: { ecmaFeatures: { jsx: true } },
-    },
-  },
-])
-</file>
-
-<file path="README.md">
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-#   P r o j e t o - D r i p S t o r e - L e a o T e c h  
- 
-</file>
-
 <file path="vite.config.js">
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -645,39 +990,64 @@ export default defineConfig({
 </file>
 
 <file path="src/components/Footer/Footer.module.scss">
-p{
-  font-size: clamp(14px,1vw,16px);
+p {
+  font-size: clamp(14px, 1vw, 16px);
+}
+.logoText {
+  padding-top: 1px;
+  font-size: clamp(20px, 3vw, 44px);
+}
+.sectionTitle{
+  font-size: 1.125rem
 }
 </file>
 
 <file path="src/components/Header/Header.module.scss">
-.offCanvas{
-    top:56px !important;
-    padding: 30px;
-
+.offCanvas {
+  top: 56px !important;
+  padding: 30px;
 }
-@media (min-width:992px){
-    .offCanvas{
-        padding: 0px;
-    }
+@media (min-width: 992px) {
+  .offCanvas {
+    padding: 0px;
+  }
 }
-.badge{
-    width: 17px;
-    height: 17px;
-    position: absolute;
-    top: -7%;
-    right: -60%;
-}
-.badgeNumber{
-    font-size: 12px;
-    color: white;
-    
+.logoTitle {
+  padding-top: 1px;
+  font-size: clamp(20px, 5vw, 36px);
 }
 
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
   display: none;
 }
+</file>
+
+<file path="src/components/ProductListItem/ProductListItem.jsx">
+import React from 'react'
+import { Link } from 'react-router-dom'
+import ProductCardd from '../ProductCardd/ProductCardd'
+const ProductListItem = ({product}) => {
+  
+  return (
+    <div className="col-6 col-lg-3">
+            <Link className="text-decoration-none text-reset">
+              <ProductCardd
+                imgSrc={product.image}
+                category={product.category}
+                name={product.name}
+                price={product.price}
+                discount={product.discount}
+                discountAmount={product.discountAmount}
+                alt={product.name}
+                path={`/product/${product.id}`}
+              />
+            </Link>
+          </div>
+  )
+}
+
+export default ProductListItem
 </file>
 
 <file path="src/components/SidebarFilter/SidebarFilter.jsx">
@@ -914,10 +1284,10 @@ h1 {
 import React from "react";
 import styles from "./SpecialOffer.module.scss";
 import Button from "../../../../components/Button/Button";
-
+import { Link } from "react-router-dom";
 const SpecialOffer = () => {
   return (
-    <div className="container-fluid py-5">
+    <div className="container-fluid mt-5">
       <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
         <div
           className={`bg-gradient-secondary rounded-circle d-flex justify-content-center align-items-center ${styles.containerImg}`}
@@ -942,11 +1312,13 @@ const SpecialOffer = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip
           </p>
-          <Button
-            text="Ver Oferta"
-            style="btn btn-primary px-5 py-2 fw-bold text-white"
-            customStyle={{ fontSize: "14px" }}
-          />
+          <Link to='/product/jordan'>
+            <Button
+              text="Ver Oferta"
+              style="btn btn-primary px-5 py-2 fw-bold text-white"
+              customStyle={{ fontSize: "14px" }}
+            />
+          </Link>
         </div>
       </div>
     </div>
@@ -954,10 +1326,6 @@ const SpecialOffer = () => {
 };
 
 export default SpecialOffer;
-</file>
-
-<file path="src/pages/Product/Product.module.css">
-
 </file>
 
 <file path="src/pages/Search/Search.jsx">
@@ -972,25 +1340,54 @@ const Search = () => {
 export default Search
 </file>
 
-<file path="src/api/products.js">
-const URL =
-  "https://6a0fc97cd2a985707035d6b1.mockapi.io/DripStoreLeao/products";
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"/>
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
 
-export const fetchProduct = async () => {
-  const response = await fetch(URL);
-  return response.json();
-  console.log(response);
-};
-export const fetchProductById = async (id) => {
-  const response = await fetch(`${URL}?id=${id}`);
-  const data = await response.json();
-  const exactItem = data.find((item) => String(item.id) === String(id));
-  return exactItem
-};
-export const fetchProductSearch = async (term) => {
-  const response = await fetch(`${URL}?search=${term}`);
-  return response.json();
-};
+<file path="package.json">
+{
+  "name": "react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.5",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "sass": "^1.99.0",
+    "vite": "^8.0.10"
+  }
+}
 </file>
 
 <file path="src/components/Button/Button.jsx">
@@ -1142,7 +1539,7 @@ function ProductCard({ product }) {
       {product.discount && (
 
         <div
-          className="position-absolute mt-2 ms-2 px-2 py-1 rounded"
+          className="position-absolute mt-2 ms-2 px-2 py-1 rounded bg-success"
           style={{
             backgroundColor: '#d8ffb2',
             fontSize: '12px',
@@ -1218,23 +1615,6 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard
-</file>
-
-<file path="src/Layouts/Layout.jsx">
-import { Outlet } from "react-router-dom";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-
-const Layout = () => {
-  return (
-    <>
-      <Header />
-        <Outlet />
-      <Footer />
-    </>
-  );
-};
-export default Layout;
 </file>
 
 <file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss">
@@ -1345,54 +1725,25 @@ function Produtos() {
 export default Produtos
 </file>
 
-<file path="index.html">
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"/>
-    <title></title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
-</file>
+<file path="src/api/products.js">
+const URL =
+  "https://6a0fc97cd2a985707035d6b1.mockapi.io/DripStoreLeao/products";
 
-<file path="package.json">
-{
-  "name": "react",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "bootstrap": "^5.3.8",
-    "react": "^19.2.5",
-    "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.2.5",
-    "react-router-dom": "^7.15.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "^10.2.1",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.5.0",
-    "sass": "^1.99.0",
-    "vite": "^8.0.10"
-  }
-}
+export const fetchProduct = async () => {
+  const response = await fetch(URL);
+  return response.json();
+  console.log(response);
+};
+export const fetchProductById = async (id) => {
+  const response = await fetch(`${URL}?id=${id}`);
+  const data = await response.json();
+  const exactItem = data.find((item) => String(item.id) === String(id));
+  return exactItem
+};
+export const fetchProductSearch = async (term) => {
+  const response = await fetch(`${URL}?search=${term}`);
+  return response.json();
+};
 </file>
 
 <file path="src/components/Navbar/Navbar.jsx">
@@ -1408,7 +1759,7 @@ const Navb = () => {
     { path: "/orders", text: "Meus pedidos" },
   ];
 return (
-  <Nav className="justify-content-end flex-grow-1 gap-2 gap-lg-5">
+  <Nav className="justify-content-end container flex-grow-1 gap-2 ms-2 gap-lg-5">
     {navLinks.map((link) => (
       <Link
       key={link.text}
@@ -1417,7 +1768,6 @@ return (
       >
         <span
           className={`${location.pathname === link.path ? 'text-primary text-decoration-underline':'text-dark-gray-2'}`}
-          style={{ lineHeight: "1.75rem", letterSpacing: "0.75px" }}
         >
           {link.text}
         </span>
@@ -1432,40 +1782,55 @@ export default Navb;
 <file path="src/components/ProductCardd/ProductCardd.jsx">
 import React from "react";
 import styles from "./ProductCardd.module.scss";
+import DiscountBadge from "../DiscountBadge/DiscountBadge";
+import { Link } from "react-router-dom";
 const ProductCardd = ({
   imgSrc,
   category,
   name,
   price,
   discount,
-  discountAmount,alt
+  discountAmount,
+  alt,
+  path,
 }) => {
   return (
-    <div
-      className={`d-flex flex-column align-items-start ${styles.containerCard}`}
-    >
-      <div className={`${styles.containerImg} bg-white p-3`}>
-        <img src={imgSrc} alt={alt} className={`${styles.img} img-fluid`} />
-      </div>
-      <p className={`${styles.category} my-2`}>{category}</p>
-      <div className="d-flex flex-column w-100">
-        <h3 className={` pb-0 text-truncate w-100 h-100 ${styles.productName}`}>
-          {name}
-        </h3>
-        <p className={`fw-bold ${styles.price}`}>
-          <span
-            className={`${
-              discount
-                ? "fw-normal text-light-gray text-decoration-line-through"
-                : "fw-bold"
-            }`}
+    <Link to={path} className=" text-reset text-decoration-none">
+      <div
+        className={`d-flex flex-column align-items-start mb-3 ${styles.containerCard} `}
+      >
+        <div
+          className={`${styles.containerImg} bg-white p-3 position-relative`}
+        >
+          {discount && (
+            <div className={`position-absolute ${styles.badgeContainer}`}>
+              <DiscountBadge discountAmount={30} />
+            </div>
+          )}
+          <img src={imgSrc} alt={alt} className={`${styles.img} img-fluid`} />
+        </div>
+        <p className={`${styles.category} my-2`}>{category}</p>
+        <div className="d-flex flex-column w-100">
+          <h3
+            className={` pb-0 text-truncate w-100 h-100 ${styles.productName}`}
           >
-            R${price}
+            {name}
+          </h3>
+          <span className={`fw-bold ${styles.price}`}>
+            <span
+              className={`${
+                discount
+                  ? "fw-normal text-light-gray text-decoration-line-through"
+                  : "fw-bold"
+              }`}
+            >
+              R${price}
+            </span>
+            {discount && `  R$ ${Math.round(price - price * (discountAmount / 100))}`}
           </span>
-          {discount && `R$ ${price - price * (discountAmount / 100)}`}
-        </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -1508,6 +1873,9 @@ export default ProductCardd;
 .containerCard{
     max-width: clamp(163px, 50vw, 292px);
 }
+.badgeContainer{
+  top: 5%;
+}
 </file>
 
 <file path="src/components/SearchBar/SearchBar.jsx">
@@ -1515,7 +1883,7 @@ import Form from "react-bootstrap/Form";
 import Icon from "../Icons/Icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import styles from './SearchBar.module.scss'
 function SearchBar() {
   const [inputValue,setInputValue] = useState('')
   const navigate = useNavigate()
@@ -1533,21 +1901,14 @@ function SearchBar() {
         value={inputValue}
         onChange={(event)=>setInputValue(event.target.value)}
         placeholder="Pesquisar produto..."
-        className="border-0 bg-light-gray-3 py-3 pe-5"
-        style={{
-          outline: "none",
-          boxShadow: "none",
-          borderRadius: "8px",
-        }}
+        className={`border-0 bg-light-gray-3 py-3 pe-5 ${styles.Input}`}
         aria-label="Search"
       />
       <button
         type="submit"
-        className="position-absolute border-0 bg-transparent"
+        className={`position-absolute border-0 bg-transparent ${styles.button}`}
         style={{
-          right: "15px",
-          top: "50%",
-          transform: "translateY(-50%)",
+          
         }}
       >
         <Icon
@@ -1566,6 +1927,25 @@ function SearchBar() {
   );
 }
 export default SearchBar;
+</file>
+
+<file path="src/Layouts/Layout.jsx">
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+
+const Layout = () => {
+  return (
+    <>
+    <ScrollToTop/>
+      <Header />
+        <Outlet />
+      <Footer />
+    </>
+  );
+};
+export default Layout;
 </file>
 
 <file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.jsx">
@@ -1609,13 +1989,7 @@ export default CategoriesIcon;
   white-space: pre-line;
 }
 
-.badge {
-  font-size: clamp(0.625rem, 3vw, 0.875rem);
-  background: #e7ff86;
-  border-radius: 29px;
-  font-weight: 600;
-  white-space: nowrap;
-}
+
 .imageContainer {
   width: 40%;
 }
@@ -1686,221 +2060,21 @@ function ContentSlide({upperText,title,description,imageSrc}) {
 export default ContentSlide;
 </file>
 
-<file path="src/pages/Product/Product.jsx">
-import React, { useState, useEffect } from "react";
-import ProductCardd from "../../components/ProductCardd/ProductCardd";
-import CarouselComponent from "./components/CarouselComponent/CarouselComponent";
-import StarRating from "./components/StarRating/StarRating";
-import Icon from "../../components/Icons/Icons";
-import ProductListItem from "../../components/ProductListItem/ProductListItem";
-import TrendingProducts from "../../components/TrendingProducts/TrendingProducts";
-import { fetchProduct, fetchProductById } from "../../api/products";
+<file path="src/main.jsx">
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/index";
+import "./styles/custom.scss";
+import { CartContext, CartProvider } from "./contexts/CartContext";
 
-const Product = ({ id = 19 }) => {
-  const [product, setProduct] = useState({});
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [currentColor, setCurrentColor] = useState("rosa");
-  const [currentSize, setCurrentSize] = useState(39);
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        const resp = await fetchProduct();
-        setData(resp);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const loadProduct = async () => {
-      try {
-        setLoading(true);
-        const resp = await fetchProductById(id);
-        setProduct(resp);
-        console.log(resp);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    loadData();
-    loadProduct();
-    setLoading(false);
-  }, []);
-  const products = data.filter(
-    (dataItem) => dataItem.category == product.category,
-  );
-  if (loading || !product || !product.productDetails) {
-    return <div className="text-center py-5">Carregando produto...</div>;
-  }
-  return (
-    <div className="min-vh-100 bg-light container">
-      <main className="container py-1">
-        <nav aria-label="breadcrumb" className="my-3">
-          <ol className="breadcrumb small">
-            {[
-              "Home",
-              "Produtos",
-              product.category,
-              product.brand,
-              product.name,
-            ].map((item, idx) => (
-              <li
-                key={idx}
-                className={`breadcrumb-item ${idx === 4 ? "active fw-bold" : ""}`}
-              >
-                {idx === 4 ? (
-                  item
-                ) : (
-                  <a href="#" className="text-decoration-none text-muted">
-                    {item}
-                  </a>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-
-        <div className="row rounded-4 align-items-stretch mb-5 ">
-          <div className="col-12 col-lg-7 mb-5 mb-lg-0">
-            <CarouselComponent images={product.productDetails.images} />
-          </div>
-
-          <div className="col-lg-5 mt-4 mt-lg-0 align-items-stretch">
-            <div className="h-100 d-flex flex-column justify-content-between align-content-between">
-              <div className="d-flex flex-column">
-                <h1 className="fw-bold text-dark fs-2">{product.name}</h1>
-                <span className="small text-muted">
-                  {product.productDetails.brand} | REF:{" "}
-                  {product.productDetails.ref}
-                </span>
-              </div>
-              <div className="d-flex gap-2">
-                <StarRating rating={product.productDetails.rating} />
-                <div className="d-flex align-items-center justify-content-center  gap-2">
-                  <span className="d-flex align-items-center bg-warning text-light px-2 rounded-2">
-                    {product.productDetails.rating}
-                    <Icon name="star" size="13" color="#FFFFFF" />
-                  </span>
-                  <span className="text-light-gray">
-                    ({product.productDetails.reviews} avaliações )
-                  </span>
-                </div>
-              </div>
-              <div className="d-flex align-items-baseline gap-2">
-                <span className=" fw-bold text-dark">
-                  <span className="fs-6">R$</span>
-                  <span className="fs-2">
-                    {product.discount
-                      ? Math.round(
-                          product.price -
-                            product.price * (product.discountAmount / 100),
-                        )
-                      : product.price}
-                  </span>
-                  <span className="fs-6">,00</span>
-                </span>
-                {product.discount && (
-                  <span className="fs-6 text-decoration-line-through text-light-gray-2">
-                    {product.price},00
-                  </span>
-                )}
-              </div>
-              <div>
-                <h3 className="text-light-gray fs-6">Descrição do produto</h3>
-                <p className="text-muted mb-3" style={{ fontSize: "0.9rem" }}>
-                  {product.productDetails.description}
-                </p>
-              </div>
-
-              <div className="d-flex flex-column mb-4">
-                <h6 className="fw-semibold text-secondary small text-uppercase">
-                  Tamanho
-                </h6>
-                <div className="d-flex gap-2">
-                  {product.productDetails.availableSizes.map((size) => (
-                    <button
-                      onClick={() => {
-                        setCurrentSize(size);
-                      }}
-                      key={size}
-                      className="text-center btn rounded-3 fw-bold"
-                      style={{
-                        width: "fit-content",
-                        height: "40px",
-                        backgroundColor:
-                          size === currentSize ? "#C92071" : "transparent",
-                        color: size === currentSize ? "#fff" : "#333",
-                        border: `1px solid ${size === currentSize ? "#C92071" : "#ced4da"}`,
-                      }}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="d-flex flex-column mb-4">
-                <h6 className="fw-semibold text-secondary small text-uppercase">
-                  Cor
-                </h6>
-                <div className="d-flex gap-3">
-                  {[
-                    { nome: "azul", hex: "#66DFFF" },
-                    { nome: "rosa", hex: "#F14E6E" },
-                    { nome: "cinza", hex: "#666666" },
-                    { nome: "lilás", hex: "#8F8CAE" },
-                  ].map((cor) => (
-                    <button
-                      onClick={() => {
-                        setCurrentColor(cor.nome);
-                      }}
-                      key={cor.nome}
-                      className="btn p-0 rounded-circle"
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        backgroundColor: cor.hex,
-                        border:
-                          currentColor === cor.nome
-                            ? `3px solid ${cor.hex}`
-                            : "3px solid transparent",
-                        outline:
-                          currentColor === cor.nome
-                            ? `3px solid ${cor.hex}`
-                            : "none",
-                        outlineOffset: "2px",
-                        transformBox: "border-box",
-                        transition: "all 0.2s ease",
-                      }}
-                      title={`Cor ${cor.nome}`}
-                    />
-                  ))}
-                </div>
-              </div>
-              <button
-                className="btn text-white w-100 ounded-1 py-2 fw-bold text-uppercase border-0 mt-1"
-                style={{ backgroundColor: "#f19c3a", letterSpacing: "3px" }}
-              >
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
-      <section className="container py-1">
-        <TrendingProducts
-          limit={4}
-          data={products}
-          activeCategory={product.category}
-          text={"Produtos Relacionados"}
-        />
-      </section>
-    </div>
-  );
-};
-
-export default Product;
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  </StrictMode>
+);
 </file>
 
 <file path="src/pages/Home/components/Gallery/Gallery.jsx">
@@ -1956,6 +2130,92 @@ function Gallery() {
 }
 
 export default Gallery;
+</file>
+
+<file path="src/pages/Product/Product.jsx">
+import React, { useState, useEffect } from "react";
+import TrendingProducts from "../../components/ProductList/ProductList";
+import { fetchProduct, fetchProductById } from "../../api/products";
+import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+import { useParams } from "react-router-dom";
+
+const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentColor, setCurrentColor] = useState("");
+  const [currentSize, setCurrentSize] = useState("");
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const resp = await fetchProduct();
+        setData(resp);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const loadProduct = async () => {
+      try {
+        setLoading(true);
+        const resp = await fetchProductById(id);
+
+        if (resp && resp.productDetails) {
+          setProduct(resp);
+          setCurrentColor(resp.productDetails.availableColors[0].name);
+          setCurrentSize(resp.productDetails.availableSizes[0]);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+    loadProduct();
+  }, [id]);
+  const products = data.filter(
+    (dataItem) => dataItem.category == product.category
+  );
+  if (loading || !product || !product.productDetails) {
+    return <div className="text-center py-5">Carregando produto...</div>;
+  }
+  return (
+    <div className="min-vh-100 bg-light container">
+      <main>
+        <BreadCrumb
+          paths={[
+            "Home",
+            "Produtos",
+            product.category,
+            product.brand,
+            product.name,
+          ]}
+        />
+        <ProductDetails
+          product={product}
+          currentColor={currentColor}
+          setCurrentColor={setCurrentColor}
+          currentSize={currentSize}
+          setCurrentSize={setCurrentSize}
+        />
+      </main>
+      <section className="">
+        <TrendingProducts
+          limit={4}
+          data={products}
+          activeCategory={product.category}
+          text={"Produtos Relacionados"}
+        />
+      </section>
+    </div>
+  );
+};
+
+export default Product;
 </file>
 
 <file path="src/styles/custom.scss">
@@ -2020,20 +2280,6 @@ body{
 }
 </file>
 
-<file path="src/main.jsx">
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './routes/index';
-import './styles/custom.scss';
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>
-);
-</file>
-
 <file path="src/components/Footer/Footer.jsx">
 import React from "react";
 import Icon from "../Icons/Icons";
@@ -2050,7 +2296,7 @@ const information = [
 ];
 const Footer = () => {
   return (
-    <footer className="text-center text-lg-start text-white bg-dark-gray py-4">
+    <footer className="text-center text-lg-start text-white bg-dark-gray py-4 mt-5">
       <div className="container-fluid p-4 pb-0">
         <section className="container-lg py-3">
           <div className="row d-lg-flex align-items-start">
@@ -2062,14 +2308,7 @@ const Footer = () => {
                     size="clamp(18px, 2vw + 0.5rem, 33px)"
                     color="#FFFFFF"
                   />
-                  <span
-                    style={{
-                      paddingTop: "1px",
-                      fontSize: "clamp(20px, 3vw, 44px)",
-                    }}
-                  >
-                    Digital Store
-                  </span>
+                  <span className={styles.logoText}>Digital Store</span>
                 </div>
               </div>
               <div>
@@ -2089,37 +2328,29 @@ const Footer = () => {
             </div>
             <div className="d-flex mt-5 mt-lg-0 col-lg-4">
               <div className="col-6 text-start fw-bold">
-                <h3
-                  style={{ fontSize: "1.125rem" }}
-                  className="fw-bold mb-lg-5"
-                >
+                <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
                   Informação
                 </h3>
                 {information.map((informationLink) => (
                   <Link
-                  to={informationLink}
+                    to={informationLink}
                     key={informationLink}
-                    style={{ textDecoration: "none" }}
-                    className="fw-lighter mb-2 text-white d-block py-1"
+                    className="fw-lighter mb-2 text-white d-block py-1 text-decoration-none"
                   >
                     {informationLink}
                   </Link>
                 ))}
               </div>
               <div className="col-6 text-start fw-bold">
-                <h3
-                  style={{ fontSize: "1.125rem" }}
-                  className="fw-bold mb-lg-5"
-                >
+                <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
                   Categorias
                 </h3>
                 <div>
                   {categories.map((category) => (
                     <Link
-                    to={category}
+                      to={category}
                       key={category}
-                      style={{ textDecoration: "none" }}
-                      className="fw-lighter mb-2 text-white d-block py-1  "
+                      className="fw-lighter mb-2 text-white d-block py-1 text-decoration-none"
                     >
                       {category}
                     </Link>
@@ -2128,11 +2359,11 @@ const Footer = () => {
               </div>
             </div>
             <div className="text-start fw-bold mt-4 mt-lg-0 col-lg-4 pe-5">
-              <h3 style={{ fontSize: "1.125rem" }} className="fw-bold mb-lg-5">
+              <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
                 Contato
               </h3>
               <div className="w-100 pe-lg-5">
-                <p className="fw-light pe-lg-5" style={{ fontSize: "16px" }}>
+                <p className="fw-light pe-lg-5 fs-6" >
                   Av. Santos Dumont, 1510 - 1 andar - Aldeota, Fortaleza - CE,
                   60150-161
                 </p>
@@ -2145,7 +2376,7 @@ const Footer = () => {
         <hr className="m-0" />
       </div>
 
-      <div className="text-center py-5 py-lg-4" style={{ fontSize: "13px" }}>
+      <div className="text-center py-5 py-lg-4 fs-6" >
         © 2020 Digital College
       </div>
     </footer>
@@ -2179,7 +2410,9 @@ li {
 import React from "react";
 import styles from "./FeaturedProduct.module.scss";
 import Button from "../../../../components/Button/Button";
-const FeaturedProduct = ({ title, srcImage, customStyles }) => {
+import DiscountBadge from "../../../../components/DiscountBadge/DiscountBadge";
+import { Link } from "react-router-dom";
+const FeaturedProduct = ({ title, srcImage, customStyles, path }) => {
   return (
     <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
       <div
@@ -2187,19 +2420,16 @@ const FeaturedProduct = ({ title, srcImage, customStyles }) => {
       >
         <div className={`col-9 align-items-center ${styles.textContainer}`}>
           <div className="d-flex flex-column justify-content-center align-items-start gap-2 h-100">
-            <span
-              className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
-            >
-              30% OFF
-            </span>
+            <DiscountBadge discountAmount='30'/>
 
             <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
 
-            
-            <Button
-              text="Comprar"
-              style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
-            />
+            <Link to={path}>
+              <Button
+                text="Comprar"
+                style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
+              />
+            </Link>
           </div>
         </div>
         <div className={`col-3 ${styles.imageContainer} p-0`}>
@@ -2229,6 +2459,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Navb from "../Navbar/Navbar";
 import AuthUser from "../AuthUser/AuthUser";
 import { Link } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
 function Header() {
   const [search, setSearch] = useState(false);
   const [offCanvas, setOffCanvas] = useState(false);
@@ -2266,10 +2497,7 @@ function Header() {
             >
               <Icon name="logo" size="clamp(18px, 3vw, 33px)" color="#C92071" />
               <span
-                style={{
-                  paddingTop: "1px",
-                  fontSize: "clamp(20px, 5vw, 36px)",
-                }}
+                className={styles.logoTitle}
               >
                 Digital Store
               </span>
@@ -2302,27 +2530,7 @@ function Header() {
                 }}
               />
             </div>
-            <div className="position-relative">
-              <Icon
-                name="cart"
-                color="#C92071"
-                size="18px"
-                attributes={{
-                  stroke: "#C92071",
-                  strokeWidth: "1.5",
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  fill: "none",
-                }}
-              />
-              <div
-                className={`d-flex bg-error rounded-circle justify-content-center  ${styles.badge}`}
-              >
-                <span className={`${styles.badgeNumber}`} style={{}}>
-                  2
-                </span>
-              </div>
-            </div>
+            <CartWidget/>
           </div>
           {search && (
             <div className="w-100 mt-lg-0 my-2 d-lg-none">
@@ -2380,17 +2588,18 @@ import Produtos from "../pages/Produtos/Produtos";
 import Layout from '../Layouts/Layout'
 import { ErrorBoundary } from "../components/ErrorBoundary/ErrorBoundary";
 import Product from "../pages/Product/Product";
-import CarouselComponent from '../pages/Product/components/CarouselComponent/CarouselComponent'
+import NotFound from "../pages/NotFound/NotFound";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement:<ErrorBoundary/>,
+    errorElement: <ErrorBoundary />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/produtos", element: <Produtos />},
+      { path: "/produtos", element: <Produtos /> },
       { path: "/search", element: <Search /> },
-      { path: "/product", element: <Product/>}, 
+      { path: "/product/:id", element: <Product /> },
+      { path: "*", element: <NotFound/> },
     ],
   },
 ]);
@@ -2401,43 +2610,44 @@ import React from "react";
 import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 const featuredProducts = [
-    {
-      id: "Supreme",
-      srcImage: "/assets/Supreme-Tshirt.png",
-      title: "Novo drop\nSupreme",
-      customStyles: {
-        transform: "scale(0.78) rotate(-21.92deg)",
-        top: "11.91%",
-        left: "31.89%",
-      },
+  {
+    id: "Supreme",
+    srcImage: "/assets/Supreme-Tshirt.png",
+    title: "Novo drop\nSupreme",
+    customStyles: {
+      transform: "scale(0.78) rotate(-21.92deg)",
+      top: "11.91%",
+      left: "31.89%",
     },
-    {
-      id: "Sneaker-Black-White",
-      srcImage: "/assets/Sneaker-Black-White.png",
-      title: "Coleção\nAdidas",
-      customStyles: {
-        transform: "scaleX(-1) scale(0.6) rotate(12.18deg)",
-        top: "2.38%",
-        left: "27.57%",
-      },
+    path: "/product/19",
+  },
+  {
+    id: "Sneaker-Black-White",
+    srcImage: "/assets/Sneaker-Black-White.png",
+    title: "Coleção\nAdidas",
+    customStyles: {
+      transform: "scaleX(-1) scale(0.6) rotate(12.18deg)",
+      top: "2.38%",
+      left: "27.57%",
     },
-    {
-      id: "Headphones",
-      srcImage: "/assets/Headphones.png",
-      title: "Novo\nBeats Bass",
-      customStyles: {
-        transform: "scale(0.45) rotate(30deg)",
-        top: "-30.98%",
-        left: "28.99%",
-      },
+    path: "/product/1",
+  },
+  {
+    id: "Headphones",
+    srcImage: "/assets/Headphones.png",
+    title: "Novo\nBeats Bass",
+    customStyles: {
+      transform: "scale(0.45) rotate(30deg)",
+      top: "-30.98%",
+      left: "28.99%",
     },
-  ];
+    path: "/product/37",
+  },
+];
 const FeaturedCollection = () => {
-  
-
   return (
     <section className="my-5">
-      <SectionTitle text={'Coleções em destaque'}/>
+      <SectionTitle text={"Coleções em destaque"} />
       <div>
         <div className="row gy-2 gx-2 justify-content-center">
           {featuredProducts.map((product) => {
@@ -2447,6 +2657,7 @@ const FeaturedCollection = () => {
                   title={product.title}
                   srcImage={product.srcImage}
                   customStyles={product.customStyles}
+                  path={product.path}
                 />
               </div>
             );
@@ -2465,7 +2676,7 @@ import Gallery from "./components/Gallery/Gallery";
 import FeaturedCollection from "./components/FeaturedCollection/FeaturedCollection";
 import Categories from "./components/Categories/Categories";
 import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
-import TrendingProducts from "../../components/TrendingProducts/TrendingProducts";
+import TrendingProducts from "../../components/ProductList/ProductList";
 import { use, useEffect, useState } from "react";
 import { fetchProduct } from "../../api/products";
 const Home = () => {
@@ -2480,9 +2691,15 @@ const Home = () => {
         setData(resp);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     loadData();
+    ;
+  }, [activeCategory]);
+  useEffect(() => {
+    setActiveCategory("camisetas");
   }, []);
   return (
     <>
@@ -2498,6 +2715,7 @@ const Home = () => {
           activeCategory={activeCategory}
           data={data}
           limit={8}
+          loading={loading}
         />
         <SpecialOffer />
       </main>

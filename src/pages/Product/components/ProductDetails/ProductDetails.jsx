@@ -24,8 +24,8 @@ const ProductDetails = ({
     return <div className="text-center py-5">Carregando produto...</div>;
   }
 
-  const handleClick = (src, index) => {
-    setMainImage(images[index]);
+  const handleClick = (image, index) => {
+    setMainImage(image);
     setActiveIndex(index);
   };
 
@@ -45,22 +45,30 @@ const ProductDetails = ({
           </div>
         </div>
       </div>
-      <div className="col-lg-5  order-2 mt-2 mt-lg-0 align-items-stretch">
-        <ProductInfo product={product} />
+      <div className="col-12 col-lg-5  order-2 order-lg-0 mt-2 mt-lg-0 align-items-stretch">
+        <ProductInfo
+          product={product}
+          currentColor={currentColor}
+          setCurrentColor={setCurrentColor}
+          currentSize={currentSize}
+          setCurrentSize={setCurrentSize}
+        />
       </div>
       <div
         className={`col-12 col-lg-7 ${styles.thumbnailList} justify-content-between mt-2`}
       >
-        {images.map(({ src, color, index }) => (
+        {images.map((image, index) => (
           <div
             key={index}
-            className={`${styles.thumbnail} d-flex flex-column ${index === activeIndex ? styles.active : ""}`}
-            onClick={() => handleClick(src, index)}
-            style={{ backgroundColor: color }}
+            className={`${styles.thumbnail} d-flex flex-column ${
+              index === activeIndex ? styles.active : ""
+            }`}
+            onClick={() => handleClick(image, index)}
+            style={{ backgroundColor: image.color }}
           >
             <img
-              src={src}
-              alt={`Miniatura ${index + 1}`}
+              src={image.src}
+              alt={`Miniatura ${image.index + 1}`}
               className="img-fluid"
             />
           </div>

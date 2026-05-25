@@ -14,6 +14,7 @@ const ProductListItem = ({product}) => {
                 discount={product.discount}
                 discountAmount={product.discountAmount}
                 alt={product.name}
+                path={`/product/${product.id}`}
               />
             </Link>
           </div>

@@ -10,7 +10,7 @@ function ProductCard({ product }) {
       {product.discount && (
 
         <div
-          className="position-absolute mt-2 ms-2 px-2 py-1 rounded"
+          className="position-absolute mt-2 ms-2 px-2 py-1 rounded bg-success"
           style={{
             backgroundColor: '#d8ffb2',
             fontSize: '12px',

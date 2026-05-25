@@ -13,7 +13,7 @@ const information = [
 ];
 const Footer = () => {
   return (
-    <footer className="text-center text-lg-start text-white bg-dark-gray py-4">
+    <footer className="text-center text-lg-start text-white bg-dark-gray py-4 mt-5">
       <div className="container-fluid p-4 pb-0">
         <section className="container-lg py-3">
           <div className="row d-lg-flex align-items-start">
@@ -25,14 +25,7 @@ const Footer = () => {
                     size="clamp(18px, 2vw + 0.5rem, 33px)"
                     color="#FFFFFF"
                   />
-                  <span
-                    style={{
-                      paddingTop: "1px",
-                      fontSize: "clamp(20px, 3vw, 44px)",
-                    }}
-                  >
-                    Digital Store
-                  </span>
+                  <span className={styles.logoText}>Digital Store</span>
                 </div>
               </div>
               <div>
@@ -52,37 +45,29 @@ const Footer = () => {
             </div>
             <div className="d-flex mt-5 mt-lg-0 col-lg-4">
               <div className="col-6 text-start fw-bold">
-                <h3
-                  style={{ fontSize: "1.125rem" }}
-                  className="fw-bold mb-lg-5"
-                >
+                <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
                   Informação
                 </h3>
                 {information.map((informationLink) => (
                   <Link
-                  to={informationLink}
+                    to={informationLink}
                     key={informationLink}
-                    style={{ textDecoration: "none" }}
-                    className="fw-lighter mb-2 text-white d-block py-1"
+                    className="fw-lighter mb-2 text-white d-block py-1 text-decoration-none"
                   >
                     {informationLink}
                   </Link>
                 ))}
               </div>
               <div className="col-6 text-start fw-bold">
-                <h3
-                  style={{ fontSize: "1.125rem" }}
-                  className="fw-bold mb-lg-5"
-                >
+                <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
                   Categorias
                 </h3>
                 <div>
                   {categories.map((category) => (
                     <Link
-                    to={category}
+                      to={category}
                       key={category}
-                      style={{ textDecoration: "none" }}
-                      className="fw-lighter mb-2 text-white d-block py-1  "
+                      className="fw-lighter mb-2 text-white d-block py-1 text-decoration-none"
                     >
                       {category}
                     </Link>
@@ -91,11 +76,11 @@ const Footer = () => {
               </div>
             </div>
             <div className="text-start fw-bold mt-4 mt-lg-0 col-lg-4 pe-5">
-              <h3 style={{ fontSize: "1.125rem" }} className="fw-bold mb-lg-5">
+              <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
                 Contato
               </h3>
               <div className="w-100 pe-lg-5">
-                <p className="fw-light pe-lg-5" style={{ fontSize: "16px" }}>
+                <p className="fw-light pe-lg-5 fs-6" >
                   Av. Santos Dumont, 1510 - 1 andar - Aldeota, Fortaleza - CE,
                   60150-161
                 </p>
@@ -108,7 +93,7 @@ const Footer = () => {
         <hr className="m-0" />
       </div>
 
-      <div className="text-center py-5 py-lg-4" style={{ fontSize: "13px" }}>
+      <div className="text-center py-5 py-lg-4 fs-6" >
         © 2020 Digital College
       </div>
     </footer>
