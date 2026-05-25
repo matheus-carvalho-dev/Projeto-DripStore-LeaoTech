@@ -5,6 +5,7 @@ import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { useParams } from "react-router-dom";
 import NotFound from "../NotFound/NotFound";
+import Head from "../../components/Head/Head";
 
 const Product = () => {
   const { id } = useParams();
@@ -60,34 +61,37 @@ const Product = () => {
     return <NotFound />;
   }
   return (
-    <div className="min-vh-100 bg-light container">
-      <main>
-        <BreadCrumb
-          paths={[
-            "Home",
-            "Produtos",
-            product.category,
-            product.brand,
-            product.name,
-          ]}
-        />
-        <ProductDetails
-          product={product}
-          currentColor={currentColor}
-          setCurrentColor={setCurrentColor}
-          currentSize={currentSize}
-          setCurrentSize={setCurrentSize}
-        />
-      </main>
-      <section className="">
-        <TrendingProducts
-          limit={4}
-          data={products}
-          activeCategory={product.category}
-          text={"Produtos Relacionados"}
-        />
-      </section>
-    </div>
+    <>
+    <Head title={product.productDetails.shortName}/>
+      <div className="min-vh-100 bg-light container">
+        <main>
+          <BreadCrumb
+            paths={[
+              "Home",
+              "Produtos",
+              product.category,
+              product.brand,
+              product.name,
+            ]}
+          />
+          <ProductDetails
+            product={product}
+            currentColor={currentColor}
+            setCurrentColor={setCurrentColor}
+            currentSize={currentSize}
+            setCurrentSize={setCurrentSize}
+          />
+        </main>
+        <section className="">
+          <TrendingProducts
+            limit={4}
+            data={products}
+            activeCategory={product.category}
+            text={"Produtos Relacionados"}
+          />
+        </section>
+      </div>
+    </>
   );
 };
 

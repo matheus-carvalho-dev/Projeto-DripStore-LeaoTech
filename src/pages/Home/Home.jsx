@@ -5,6 +5,7 @@ import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
 import TrendingProducts from "../../components/ProductList/ProductList";
 import { use, useEffect, useState } from "react";
 import { fetchProduct } from "../../api/products";
+import Head from "../../components/Head/Head";
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ const Home = () => {
   }, []);
   return (
     <>
+    <Head title='Digital Store'/>
       <Gallery />
       <main className={`container`}>
         <FeaturedCollection />

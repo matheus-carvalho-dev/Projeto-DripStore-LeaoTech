@@ -1,5 +1,6 @@
 import styles from "./SlideContent.module.scss";
 import Button from "../../../../components/Button/Button";
+import { Link } from "react-router-dom";
 function ContentSlide({upperText,title,description,imageSrc}) {
   return (
     <div className="bg-light-gray-3 w-100 pb-5 pb-lg-4 flex-lg-row">
@@ -22,10 +23,12 @@ function ContentSlide({upperText,title,description,imageSrc}) {
               >
                 {description}
               </p>
-              <Button
-                text="Ver Ofertas"
-                style=" btn btn-primary text-white py-2 w-50 mt-2"
-              />
+              <Link to='/search' className="w-50 text-reset text-decoration-none">
+                <Button
+                  text="Ver Ofertas"
+                  style=" btn btn-primary text-white py-2 w-50 mt-2"
+                />
+              </Link>
             </div>
           </div>
 
