@@ -1,10 +1,8 @@
-import React from "react";
-import { useState } from "react";
 import styles from "./SlideContent.module.scss";
 import Button from "../../../../components/Button/Button";
 function ContentSlide() {
   return (
-    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-0 flex-lg-row">
+    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-4 flex-lg-row">
       <div className="container">
         <div className="row align-items-center gap-3 gap-lg-0">
           <div className="col-12 col-lg-5 order-2 order-lg-1">

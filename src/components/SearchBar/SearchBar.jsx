@@ -1,10 +1,14 @@
 import Form from "react-bootstrap/Form";
 import Icon from "../Icons/Icons";
 
-
 function SearchBar() {
   return (
-    <Form className="d-flex position-relative w-100">
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+      className="d-flex position-relative w-100"
+    >
       <Form.Control
         type="search"
         placeholder="Pesquisar produto..."
@@ -18,9 +22,6 @@ function SearchBar() {
       />
       <button
         type="submit"
-        onClick={(e) => {
-          e.preventDefault();
-        }}
         className="position-absolute border-0 bg-transparent"
         style={{
           right: "15px",

@@ -16,7 +16,7 @@ const Footer = () => {
     <footer className="text-center text-lg-start text-white bg-dark-gray py-4">
       <div className="container-fluid p-4 pb-0">
         <section className="container-lg py-3">
-          <div className="row d-lg-flex align-items-start justify-items-start">
+          <div className="row d-lg-flex align-items-start">
             <div className="col-lg-4">
               <div>
                 <div className="d-flex me-0 align-items-center text-white fw-bold gap-2 mb-4">
@@ -60,6 +60,7 @@ const Footer = () => {
                 </h3>
                 {information.map((informationLink) => (
                   <Link
+                  to={informationLink}
                     key={informationLink}
                     style={{ textDecoration: "none" }}
                     className="fw-lighter mb-2 text-white d-block py-1"
@@ -78,6 +79,7 @@ const Footer = () => {
                 <div>
                   {categories.map((category) => (
                     <Link
+                    to={category}
                       key={category}
                       style={{ textDecoration: "none" }}
                       className="fw-lighter mb-2 text-white d-block py-1  "

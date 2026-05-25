@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "./CategoriesIcon.module.scss";
 import Icon from "../../../../components/Icons/Icons";
 
@@ -11,7 +10,7 @@ const CategoriesIcon = ({ name, color, onClick, isActive }) => {
       >
         <Icon isActive={isActive} name={name} color={color} />
       </div>
-      <p className={`text-center fw-bold text-dark-gray-2`}>
+      <p className={`text-center fw-bold text-dark-gray-2 pt-2`}>
         {name.toUpperCase()}
       </p>
     </li>

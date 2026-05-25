@@ -1,8 +1,6 @@
 import React from "react";
 import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
-
-const FeaturedCollection = () => {
-  const featuredProducts = [
+const featuredProducts = [
     {
       id: "Supreme",
       srcImage: "/assets/Supreme-Tshirt.png",
@@ -34,6 +32,8 @@ const FeaturedCollection = () => {
       },
     },
   ];
+const FeaturedCollection = () => {
+  
 
   return (
     <section className="my-5">

@@ -1,5 +1,4 @@
 import React from "react";
-import stlyes from "./Icons.module.scss";
 const Icons = {
   camisetas: {
     path: (
