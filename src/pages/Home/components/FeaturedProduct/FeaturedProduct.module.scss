@@ -1,0 +1,38 @@
+.featuredProduct {
+  border-radius: 8px;
+  background-color: #d8e3f2;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 351/209;
+  width: 100%;
+  margin: 0 auto;
+}
+.textContainer {
+  width: 40%;
+}
+.title {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  white-space: pre-line;
+}
+
+
+.imageContainer {
+  width: 40%;
+}
+.image {
+  position: absolute;
+  z-index: 2;
+}
+
+.productContentContainer {
+  background-color: inherit;
+  width: 100%;
+}
+
+.Button {
+  position: relative;
+  z-index: 3;
+  letter-spacing: 0.75px;
+  min-width: 50%;
+  box-sizing: border-box;
+}
