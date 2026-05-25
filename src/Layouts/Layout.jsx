@@ -5,13 +5,10 @@ import Footer from "../components/Footer/Footer";
 const Layout = () => {
   return (
     <>
-      <Outlet />
+      <Header />
+        <Outlet />
+      <Footer />
     </>
-    // <>
-    //   <Header />
-    //     <Outlet />
-    //   <Footer />
-    // </>
   );
 };
 export default Layout;

@@ -5,7 +5,6 @@ import Produtos from "../pages/Produtos/Produtos";
 import Layout from '../Layouts/Layout'
 import { ErrorBoundary } from "../components/ErrorBoundary/ErrorBoundary";
 import Product from "../pages/Product/Product";
-import CarouselComponent from '../pages/Product/components/CarouselComponent/CarouselComponent'
 export const router = createBrowserRouter([
   {
     path: "/",

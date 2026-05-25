@@ -1,5 +1,6 @@
 import React from "react";
 import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 const featuredProducts = [
     {
       id: "Supreme",
@@ -37,9 +38,7 @@ const FeaturedCollection = () => {
 
   return (
     <section className="my-5">
-      <h2 className="py-2 fs-4 text-dark-gray-2 fw-bold">
-        Coleções em destaque
-      </h2>
+      <SectionTitle text={'Coleções em destaque'}/>
       <div>
         <div className="row gy-2 gx-2 justify-content-center">
           {featuredProducts.map((product) => {

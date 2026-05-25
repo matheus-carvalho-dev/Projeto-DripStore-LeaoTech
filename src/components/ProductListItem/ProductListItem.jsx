@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ProductCardd from '../ProductCardd/ProductCardd'
 const ProductListItem = ({product}) => {
+  
   return (
-    <div key={product.id} className="col-6 col-lg-3">
+    <div className="col-6 col-lg-3">
             <Link className="text-decoration-none text-reset">
               <ProductCardd
                 imgSrc={product.image}
