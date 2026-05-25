@@ -20,9 +20,9 @@ const CartWidget = () => {
       />
       {totalItems>0 && (
         <div
-          className={`d-flex bg-error rounded-circle justify-content-center  ${styles.badge}`}
+          className={`d-flex bg-error rounded-circle justify-content-center align-content-center p  ${styles.badge}`}
         >
-          <span className={` fw-bold ${styles.badgeNumber}`} style={{}}>{totalItems}</span>
+          <span className={`align-self-center fw-bold ${styles.badgeNumber}`} style={{}}>{totalItems}</span>
         </div>
       )}
     </div>

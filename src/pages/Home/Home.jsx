@@ -18,12 +18,11 @@ const Home = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false);
+        setTimeout(() => setLoading(false), 2000);
       }
     };
     loadData();
-    ;
-  }, [activeCategory]);
+  }, []);
   useEffect(() => {
     setActiveCategory("camisetas");
   }, []);
@@ -35,6 +34,7 @@ const Home = () => {
         <Categories
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
+          setLoading={setLoading}
         />
         <TrendingProducts
           text={"Produtos em alta"}

@@ -118,7 +118,14 @@ const ProductInfo = ({
           ))}
         </div>
       </div>
-      <Button text={'Comprar'} style={"btn text-white w-100 ounded-1 py-2 fw-bold text-uppercase border-0 mt-1"} customStyle={{ backgroundColor: "#f19c3a", letterSpacing: "3px" }}/>
+      <Button
+        onClick={() => setCartItems([...cartItems, 1])}
+        text={"Comprar"}
+        style={
+          "btn text-white w-100 ounded-1 py-2 fw-bold text-uppercase border-0 mt-1"
+        }
+        customStyle={{ backgroundColor: "#f19c3a", letterSpacing: "3px" }}
+      />
     </div>
   );
 };
