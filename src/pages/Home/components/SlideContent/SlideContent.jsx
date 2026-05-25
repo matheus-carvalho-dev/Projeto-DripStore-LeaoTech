@@ -10,20 +10,17 @@ function ContentSlide() {
           <div className="col-12 col-lg-5 order-2 order-lg-1">
             <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start align-items-center pt-5">
               <p
-                id={styles.upperText}
-                className="fw-bold m-0 text-center text-lg-start "
+                className={`fw-bold m-0 text-center text-lg-start ${styles.upperText}`}
               >
                 Melhores ofertas personalizadas
               </p>
               <h1
-                id={styles.title}
-                className="fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0"
+                className={`fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0 ${styles.title}`}
               >
                 Queima de estoque Nike 🔥
               </h1>
               <p
-                id={styles.bottomText}
-                className="text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5"
+                className={`text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5 ${styles.bottomText}`}
               >
                 Consequat culpa exercitation mollit nisi excepteur do do tempor
                 laboris eiusmod irure consectetur.

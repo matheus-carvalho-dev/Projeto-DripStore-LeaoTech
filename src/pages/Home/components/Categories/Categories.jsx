@@ -4,10 +4,8 @@ import CategoriesIcon from "../CategoriesIcon/CategoriesIcon";
 const Categories = () => {
   const [activeCategory, setActiveCategory] = useState("");
   return (
-    <div>
-      <h2 className="text-start text-sm-center fw-bold text-dark-gray-2 fs-4">
-        Categorias
-      </h2>
+    <section>
+      <h2 className="pt-2 fs-4 text-dark-gray-2 fw-bold text-center py-2">Categorias</h2>
       <ul
         className={`d-flex ps-0 justify-content-sm-center ${styles.categories}`}
       >
@@ -52,7 +50,7 @@ const Categories = () => {
           color={"#8F8F8F"}
         />
       </ul>
-    </div>
+    </section>
   );
 };
 

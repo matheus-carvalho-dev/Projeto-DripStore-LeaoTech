@@ -71,6 +71,19 @@ const Icons = {
     ),
     viewBox: "0 0 21 21",
   },
+  arrowRight: {
+    path: (
+      <path
+        d="M12.4 9.89999L16.9 5.39999L12.4 0.899994M16.9 5.39999H0.900024"
+        stroke="#C92071"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="#FFFFFF"
+      />
+    ),
+    viewBox: "0 -6 24 24",
+  },
 };
 
 export const Icon = ({
