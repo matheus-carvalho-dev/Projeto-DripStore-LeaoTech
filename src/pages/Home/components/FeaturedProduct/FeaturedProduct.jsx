@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./FeaturedProduct.module.scss";
 import Button from "../../../../components/Button/Button";
-const FeaturedProduct = ({ title, srcImage, customStyles }) => {
+import DiscountBadge from "../../../../components/DiscountBadge/DiscountBadge";
+import { Link } from "react-router-dom";
+const FeaturedProduct = ({ title, srcImage, customStyles, path }) => {
   return (
     <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
       <div
@@ -9,19 +11,16 @@ const FeaturedProduct = ({ title, srcImage, customStyles }) => {
       >
         <div className={`col-9 align-items-center ${styles.textContainer}`}>
           <div className="d-flex flex-column justify-content-center align-items-start gap-2 h-100">
-            <span
-              className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
-            >
-              30% OFF
-            </span>
+            <DiscountBadge discountAmount='30'/>
 
             <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
 
-            
-            <Button
-              text="Comprar"
-              style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
-            />
+            <Link to={path}>
+              <Button
+                text="Comprar"
+                style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
+              />
+            </Link>
           </div>
         </div>
         <div className={`col-3 ${styles.imageContainer} p-0`}>

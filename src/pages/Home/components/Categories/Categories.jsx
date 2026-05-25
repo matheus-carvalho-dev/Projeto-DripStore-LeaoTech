@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import styles from "./Categories.module.scss";
 import CategoriesIcon from "../CategoriesIcon/CategoriesIcon";
-const Categories = () => {
-  const [activeCategory, setActiveCategory] = useState("");
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+const Categories = ({activeCategory,setActiveCategory}) => {
+  
   const categories = ['camisetas','calcas','headphones','bones','tenis']
   return (
-    <section>
-      <h2 className="pt-2 fs-4 text-dark-gray-2 fw-bold text-center py-2">Categorias</h2>
+    <section className={`${styles.container}`}>
+      <SectionTitle text={'Categorias'} className={'text-center'}/>
       <ul
-        className={`d-flex ps-0 justify-content-sm-center ${styles.categories}`}
+        className={`d-flex ps-0 justify-content-sm-center gap-5 ${styles.categories}`}
       >
         {categories.map((category)=>(<CategoriesIcon
           onClick={() => {

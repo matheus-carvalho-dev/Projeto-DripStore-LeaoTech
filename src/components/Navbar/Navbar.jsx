@@ -5,13 +5,12 @@ const Navb = () => {
   const location = useLocation()
   const navLinks = [
     { path: "/", text: "Home" },
-    { path: "/Products", text: "Produtos" },
-    { path: "/Categories", text: "Categories" },
-    { path: "/Orders", text: "Meus pedidos" },
+    { path: "/produtos", text: "Produtos" },
+    { path: "/categories", text: "Categories" },
+    { path: "/orders", text: "Meus pedidos" },
   ];
-  console.log(location)
 return (
-  <Nav className="justify-content-end flex-grow-1 gap-5">
+  <Nav className="justify-content-end container flex-grow-1 gap-2 ms-2 gap-lg-5">
     {navLinks.map((link) => (
       <Link
       key={link.text}
@@ -20,7 +19,6 @@ return (
       >
         <span
           className={`${location.pathname === link.path ? 'text-primary text-decoration-underline':'text-dark-gray-2'}`}
-          style={{ lineHeight: "1.75rem", letterSpacing: "0.75px" }}
         >
           {link.text}
         </span>

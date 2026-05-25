@@ -3,7 +3,7 @@ import { useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import SidebarFilter from "../../components/SidebarFilter/SidebarFilter";
 
-import { products as productsData } from "../../api/products";
+// import { products as productsData } from "../../api/products";
 import ProductCardd from "../../components/ProductCardd/ProductCardd";
 function Produtos() {
 

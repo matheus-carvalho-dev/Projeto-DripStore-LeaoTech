@@ -4,16 +4,19 @@ import Search from "../pages/Search/Search";
 import Produtos from "../pages/Produtos/Produtos";
 import Layout from '../Layouts/Layout'
 import { ErrorBoundary } from "../components/ErrorBoundary/ErrorBoundary";
+import Product from "../pages/Product/Product";
+import NotFound from "../pages/NotFound/NotFound";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement:<ErrorBoundary/>,
+    errorElement: <ErrorBoundary />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/produtos", element: <Produtos />},
+      { path: "/produtos", element: <Produtos /> },
       { path: "/search", element: <Search /> },
-      // { path: "/product/:id", element: <Product /> }, 
+      { path: "/product/:id", element: <Product /> },
+      { path: "*", element: <NotFound/> },
     ],
   },
 ]);

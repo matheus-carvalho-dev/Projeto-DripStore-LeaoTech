@@ -1,104 +1,18 @@
-const sneaker = "/assets/Sneaker-White-Blue-Orange.png";
+const URL =
+  "https://6a0fc97cd2a985707035d6b1.mockapi.io/DripStoreLeao/products";
 
-export const products = [
-  {
-    id: 1,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-    discount: true,
-  },
-
-  {
-    id: 2,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-    discount: true,
-  },
-
-  {
-    id: 3,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-
-  {
-    id: 4,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-
-  {
-    id: 5,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-
-  {
-    id: 6,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-
-  {
-    id: 7,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-
-  {
-    id: 8,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-
-  {
-    id: 9,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-  {
-    id: 10,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-  {
-    id: 11,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-  {
-    id: 12,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-  {
-    id: 13,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-  {
-    id: 14,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-  {
-    id: 15,
-    name: "K-Swiss V8 Masculino",
-    price: 100,
-    image: sneaker,
-  },
-];
+export const fetchProduct = async () => {
+  const response = await fetch(URL);
+  return response.json();
+  console.log(response);
+};
+export const fetchProductById = async (id) => {
+  const response = await fetch(`${URL}?id=${id}`);
+  const data = await response.json();
+  const exactItem = data.find((item) => String(item.id) === String(id));
+  return exactItem
+};
+export const fetchProductSearch = async (term) => {
+  const response = await fetch(`${URL}?search=${term}`);
+  return response.json();
+};

@@ -1,6 +1,6 @@
 import styles from "./SlideContent.module.scss";
 import Button from "../../../../components/Button/Button";
-function ContentSlide() {
+function ContentSlide({upperText,title,description,imageSrc}) {
   return (
     <div className="bg-light-gray-3 w-100 pb-5 pb-lg-4 flex-lg-row">
       <div className="container">
@@ -10,18 +10,17 @@ function ContentSlide() {
               <p
                 className={`fw-bold m-0 text-center text-lg-start ${styles.upperText}`}
               >
-                Melhores ofertas personalizadas
+                {upperText}
               </p>
               <h1
                 className={`fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0 ${styles.title}`}
               >
-                Queima de estoque Nike 🔥
+                {title}
               </h1>
               <p
                 className={`text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5 ${styles.bottomText}`}
               >
-                Consequat culpa exercitation mollit nisi excepteur do do tempor
-                laboris eiusmod irure consectetur.
+                {description}
               </p>
               <Button
                 text="Ver Ofertas"
@@ -33,7 +32,7 @@ function ContentSlide() {
           <div className="col-12 col-lg-7 position-relative text-center order-lg-1">
             <img
               className={`px-0 ${styles.productImg} w-75`}
-              src="/assets/Sneaker-Red-White.png"
+              src={imageSrc}
               alt="Sneaker"
             />
           </div>
