@@ -1,14 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import styles from "./Cart.module.scss";
 import ProductListItem from "../../components/ProductListItem/ProductListItem";
 import TrendingProducts from "../../components/ProductList/ProductList";
+import { fetchProduct } from "../../api/products"; 
+
 const Cart = () => {
   const [quantity, setQuantity] = useState(1);
   const unitPrice = 219.00;
   const total = unitPrice * quantity;
+
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const activeCategory = "tenis"; 
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        const resp = await fetchProduct();
+        setData(resp);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   return (
     <div className="container py-4 mb-5">
