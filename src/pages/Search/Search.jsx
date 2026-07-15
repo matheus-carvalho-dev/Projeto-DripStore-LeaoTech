@@ -28,7 +28,7 @@ function Search() {
         } else {
           resp = await fetchProduct();
         }
-        setProducts(resp);
+        setProducts(Array.isArray(resp) ? resp : []);
         setCurrentPage(1);
       } catch (error) {
         console.log("Erro ao buscar produtos:", error);

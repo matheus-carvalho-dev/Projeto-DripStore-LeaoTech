@@ -7,6 +7,7 @@ import Product from "../pages/Product/Product";
 import NotFound from "../pages/NotFound/NotFound";
 import AuthPage from "../pages/Auth/Auth";
 
+import Cart from "../pages/Cart/Cart";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -14,11 +15,11 @@ export const router = createBrowserRouter([
     errorElement: <ErrorBoundary />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/produtos", element: <Search /> },
       { path: "/search", element: <Search /> },
       { path: "/product/:id", element: <Product /> },
       { path: "/auth", element: <AuthPage /> },
-      { path: "*", element: <NotFound /> },
+      { path: "/carrinho", element: <Cart /> },
+      { path: "*", element: <NotFound/> },
     ],
   },
 ]);

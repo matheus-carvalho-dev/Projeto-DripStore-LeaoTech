@@ -40,6 +40,3428 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
+public/
+  assets/
+    Headphones.png
+    Sneaker-.png
+    Sneaker-Black-White-Green.png
+    Sneaker-Black-White.png
+    Sneaker-Red-White.png
+    Sneaker-White-Blue-Orange.png
+    Supreme-Tshirt.png
+src/
+  api/
+    cart.js
+    products.js
+  components/
+    AuthUser/
+      AuthUser.jsx
+    BreadCrumb/
+      BreadCrumb.jsx
+    Button/
+      Button.jsx
+    CartWidget/
+      CartWidget.jsx
+      CartWidget.module.scss
+    DiscountBadge/
+      DiscountBadge.jsx
+      DiscountBadge.module.scss
+    ErrorBoundary/
+      ErrorBoundary.jsx
+    Footer/
+      Footer.jsx
+      Footer.module.scss
+    Head/
+      Head.jsx
+    Header/
+      Header.jsx
+      Header.module.scss
+    Icons/
+      Icons.jsx
+    Navbar/
+      Navbar.jsx
+      Navbar.module.scss
+    OffCanvas/
+      OffCanvas.jsx
+      OffCanvas.module.scss
+    ProductCard/
+      ProductCard.jsx
+    ProductCardd/
+      ProductCardd.jsx
+      ProductCardd.module.scss
+    ProductList/
+      ProductList.jsx
+    ProductListItem/
+      ProductListItem.jsx
+    ScrollToTop/
+      ScrollToTop.jsx
+    SearchBar/
+      SearchBar.jsx
+      SearchBar.module.scss
+    SectionTitle/
+      SectionTitle.jsx
+      SectionTitle.module.scss
+    SidebarFilter/
+      SidebarFilter.jsx
+  contexts/
+    CartContext.jsx
+  Layouts/
+    Layout.jsx
+  pages/
+    Cart/
+      components/
+        CartItem/
+          CartItem.jsx
+          CartItem.module.scss
+        CartSummary/
+          CartSummary.jsx
+      Cart.jsx
+      Cart.module.scss
+    Home/
+      components/
+        Categories/
+          Categories.jsx
+          Categories.module.scss
+        CategoriesIcon/
+          CategoriesIcon.jsx
+          CategoriesIcon.module.scss
+        FeaturedCollection/
+          FeaturedCollection.jsx
+          FeaturedCollection.module.scss
+        FeaturedProduct/
+          FeaturedProduct.jsx
+          FeaturedProduct.module.scss
+        Gallery/
+          Gallery.jsx
+          Gallery.module.scss
+        SlideContent/
+          SlideContent.jsx
+          SlideContent.module.scss
+        SpecialOffer/
+          SpecialOffer.jsx
+          SpecialOffer.module.scss
+      Home.jsx
+    NotFound/
+      NotFound.jsx
+    Product/
+      components/
+        ProductDetails/
+          ProductDetails.jsx
+          ProductDetails.module.scss
+        ProductInfo/
+          ProductInfo.jsx
+          ProductInfo.module.scss
+        StarRating/
+          StarRating.jsx
+      Product.jsx
+    Search/
+      Search.jsx
+  routes/
+    index.jsx
+  styles/
+    custom.scss
+  main.jsx
+.gitignore
+Codigo.txt
+eslint.config.js
+index.html
+package.json
+README.md
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/api/cart.js">
+const BASE_URL = "http://localhost:3000/api/cart";
+
+export const fetchCart = async (userId) => {
+  const response = await fetch(`${BASE_URL}/${userId}`);
+  return response.json();
+};
+
+export const addToCart = async (userId, productId, quantity, price) => {
+  const response = await fetch(`${BASE_URL}/add`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId, productId, quantity, price })
+  });
+  return response.json();
+};
+export const updateCartItemQuantity = async (itemId, quantity) => {
+  const response = await fetch(`${BASE_URL}/item/${itemId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ quantity })
+  });
+  return response.json();
+};
+export const removeCartItem = async (itemId) => {
+  const response = await fetch(`${BASE_URL}/item/${itemId}`, {
+    method: 'DELETE'
+  });
+  return response.json();
+};
+
+export const clearCart = async (userId) => {
+  const response = await fetch(`${BASE_URL}/clear/${userId}`, {
+    method: 'DELETE'
+  });
+  return response.json();
+};
+</file>
+
+<file path="src/pages/Cart/components/CartItem/CartItem.jsx">
+import React from 'react';
+import styles from '../../Cart.module.scss';
+
+const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
+  const product = item.products;
+  const unitPrice = Number(product.price);
+  const total = unitPrice * item.quantity;
+
+  return (
+    <div className="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center border-bottom pb-4 mb-4 gap-3 gap-lg-0">
+      <div className="d-flex gap-3 align-items-center w-100" style={{ maxWidth: "350px" }}>
+        <div className={`bg-light-gray-3 rounded ${styles.imgContainer}`}>
+          <img src={product.image} alt={product.name} className="img-fluid" />
+        </div>
+        <div className="d-flex flex-column">
+          <h5 className="fw-bold fs-6 text-dark-gray-2">{product.name}</h5>
+          <span className="text-muted small">Categoria: <span className="text-dark-gray-2">{product.category}</span></span>
+        </div>
+      </div>
+
+      <div className="d-flex flex-column flex-lg-row align-items-lg-center gap-4 w-100 justify-content-lg-end">
+        <div className="d-flex flex-column align-items-lg-center gap-1">
+          <span className="d-lg-none text-muted small mb-1">QUANTIDADE</span>
+          <div className="d-flex align-items-center gap-2">
+            <button 
+              className={`btn btn-outline-secondary d-flex align-items-center justify-content-center ${styles.qtyBtn}`}
+              onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+              disabled={item.quantity <= 1}
+            >
+              -
+            </button>
+            <span className="fw-bold px-2">{item.quantity}</span>
+            <button 
+              className={`btn btn-outline-secondary d-flex align-items-center justify-content-center ${styles.qtyBtn}`}
+              onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+            >
+              +
+            </button>
+          </div>
+          <button 
+            className="btn btn-link text-decoration-underline text-muted p-0 small mt-1 w-100 text-start text-lg-center" 
+            style={{ fontSize: "12px" }}
+            onClick={() => onRemove(item.id)}
+          >
+            Remover item
+          </button>
+        </div>
+
+        {/* Layout Mobile */}
+        <div className="d-flex justify-content-between w-100 d-lg-none">
+          <span className="text-muted small">UNITÁRIO</span>
+          <div className="d-flex flex-column align-items-end">
+            <span className="fw-bold text-dark-gray-2">R$ {unitPrice.toFixed(2).replace('.', ',')}</span>
+          </div>
+        </div>
+        <div className="d-flex justify-content-between w-100 d-lg-none">
+          <span className="text-muted small">TOTAL</span>
+          <div className="d-flex flex-column align-items-end">
+            <span className="fw-bold text-dark-gray-2">R$ {total.toFixed(2).replace('.', ',')}</span>
+          </div>
+        </div>
+
+        {/* Layout Desktop */}
+        <div className="d-none d-lg-flex gap-5">
+          <div className="d-flex flex-column align-items-center" style={{ width: "100px" }}>
+            <span className="fw-bold text-dark-gray-2">R$ {unitPrice.toFixed(2).replace('.', ',')}</span>
+          </div>
+          <div className="d-flex flex-column align-items-center" style={{ width: "100px" }}>
+            <span className="fw-bold text-dark-gray-2">R$ {total.toFixed(2).replace('.', ',')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CartItem;
+</file>
+
+<file path="src/pages/Cart/components/CartItem/CartItem.module.scss">
+.imgContainer {
+  width: 120px;
+  min-width: 120px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.qtyBtn {
+  width: 32px;
+  height: 32px;
+  border-color: #cccccc;
+  color: #474747;
+  
+  &:hover {
+    background-color: #f5f5f5;
+    border-color: #8f8f8f;
+    color: #1f1f1f;
+  }
+}
+</file>
+
+<file path="src/pages/Cart/components/CartSummary/CartSummary.jsx">
+import React from 'react';
+import Button from "../../../../components/Button/Button";
+
+const CartSummary = ({ subtotal, discount, shipping }) => {
+  const total = subtotal + shipping - discount;
+
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <h4 className="fw-bold fs-6 border-bottom pb-3 text-dark-gray-2 mb-4">RESUMO</h4>
+      <div className="d-flex justify-content-between mb-3 text-muted">
+        <span>Subtotal:</span>
+        <span>R$ {subtotal.toFixed(2).replace('.', ',')}</span>
+      </div>
+      <div className="d-flex justify-content-between mb-3 text-muted">
+        <span>Frete:</span>
+        <span>R$ {shipping.toFixed(2).replace('.', ',')}</span>
+      </div>
+      <div className="d-flex justify-content-between mb-4 text-muted">
+        <span>Desconto:</span>
+        <span>R$ {discount.toFixed(2).replace('.', ',')}</span>
+      </div>
+      
+      <div className="d-flex justify-content-between align-items-center mb-1">
+        <span className="fw-bold fs-5 text-dark-gray-2">Total</span>
+        <div className="text-end">
+          <span className="fw-bold fs-5" style={{ color: "#ee4266" }}>
+            R$ {Math.max(0, total).toFixed(2).replace('.', ',')}
+          </span>
+        </div>
+      </div>
+      <p className="text-end text-muted small mb-4">ou 10x de R$ {(Math.max(0, total)/10).toFixed(2).replace('.', ',')} sem juros</p>
+      
+      <Button
+        text="Continuar"
+        style="btn text-white w-100 py-2 fw-bold text-uppercase border-0"
+        customStyle={{ backgroundColor: "#f19c3a", letterSpacing: "1px" }}
+      />
+    </div>
+  );
+};
+
+export default CartSummary;
+</file>
+
+<file path="src/components/AuthUser/AuthUser.jsx">
+import React from "react";
+import Button from "../Button/Button";
+import { Link } from "react-router-dom";
+const AuthUser = () => {
+  return (
+    <>
+      <div
+        className={`border-top border-light-gray-2 d-flex flex-column justify-content-center d-lg-none`}
+      >
+        <Button
+          text="Entrar"
+          style="btn btn-primary text-white py-2 w-100 mt-2"
+          customStyle={{ fontSize: "14px" }}
+        />
+        <span
+          className={`text-center mt-3 text-decoration-underline text-dark-gray-2`}
+        >
+          Cadastre-se
+        </span>
+      </div>
+      <div className={` gap-4 d-none d-lg-flex`}>
+        <Link
+          className={`text-decoration-underline text-dark-gray-2 align-self-center`}
+        >
+          Cadastre-se
+        </Link>
+        <Button
+          text="Entrar"
+          style="btn btn-primary text-white py-2 px-5"
+          customStyle={{ fontSize: "14px" }}
+        />
+      </div>
+    </>
+  );
+};
+
+export default AuthUser;
+</file>
+
+<file path="src/components/BreadCrumb/BreadCrumb.jsx">
+import React from "react";
+import Button from "../Button/Button";
+import { Link } from "react-router-dom";
+const BreadCrumb = ({ paths }) => {
+  return (
+    <nav aria-label="breadcrumb" className="my-3">
+      <ol className="breadcrumb small">
+        {paths.map((item, idx) => (
+          <li
+            key={idx}
+            className={`breadcrumb-item ${idx === 4 ? "active fw-bold" : ""}`}
+          >
+            {idx === 4 ? (
+              item
+            ) : (
+              <a href="#" className="text-decoration-none text-muted">
+                {item}
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+};
+
+export default BreadCrumb;
+</file>
+
+<file path="src/components/DiscountBadge/DiscountBadge.jsx">
+import React from 'react'
+import styles from './DiscountBadge.module.scss'
+const DiscountBadge = ({discountAmount}) => {
+  return (
+    <span
+                  className={`py-1 px-3 m-0 text-dark-gray fw-bold ${styles.badge}`}
+                >
+                  {discountAmount}% OFF
+                </span>
+  )
+}
+
+export default DiscountBadge
+</file>
+
+<file path="src/components/DiscountBadge/DiscountBadge.module.scss">
+.badge {
+  font-size: clamp(0.625rem, 3vw, 0.875rem);
+  background: #e7ff86;
+  border-radius: 29px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+</file>
+
+<file path="src/components/ErrorBoundary/ErrorBoundary.jsx">
+import { useRouteError } from "react-router-dom";
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  return (
+    <div style={{ padding: "20px", color: "red" }}>
+      <pre style={{ color: "black", background: "#f4f4f4", padding: "15px" }}>
+        {error.statusText || error.message || String(error)}
+      </pre>
+      {error.stack && (
+        <pre style={{ fontSize: "12px", background: "#eee", padding: "10px" }}>
+          {error.stack}
+        </pre>
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/Head/Head.jsx">
+import React from 'react'
+
+const Head = ({title,description}) => {
+  React.useEffect(() => {
+    document.title = title;
+    document
+      .querySelector("meta[name='description']")
+      .setAttribute('content', description);
+  }, [title,description]);
+
+  return <></>;
+};
+
+export default Head
+</file>
+
+<file path="src/components/Navbar/Navbar.module.scss">
+
+</file>
+
+<file path="src/components/OffCanvas/OffCanvas.jsx">
+import styles from './OffCanvas.module.scss'
+import { Offcanvas } from 'react-bootstrap';
+import Navbar from "react-bootstrap/Navbar";
+import Navb from "../Navbar/Navbar";
+import AuthUser from "../AuthUser/AuthUser";
+function OffCanvas({ offCanvas,setOffCanvas }) {;
+
+  return (<Offcanvas
+            className={`${styles.offCanvas} w-75 justify-content-between d-lg-none order-lg-2`}
+            id={`offcanvasNavbar-expand-lg`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+            placement="start"
+            show={offCanvas}
+            onHide={() => setOffCanvas(false)}
+          >
+            <Offcanvas.Header className={`p-0`}>
+              <Offcanvas.Title
+                className={`fs-5 p-0 fw-bold text-dark-gray-2 mb-3`}
+                id={`offcanvasNavbarLabel-expand-lg`}
+              >
+                Páginas
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body className={`p-0`}>
+              <Navb />
+            </Offcanvas.Body>
+            <AuthUser />
+          </Offcanvas>
+  );
+}
+
+export default OffCanvas;
+</file>
+
+<file path="src/components/OffCanvas/OffCanvas.module.scss">
+.offCanvas{
+    top:56px !important;
+    padding: 30px;
+
+}
+@media (min-width:992px){
+    .offCanvas{
+        padding: 0px;
+    }
+}
+.badge{
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    top: -7%;
+    right: -60%;
+}
+.badgeNumber{
+    font-size: 12px;
+    color: white;
+    
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+</file>
+
+<file path="src/components/ProductList/ProductList.jsx">
+import React from "react";
+import { Link } from "react-router-dom";
+import Icon from "../Icons/Icons";
+import ProductListItem from "../ProductListItem/ProductListItem";
+import SectionTitle from "../SectionTitle/SectionTitle";
+
+const ProductList = ({ activeCategory, data, limit, text, loading }) => {
+  const filteredData = data.filter(
+    (product) => product.category === activeCategory
+  );
+  const productsToRender = filteredData.slice(0, limit);
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center mt-5 py-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Carregando...</span>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <section className="">
+      <div className="d-flex justify-content-between align-items-center">
+        <SectionTitle text={text} />
+        <Link
+          to={`/search?q=${activeCategory}`}
+          className="text-decoration-none text-primary d-flex align-items-center gap-1"
+        >
+          <p className="p-0 m-0 text-center">Ver todos</p>
+          <Icon name="arrowRight" size="24" />
+        </Link>
+      </div>
+      <div className="row">
+        {productsToRender.length > 0 ? (
+          productsToRender.map((product) => (
+            <ProductListItem key={product.id} product={product} />
+          ))
+        ) : (
+          <div className="col-12 text-center py-5">
+            <p className="text-muted">
+              Nenhum produto encontrado para esta categoria.
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default ProductList;
+</file>
+
+<file path="src/components/ScrollToTop/ScrollToTop.jsx">
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+</file>
+
+<file path="src/components/SearchBar/SearchBar.module.scss">
+.input {
+  outline: none;
+  box-shadow: none;
+  border-radius: 8px;
+}
+.button {
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</file>
+
+<file path="src/components/SectionTitle/SectionTitle.jsx">
+import React from "react";
+import styles from './SectionTitle.module.scss'
+const SectionTitle = ({ text, className }) => {
+  return <h2 className={`py-2 text-dark-gray-2 fw-bold ${styles.title} ${className}`}>{text}</h2>;
+};
+
+export default SectionTitle;
+</file>
+
+<file path="src/components/SectionTitle/SectionTitle.module.scss">
+.title{
+    font-size: clamp(16px, 2vw, 24px);
+}
+</file>
+
+<file path="src/contexts/CartContext.jsx">
+import { createContext, useState, useEffect } from "react";
+import { fetchCart } from "../api/cart";
+
+export const CartContext = createContext();
+
+const MOCK_USER_ID = "e73fee17-9c80-426e-a069-9ead5f65f994"; 
+
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+  const [cartId, setCartId] = useState(null);
+
+  const loadCart = async () => {
+    try {
+      const resp = await fetchCart(MOCK_USER_ID);
+      setCartItems(resp.items || []);
+      setCartId(resp.cartId);
+    } catch (error) {
+      console.error("Erro ao carregar o carrinho do banco:", error);
+    }
+  };
+
+  useEffect(() => {
+    loadCart();
+  }, []);
+
+  const totalItems = Array.isArray(cartItems)
+    ? cartItems.reduce((acc, item) => acc + (item.quantity || 1), 0)
+    : 0;
+
+  return (
+    <CartContext.Provider value={{ cartItems, loadCart, totalItems, MOCK_USER_ID, cartId }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+</file>
+
+<file path="src/pages/Cart/Cart.module.scss">
+.inputField {
+  height: 48px;
+  box-shadow: none !important;
+  outline: none;
+}
+</file>
+
+<file path="src/pages/Product/components/ProductInfo/ProductInfo.module.scss">
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;  position: relative;
+}
+
+.mainImageWrapper {
+  flex: 1;
+  min-height: 0;
+  padding: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 700/571;
+  .mainImage{
+    object-fit: contain;
+  }
+}
+
+.thumbnailList {
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  position: absolute;
+  top: 102%;
+  object-fit: contain;
+}
+
+.thumbnail {
+  width: clamp(61px,10vw,117px);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  padding: 5px;
+  aspect-ratio: 4/4;
+img {
+    object-fit: contain;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  &.active {
+    border-color: #C92071;
+    background-color: #ffffff;
+  }
+}
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+])
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="src/components/CartWidget/CartWidget.jsx">
+import React, { useContext, useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Icon from "../Icons/Icons";
+import styles from "./CartWidget.module.scss";
+import { CartContext } from "../../contexts/CartContext";
+import { clearCart } from "../../api/cart";
+
+const CartWidget = () => {
+  const { totalItems, cartItems, loadCart, MOCK_USER_ID } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const widgetRef = useRef(null);
+
+  const subtotal = cartItems.reduce((acc, item) => acc + (Number(item.price_at_addition) * item.quantity), 0);
+
+  const handleClear = async () => {
+    await clearCart(MOCK_USER_ID);
+    loadCart();
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (widgetRef.current && !widgetRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="position-relative" ref={widgetRef}>
+      <div onClick={() => setIsOpen(!isOpen)} style={{ cursor: "pointer" }}>
+        <Icon
+          name="cart"
+          color="#C92071"
+          size="18px"
+          attributes={{
+            stroke: "#C92071",
+            strokeWidth: "1.5",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            fill: "none",
+          }}
+        />
+        {totalItems > 0 && (
+          <div className={`d-flex bg-error rounded-circle justify-content-center align-content-center ${styles.badge}`}>
+            <span className={`align-self-center fw-bold ${styles.badgeNumber}`}>{totalItems}</span>
+          </div>
+        )}
+      </div>
+
+      {isOpen && (
+        <div className={styles.cartModal}>
+          <h5 className={styles.modalTitle}>Meu Carrinho</h5>
+          
+          <div className={styles.itemList}>
+            {cartItems.length === 0 ? (
+              <p className="text-muted small text-center my-3">Seu carrinho está vazio</p>
+            ) : (
+              cartItems.map((item) => (
+                <div key={item.id} className={styles.itemRow}>
+                  <div className={styles.itemImgContainer}>
+                    <img src={item.products.image} alt={item.products.name} />
+                  </div>
+                  <div className={styles.itemDetails}>
+                    <p className={styles.itemName}>{item.products.name}</p>
+                    <span className={styles.itemPrice}>
+                      R$ {Number(item.price_at_addition).toFixed(2).replace('.', ',')}
+                      {item.products.discount && (
+                        <span className={styles.itemOldPrice}>R$ {Number(item.products.price).toFixed(2).replace('.', ',')}</span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          <div className={styles.modalFooter}>
+            <div className={styles.totalRow}>
+              <span className={styles.totalLabel}>Valor total:</span>
+              <span className={styles.totalValue}>R$ {subtotal.toFixed(2).replace('.', ',')}</span>
+            </div>
+            <div className={styles.actionRow}>
+              <button onClick={handleClear} className={styles.emptyLink}>Esvaziar</button>
+              <Link 
+                to="/carrinho" 
+                onClick={() => setIsOpen(false)} 
+                className="btn text-white fw-bold px-4 py-2" 
+                style={{ backgroundColor: "#C92071", fontSize: "14px", borderRadius: "8px" }}
+              >
+                Ver Carrinho
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CartWidget;
+</file>
+
+<file path="src/components/CartWidget/CartWidget.module.scss">
+.badge {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -50%;
+  right: -70%;
+}
+.badgeNumber {
+  font-size: 12px;
+  color: white;
+}
+
+.cartModal {
+  position: absolute;
+  top: 200%;
+  right: -10px;
+  width: 320px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 20px;
+  z-index: 1060;
+  cursor: default;
+}
+
+.modalTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f1f1f;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.itemList {
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+}
+
+.itemRow {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.itemImgContainer {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  background: #e2e3ff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  .itemName {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+  }
+
+  .itemPrice {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f1f1f;
+  }
+  .itemOldPrice {
+    font-size: 12px;
+    color: #cccccc;
+    text-decoration: line-through;
+    margin-left: 5px;
+    font-weight: 400;
+  }
+}
+
+.modalFooter {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .totalLabel {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f1f1f;
+  }
+
+  .totalValue {
+    font-size: 16px;
+    font-weight: 700;
+    color: #C92071;
+  }
+}
+
+.actionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .emptyLink {
+    font-size: 14px;
+    color: #474747;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    
+    &:hover {
+      color: #1f1f1f;
+    }
+  }
+}
+</file>
+
+<file path="src/pages/Cart/Cart.jsx">
+import React, { useState, useEffect } from "react"; 
+import CartItem from "./components/CartItem/CartItem";
+import CartSummary from "./components/CartSummary/CartSummary";
+import TrendingProducts from "../../components/ProductList/ProductList";
+import { fetchProduct } from "../../api/products"; 
+import { fetchCart, updateCartItemQuantity, removeCartItem } from "../../api/cart";
+import styles from "./Cart.module.scss";
+
+// UUID temporário para testes. Substitua pelo UUID do usuário logado vindo do seu AuthContext
+const MOCK_USER_ID = "00000000-0000-0000-0000-000000000000"; 
+
+const Cart = () => {
+  const [cartItems, setCartItems] = useState([]);
+  const [loadingCart, setLoadingCart] = useState(true);
+  
+  const [trendingData, setTrendingData] = useState([]);
+  const [loadingTrending, setLoadingTrending] = useState(true);
+  const activeCategory = "tenis"; 
+
+  const discount = 30.00; // Fixo para exemplo
+  const shipping = 0.00;
+
+  useEffect(() => {
+    loadCart();
+    loadTrending();
+  }, []);
+
+  const loadCart = async () => {
+    try {
+      setLoadingCart(true);
+      const resp = await fetchCart(MOCK_USER_ID);
+      setCartItems(resp.items || []);
+    } catch (error) {
+      console.error("Erro ao carregar carrinho", error);
+    } finally {
+      setLoadingCart(false);
+    }
+  };
+
+  const loadTrending = async () => {
+    try {
+      setLoadingTrending(true);
+      const resp = await fetchProduct();
+      setTrendingData(resp);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoadingTrending(false);
+    }
+  };
+
+  const handleUpdateQuantity = async (itemId, newQuantity) => {
+    // Optimistic UI Update
+    setCartItems(prev => prev.map(item => item.id === itemId ? { ...item, quantity: newQuantity } : item));
+    try {
+      await updateCartItemQuantity(itemId, newQuantity);
+    } catch (error) {
+      // Revert in case of error
+      loadCart();
+    }
+  };
+
+  const handleRemoveItem = async (itemId) => {
+    setCartItems(prev => prev.filter(item => item.id !== itemId));
+    try {
+      await removeCartItem(itemId);
+    } catch (error) {
+      loadCart();
+    }
+  };
+
+  const subtotal = cartItems.reduce((acc, item) => acc + (Number(item.products.price) * item.quantity), 0);
+
+  return (
+    <div className="container py-4 mb-5">
+      <div className="row g-4">
+        <div className="col-12 col-lg-8">
+          <div className="bg-white p-4 rounded shadow-sm mb-4">
+            <div className="d-none d-lg-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+              <h4 className="fw-bold fs-6 m-0 text-dark-gray-2">MEU CARRINHO</h4>
+              <div className="d-flex gap-5 text-dark-gray-2 small">
+                <span style={{ width: "100px", textAlign: "center" }}>QUANTIDADE</span>
+                <span style={{ width: "100px", textAlign: "center" }}>UNITÁRIO</span>
+                <span style={{ width: "100px", textAlign: "center" }}>TOTAL</span>
+              </div>
+            </div>
+
+            {loadingCart ? (
+              <div className="text-center py-5">Carregando itens...</div>
+            ) : cartItems.length === 0 ? (
+              <div className="text-center py-5 text-muted">Seu carrinho está vazio.</div>
+            ) : (
+              cartItems.map((item) => (
+                <CartItem 
+                  key={item.id} 
+                  item={item} 
+                  onUpdateQuantity={handleUpdateQuantity}
+                  onRemove={handleRemoveItem}
+                />
+              ))
+            )}
+
+            {/* Cupons e Frete */}
+            <div className="row g-3">
+              <div className="col-12 col-md-6">
+                <span className="fw-bold text-dark-gray-2 small d-block mb-2">Cupom de desconto</span>
+                <div className="d-flex gap-2">
+                  <input type="text" className={`form-control bg-light-gray-3 border-0 ${styles.inputField}`} placeholder="Insira seu código" />
+                  <button className="btn bg-light-gray-3 text-primary fw-bold border-0 px-4">OK</button>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <span className="fw-bold text-dark-gray-2 small d-block mb-2">Calcular frete</span>
+                <div className="d-flex gap-2">
+                  <input type="text" className={`form-control bg-light-gray-3 border-0 ${styles.inputField}`} placeholder="Insira seu CEP" />
+                  <button className="btn bg-light-gray-3 text-primary fw-bold border-0 px-4">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-lg-4">
+          <CartSummary subtotal={subtotal} discount={cartItems.length > 0 ? discount : 0} shipping={shipping} />
+        </div>
+      </div>
+
+      <div className="mt-5">
+         <TrendingProducts
+          text={"Produtos em alta"}
+          activeCategory={activeCategory}
+          data={trendingData}
+          limit={8}
+          loading={loadingTrending}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Cart;
+</file>
+
+<file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.module.scss">
+.containerIcon{
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(92px, 10vw, 104px);
+  height: clamp(92px, 10vw, 104px);
+}
+.categoryItem{
+  cursor: pointer;
+  &:hover{
+    .containerIcon svg{
+      fill:#ff007b !important;
+    }
+    
+  }
+}
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.module.scss">
+.carousel :global(.carousel-indicators [data-bs-target]){
+    background-color: #CCC;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+
+}
+.carousel :global(.carousel-indicators .active){
+    background-color: #C92071;
+}
+</file>
+
+<file path="src/pages/Home/components/SlideContent/SlideContent.module.scss">
+.productImg {
+  transform: rotate(-19.34deg) scale(1.05) translateX(-11.5%);
+}
+.upperText{
+  color: #C92071;
+}
+p {
+  font-size: 14px;
+  letter-spacing: 0.75px;
+}
+h1 {
+  font-size: 40px;
+}
+@media (min-width: 992px) {
+  .productImg {
+    transform: rotate(-19.34deg) scale(1.2) translateX();
+  }
+
+  .upperText {
+    color: #F6AA1C;
+    font-size: 16px;
+  }
+  .bottomText {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 64px !important; 
+  }
+}
+</file>
+
+<file path="src/pages/Home/components/SpecialOffer/SpecialOffer.module.scss">
+.containerImg {
+  height: clamp(281px,40vw,466px);
+  width: clamp(281px,40vw,466px);
+}
+.text{
+  max-width: 500px;
+}
+</file>
+
+<file path="src/pages/NotFound/NotFound.jsx">
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import Head from "../../components/Head/Head";
+
+const NotFound = () => {
+  return (
+    <>
+    <Head title={'Error'}/>
+      <div className="container py-5 my-5 d-flex flex-column align-items-center justify-content-center text-center w-75">
+        <h1 className="fw-bold display-1 text-primary mb-0">404</h1>
+        <h2 className="fw-bold text-dark-gray mb-3">
+          Ops! Página não encontrada
+        </h2>
+        <p className="text-muted mb-4 px-0 px-lg-5">
+          Desculpe, não conseguimos encontrar a página que você está procurando.
+          Ela pode ter sido removida ou o endereço está incorreto.
+        </p>
+
+        <Link to="/" className="text-decoration-none">
+          <Button
+            text="Voltar para Home"
+            style="btn btn-primary text-white py-2 px-5 fw-bold"
+          />
+        </Link>
+      </div>
+    </>
+  );
+};
+
+export default NotFound;
+</file>
+
+<file path="src/pages/Product/components/ProductDetails/ProductDetails.jsx">
+import { useState, useEffect } from "react";
+import styles from "./ProductDetails.module.scss";
+import ProductInfo from "../ProductInfo/ProductInfo";
+
+const ProductDetails = ({
+  product,
+  currentSize,
+  currentColor,
+  setCurrentColor,
+  setCurrentSize,
+}) => {
+  const images = product.productDetails.images;
+  const [mainImage, setMainImage] = useState(images[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length > 0) {
+      setMainImage(images[0]);
+      setActiveIndex(0);
+    }
+  }, [images]);
+
+  if (images.length === 0) {
+    return <div className="text-center py-5">Carregando produto...</div>;
+  }
+
+  const handleClick = (image, index) => {
+    setMainImage(image);
+    setActiveIndex(index);
+  };
+
+  return (
+    <div className="row rounded-4 align-items-stretch mb-5 g-0 ">
+      <div className="col-12 col-lg-7 mb-lg-0">
+        <div className={` text-center ${styles.carouselContainer}`}>
+          <div
+            className={`${styles.mainImageWrapper}`}
+            style={{ backgroundColor: mainImage.color }}
+          >
+            <img
+              src={mainImage.src}
+              alt="Produto selecionado"
+              className={`img-fluid ${styles.mainImage}`}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-12 col-lg-5  order-2 order-lg-0 mt-2 mt-lg-0 align-items-stretch">
+        <ProductInfo
+          product={product}
+          currentColor={currentColor}
+          setCurrentColor={setCurrentColor}
+          currentSize={currentSize}
+          setCurrentSize={setCurrentSize}
+        />
+      </div>
+      <div
+        className={`col-12 col-lg-7 ${styles.thumbnailList} justify-content-between mt-2`}
+      >
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`${styles.thumbnail} d-flex flex-column ${
+              index === activeIndex ? styles.active : ""
+            }`}
+            onClick={() => handleClick(image, index)}
+            style={{ backgroundColor: image.color }}
+          >
+            <img
+              src={image.src}
+              alt={`Miniatura ${image.index + 1}`}
+              className="img-fluid"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetails;
+</file>
+
+<file path="src/pages/Product/components/ProductDetails/ProductDetails.module.scss">
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  }
+
+.mainImageWrapper {
+  min-height: 0;
+  border-radius: 5px;
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 700/450;
+  .mainImage{
+    object-fit: contain;
+    max-height: 75%;
+    max-width: 75%;
+    align-self: center;
+  }
+}
+
+.thumbnailList {
+  width: auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  top: 102%;
+}
+
+.thumbnail {
+  width:20%;
+max-height: 100px;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  padding: 5px;
+img {
+    object-fit: contain;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+
+  }
+  &.active {
+    border-color: #C92071;
+    background-color: #ffffff;
+  }
+}
+</file>
+
+<file path="src/pages/Product/components/StarRating/StarRating.jsx">
+import React from "react";
+import Icon from "../../../../components/Icons/Icons";
+
+const StarRating = ({ rating }) => {
+  const stars = [0, 1, 2, 3, 4];
+
+  return (
+    <div className="d-flex justify-content-center align-items-center gap-2">
+      {stars.map((index) => {
+        const starPosition = index + 1;
+        let clipPercentage = 100;
+        if (rating >= starPosition) {
+          clipPercentage = 0;
+        } else if (rating >= starPosition - 0.5) {
+          clipPercentage = 50;
+        }
+
+        return (
+          <div
+            key={index}
+            className="position-relative p-2"
+          >
+            <Icon
+              name="star"
+              color="#E2E3FF"
+              size="16px"
+              attributes={{
+                style: {
+                  position: "absolute",top:'-0px',right:'0px'
+                },
+              }}
+            />
+            <Icon
+              name="star"
+              color="#F6AA1C"
+              size="16px"
+              attributes={{
+                style: {
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  clipPath: `inset(0 ${clipPercentage}% 0 0)`,
+                },
+              }}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default StarRating;
+</file>
+
+<file path="README.md">
+# Digital Store
+
+A Digital Store é uma plataforma de e-commerce moderna desenvolvida como projeto final dos cursos da Digital College.
+
+O projeto demonstra a aplicação prática de conceitos de desenvolvimento web moderno, como a gestão de estado global, consumo de APIs REST e a manipulação dinâmica de rotas.
+
+## Tecnologias
+
+As principais tecnologias utilizadas foram:
+
+- React 19
+- Vite
+- React Router DOM
+- Bootstrap 5
+- SASS/SCSS
+
+## Funcionalidades principais
+
+- Catálogo dinâmico de produtos consumido via API.
+- Sidebar com filtros de marca, categoria, género e estado.
+- Sistema de carrinho de compras com persistência local via localStorage.
+- Menu lateral responsivo para dispositivos móveis.
+- Navegação dinâmica através de Breadcrumbs.
+- Tratamento de estados de carregamento e erros.
+
+## Como instalar e executar
+
+Siga os passos abaixo para configurar o projeto na sua máquina:
+
+1. Clone o repositório:
+   git clone [link-do-seu-repositorio]
+
+2. Entre na pasta do projeto:
+   cd [nome-da-pasta]
+
+3. Instale as dependências necessárias:
+   npm install
+
+4. Inicie o servidor de desenvolvimento:
+   npm run dev
+
+5. Aceda ao projeto pelo navegador através da porta indicada no terminal.
+
+## Estrutura do projeto
+
+- src/api: Lógica de requisições para a API.
+- src/components: Componentes reutilizáveis de interface.
+- src/contexts: Lógica de estado global (Context API).
+- src/pages: Telas principais (Home, Product, Search).
+- src/routes: Definição das rotas da aplicação.
+- src/styles: Configurações de estilo globais e variáveis.
+
+## Autor
+
+Matheus 
+Maria Clara
+Jair
+
+---
+Projeto desenvolvido como parte da formação do curso Leão Tech 2.0.
+</file>
+
+<file path="src/components/Footer/Footer.module.scss">
+p {
+  font-size: clamp(14px, 1vw, 16px);
+}
+.logoText {
+  padding-top: 1px;
+  font-size: clamp(20px, 3vw, 44px);
+}
+.sectionTitle{
+  font-size: 1.125rem
+}
+</file>
+
+<file path="src/components/Header/Header.module.scss">
+.offCanvas {
+  top: 56px !important;
+  padding: 30px;
+}
+@media (min-width: 992px) {
+  .offCanvas {
+    padding: 0px;
+  }
+}
+.logoTitle {
+  padding-top: 1px;
+  font-size: clamp(20px, 5vw, 36px);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+</file>
+
+<file path="src/components/Icons/Icons.jsx">
+import React from "react";
+const Icons = {
+  camisetas: {
+    path: (
+      <path d="M14.9326 2.31177C11.5589 3.57274 8.51709 4.74522 8.18525 4.9222C7.2893 5.37571 6.30486 6.41545 5.84029 7.41096C5.32041 8.50601 0 24.5226 0 24.9982C0 25.9937 0.829586 27.1772 1.71448 27.4206C1.94676 27.4759 4.23642 27.6971 6.81367 27.8851L11.5036 28.2502V40.8156C11.5036 51.7994 11.5257 53.4032 11.6695 53.6134C12.0124 54.1001 16.4258 55.361 19.722 55.903C22.9408 56.445 24.5668 56.5667 28.3719 56.5667C32.1769 56.5667 33.9688 56.4229 37.0549 55.903C40.2626 55.361 44.6317 54.089 44.9636 53.6134C45.1074 53.4032 45.1295 51.8768 45.1295 40.8156V28.2612L49.8084 27.8962C52.3746 27.6971 54.6753 27.4869 54.9186 27.4206C55.8035 27.1772 56.6331 26.0048 56.6331 24.9871C56.6331 24.788 55.3611 20.806 53.8125 16.1493C51.733 9.92184 50.8813 7.49945 50.5716 6.97957C50.0738 6.13893 49.1889 5.29828 48.3483 4.87796C48.0054 4.70098 44.9857 3.53955 41.6342 2.27858L35.5505 -1.14441e-05H28.3055H21.0715L14.9326 2.31177ZM34.4002 1.99099C34.4002 2.31177 33.9246 3.55062 33.5817 4.14792C32.8516 5.39783 31.2256 6.55925 29.7434 6.91321C27.6971 7.38884 25.496 6.78047 24.0027 5.29828C23.2727 4.5793 22.8634 3.9267 22.4873 2.90907C22.0228 1.63704 21.337 1.76977 28.3165 1.76977C34.2785 1.76977 34.4002 1.76977 34.4002 1.99099ZM20.618 2.87589C20.7175 3.27409 21.0051 4.01519 21.2595 4.53506C21.6356 5.28722 21.9232 5.6633 22.6754 6.41545C23.7372 7.47733 24.6442 8.05251 25.9384 8.48389C26.7237 8.74936 26.9892 8.78254 28.3165 8.78254C29.6439 8.78254 29.9094 8.74936 30.6947 8.48389C31.9888 8.05251 32.8959 7.47733 33.9577 6.41545C34.7099 5.6633 34.9975 5.28722 35.3736 4.53506C35.628 4.01519 35.9156 3.26303 36.0151 2.86483L36.1921 2.13479L36.9885 2.43344C37.442 2.61042 37.7849 2.80952 37.807 2.90907C37.8734 3.22984 37.1876 4.98857 36.6456 5.88452C34.1679 10.0325 28.9028 11.7359 24.4783 9.82229C22.0006 8.7383 19.9986 6.58137 19.1137 4.03731C18.9367 3.51743 18.804 3.00862 18.8261 2.90907C18.8482 2.80952 19.18 2.61042 19.6335 2.43344C20.0649 2.26752 20.4189 2.14585 20.4189 2.14585C20.4299 2.15691 20.5184 2.47768 20.618 2.87589ZM17.3439 4.29171C18.4058 7.7981 21.1489 10.5966 24.6774 11.7691C26.1817 12.2668 27.3764 12.4327 28.9139 12.3553C31.0155 12.2447 32.9401 11.6142 34.6656 10.4638C36.8447 9.01482 38.5149 6.79153 39.2781 4.31384C39.4219 3.86033 39.5436 3.46213 39.5547 3.45107C39.61 3.37364 47.4081 6.34909 47.7842 6.58137C48.2819 6.89108 48.9345 7.62112 49.2 8.15205C49.3217 8.38434 50.649 12.2668 52.1533 16.7908C54.0558 22.4984 54.8633 25.0867 54.8191 25.2747C54.7859 25.4185 54.6531 25.5955 54.5425 25.6619C54.3545 25.7503 46.4126 26.4361 45.4613 26.4361H45.1295V23.2284V20.0096L44.853 19.7441C44.499 19.3791 43.9902 19.3791 43.6362 19.7441L43.3597 20.0096V36.2584V52.5073L42.2315 52.8502C39.4883 53.6908 36.723 54.2439 33.4932 54.6089C31.1261 54.8744 25.507 54.8744 23.1399 54.6089C19.9322 54.2439 17.4213 53.7461 14.6339 52.9165L13.2734 52.5073V36.2584V20.0096L12.9858 19.722C12.7535 19.4897 12.6318 19.4566 12.3 19.5119C11.5036 19.6335 11.5036 19.6557 11.5036 23.2395V26.4361H11.2049C10.2758 26.4361 2.26754 25.7503 2.09056 25.6619C1.97995 25.5955 1.84721 25.4185 1.81403 25.2747C1.76978 25.0867 2.57725 22.4984 4.47977 16.7908C5.98408 12.2668 7.31142 8.38434 7.43309 8.15205C7.73174 7.55475 8.47284 6.76941 9.01484 6.49288C9.45728 6.2606 16.7687 3.46213 16.9789 3.44001C17.0452 3.44001 17.2112 3.81609 17.3439 4.29171Z" />
+    ),
+    viewBox: "-4 -3 64 64",
+  },
+  calcas: {
+    path: (
+      <path d="M13.2877 0.149998C12.7627 0.450001 12.7377 0.612499 12.7252 2.9125V5.125L6.33769 32.25C2.38769 49.075 -0.0248076 59.55 0.000192429 59.8375C0.0251924 60.15 0.137692 60.3625 0.350192 60.525C0.675193 60.7625 11.2627 64 11.7127 64C11.8502 64 12.1002 63.875 12.2752 63.7125C12.5002 63.525 14.7502 58.3875 20.0502 46C24.1627 36.4125 27.5502 28.525 27.5877 28.475C27.6627 28.3875 32.3502 39.175 32.3502 39.4125C32.3502 39.4625 31.2002 39.5 29.7877 39.5C27.2252 39.5 27.2127 39.5 26.9127 39.8125L26.6002 40.1125V45.3V50.4875L26.8877 50.8125C27.1377 51.1 27.6002 51.2125 32.7627 52.25C36.6627 53.025 38.4377 53.3375 38.6377 53.2625C38.7877 53.2 41.3627 50.95 44.3502 48.2625C48.7752 44.2875 49.8127 43.2875 49.9502 42.9125C50.0752 42.5625 50.1002 41.8375 50.0752 40.25L50.0252 38.0625L46.3502 21.9375L42.6752 5.8125L42.6127 3.2125L42.5377 0.599998L42.1877 0.299999L41.8377 0H27.6877C17.2752 0.0125008 13.4752 0.0499992 13.2877 0.149998ZM19.1002 3.1875V4.25H16.9752H14.8502V3.1875V2.125H16.9752H19.1002V3.1875ZM24.4752 3.1875V4.25H22.8502H21.2252V3.1875V2.125H22.8502H24.4752V3.1875ZM28.7252 3.1875V4.25H27.6627H26.6002V3.1875V2.125H27.6627H28.7252V3.1875ZM34.0752 3.2125L34.1127 4.25H32.4752H30.8502V3.1875V2.1125L32.4502 2.15L34.0377 2.1875L34.0752 3.2125ZM40.4752 3.1875V4.25H38.3502H36.2252V3.1875V2.125H38.3502H40.4752V3.1875ZM19.1002 7.775C19.1002 9.4375 18.8502 10.1375 18.0002 10.9C17.2877 11.5375 16.4877 11.75 14.7627 11.75C13.4627 11.75 13.3377 11.725 13.4002 11.525C13.4752 11.3 14.6002 6.5 14.6002 6.425C14.6002 6.4 15.6127 6.375 16.8502 6.375H19.1002V7.775ZM26.6002 15.8375V25.3125L18.8377 43.4375C14.5627 53.4 11.0627 61.575 11.0502 61.5875C11.0127 61.6375 2.57519 59.125 2.40019 59.0125C2.30019 58.9625 3.93769 51.8 7.55019 36.4375C10.4627 24.0625 12.8502 13.925 12.8502 13.9C12.8502 13.8875 13.6002 13.875 14.5252 13.875C17.2002 13.875 18.2877 13.55 19.5502 12.35C20.7752 11.1875 21.2252 9.95 21.2252 7.6875V6.375H23.9127H26.6002V15.8375ZM30.8502 14.6625V22.95L30.2002 23.4375C29.8377 23.7 29.3502 24.05 29.1377 24.225L28.7252 24.525V15.45V6.375H29.7877H30.8502V14.6625ZM34.1127 8.125C34.2002 10.0625 34.3002 10.4625 34.9752 11.4625C35.5377 12.3125 36.2127 12.9 37.1377 13.325C38.0752 13.75 38.9002 13.875 40.7377 13.875C42.3002 13.875 42.3502 13.8875 42.4127 14.15C43.8502 20.25 47.8502 38.425 47.8502 38.875V39.5H41.3002H34.7502L32.0502 33.2C30.5627 29.7375 29.3502 26.85 29.3502 26.7875C29.3627 26.7375 30.0877 26.15 30.9627 25.5C31.8502 24.85 32.6627 24.1625 32.7752 23.975C32.9502 23.6875 32.9752 22.6875 32.9752 15V6.3625L33.5127 6.4L34.0377 6.4375L34.1127 8.125ZM41.2502 9C41.5752 10.4125 41.8377 11.6125 41.8377 11.675C41.8502 11.725 41.1002 11.7625 40.2002 11.725C38.6502 11.6875 38.4877 11.65 37.8752 11.325C36.6002 10.625 36.2252 9.825 36.2252 7.8125V6.375L38.4377 6.4L40.6627 6.4375L41.2502 9ZM47.8502 41.9375C47.8502 42.1875 46.8877 43.1125 42.9252 46.6875L38.0002 51.125L33.6377 50.25C31.2502 49.775 29.1627 49.35 29.0127 49.3125L28.7252 49.25V45.4375V41.625H38.2877H47.8502V41.9375Z" />
+    ),
+    viewBox: "0 0 51 64",
+  },
+  bones: {
+    path: (
+      <path d="M39.4005 0.199204C38.063 0.674205 37.2255 1.5242 36.9255 2.69921C36.7505 3.36171 37.0005 3.24921 34.488 3.72421C28.038 4.92421 22.4505 7.79921 19.4005 11.4992C16.163 15.4242 13.6505 21.8617 12.7255 28.6367L12.5755 29.7367L10.3755 31.2617C9.16303 32.1117 7.25054 33.4492 6.11304 34.2242C2.07554 36.9992 0.500543 38.2867 0.163043 39.0617C-0.0869564 39.6367 -0.0494565 40.2117 0.275543 40.7742C0.838043 41.7867 1.98804 42.0492 3.18804 41.4367C5.01304 40.4867 8.10054 40.2617 11.863 40.7992C15.6505 41.3367 17.7505 42.1617 21.3255 44.4992C22.3755 45.1742 23.6005 45.8992 24.038 46.0992C26.813 47.3617 30.838 47.5617 35.313 46.6617C40.6755 45.5742 46.088 42.2492 50.013 37.6242L50.913 36.5742L52.163 36.6617C52.863 36.6992 54.2755 36.8367 55.3005 36.9492C57.8505 37.2367 59.1005 37.2117 60.0505 36.8492C60.9255 36.5242 61.788 35.7117 62.213 34.8242C62.963 33.2992 63.313 28.6242 62.988 24.8492C62.4255 18.4867 59.7255 13.1492 55.113 9.29921C52.938 7.47421 49.713 5.66171 46.7755 4.58671L45.2505 4.03671L45.1755 3.41171C44.913 1.3992 43.388 0.124204 41.1255 0.0117044C40.3005 -0.0257956 39.9005 0.0242044 39.4005 0.199204ZM42.0755 2.3367C42.563 2.56171 43.1005 3.14921 42.9505 3.29921C42.913 3.33671 42.638 3.29921 42.3505 3.21171C42.0505 3.12421 41.2005 3.04921 40.463 3.04921C39.713 3.04921 39.113 3.01171 39.113 2.97421C39.113 2.83671 39.6755 2.36171 39.988 2.2367C40.5005 2.0367 41.513 2.0867 42.0755 2.3367ZM41.4255 5.61171C41.763 5.82421 42.3755 6.34921 42.8005 6.77421C45.113 9.08671 46.2755 12.1992 46.638 17.0617C46.863 19.9992 46.5255 24.1492 45.738 28.2867C45.4005 30.0492 44.488 33.7617 44.363 33.8867C44.1755 34.0992 38.463 32.9992 33.4255 31.7867C30.738 31.1242 25.1255 29.7992 24.538 29.6617L24.2755 29.5992L24.5005 28.1117C25.813 19.5492 29.138 12.4242 33.588 8.69921C35.4505 7.12421 37.388 6.07421 39.488 5.47421C40.6005 5.16171 40.7255 5.16171 41.4255 5.61171ZM32.988 6.43671C32.1255 7.08671 29.5255 9.81171 28.788 10.8492C25.7755 15.0492 23.613 20.7492 22.538 27.2617C22.3505 28.3742 22.188 29.2992 22.1755 29.3242C22.163 29.3367 21.6255 29.2992 20.988 29.2242C20.3505 29.1492 18.7005 29.0867 17.338 29.0992H14.8505L14.9255 28.6242C15.913 22.6117 17.5255 17.9992 19.913 14.4117C22.3505 10.7617 26.3005 8.14921 31.8505 6.53671C32.6505 6.29921 33.3255 6.11171 33.363 6.11171C33.4005 6.09921 33.2255 6.24921 32.988 6.43671ZM46.2005 6.61171C52.0255 8.77421 56.3005 12.3242 58.6755 16.9992C60.413 20.4242 61.088 23.9367 60.9505 28.8367C60.8755 31.5742 60.613 33.3992 60.2005 34.1492C59.6505 35.1242 58.913 35.2617 55.9005 34.9117C55.0255 34.8117 52.7005 34.6367 50.738 34.5367C48.7755 34.4367 47.0255 34.3117 46.8505 34.2742L46.5255 34.2117L46.8755 32.8742C47.0755 32.1367 47.4005 30.7492 47.6005 29.7867C49.6505 19.9742 49.1255 12.3117 46.0505 7.41171C45.6755 6.82421 45.4005 6.34921 45.4255 6.34921C45.4505 6.34921 45.8005 6.47421 46.2005 6.61171ZM20.863 31.2867C23.788 31.6242 25.338 31.9492 34.4255 34.1617C39.6005 35.4117 43.988 36.2117 46.9005 36.4242C47.563 36.4742 48.113 36.5617 48.113 36.6117C48.113 36.7992 46.363 38.5867 45.3505 39.4242C40.813 43.1992 34.888 45.2867 29.3005 45.0617C28.413 45.0242 27.2505 44.8992 26.738 44.7867C25.463 44.4992 23.8255 43.7117 22.1755 42.5742C20.3255 41.3242 19.263 40.7117 17.9505 40.1617C13.688 38.3992 6.77554 37.8742 3.33804 39.0367C2.97554 39.1617 2.86304 39.1742 2.98804 39.0617C3.72554 38.4742 5.60054 37.1367 8.17554 35.3742C9.82553 34.2367 11.8255 32.8617 12.613 32.2992C13.713 31.5242 14.1755 31.2742 14.613 31.2117C15.688 31.0617 19.313 31.0992 20.863 31.2867Z" />
+    ),
+    viewBox: "0 0 64 48",
+  },
+  headphones: {
+    path: (
+      <path d="M26.4475 0.259712C19.7875 1.1202 14.0458 3.94587 9.45468 8.6437C8.0018 10.1205 7.22306 11.0856 6.084 12.8182C4.45678 15.2602 3.16663 18.1905 2.446 21.0743C1.79511 23.6674 1.64401 25.0279 1.65563 28.1676C1.65563 30.6095 1.92296 35.2841 2.10893 36.3073C2.16705 36.6213 2.13218 36.6794 1.78349 36.8539C1.16747 37.1446 0.71417 37.5748 0.435218 38.1562C-0.111064 39.2377 -0.111064 39.1912 1.89972 48.1333C3.96861 57.3545 3.89888 57.1568 5.04955 57.8429C5.9329 58.3778 6.47919 58.4243 7.95531 58.122C8.88515 57.9243 9.18735 57.8894 9.23384 58.0057C9.33845 58.3197 10.1056 59.0406 10.5705 59.2615C11.3027 59.622 12.3372 59.5755 14.4293 59.1104C16.4401 58.6569 16.7074 58.5406 17.3118 57.8778C17.893 57.2382 18.0906 56.7266 18.0906 55.9242C18.0906 55.0637 13.546 34.7259 13.2089 34.0631C12.8718 33.4119 12.1047 32.784 11.3376 32.563C10.7681 32.4002 10.6054 32.4002 9.80337 32.5514L8.92002 32.7142L8.81541 31.6095C8.64107 29.5513 8.7108 25.2605 8.93164 24.0744C10.0707 17.9928 13.6157 12.9229 18.9274 9.73675C22.5422 7.57389 27.1217 6.50409 31.3524 6.82969C39.0701 7.4111 45.7301 11.8647 48.9962 18.6324C50.7048 22.1674 51.2162 25.0977 50.9721 29.9118C50.9023 31.377 50.821 32.6096 50.7977 32.6561C50.7629 32.691 50.3444 32.6444 49.8446 32.5514C49.031 32.4002 48.8799 32.4002 48.2988 32.563C47.5317 32.784 46.7645 33.4119 46.4275 34.0631C46.0904 34.7259 41.5458 55.0637 41.5458 55.9242C41.5458 56.6917 41.7434 57.215 42.2432 57.7964C42.8476 58.4708 43.2893 58.6685 45.1954 59.0987C47.3341 59.5755 48.3337 59.622 49.0659 59.2615C49.5308 59.0406 50.2979 58.3197 50.4025 58.0057C50.449 57.8894 50.7512 57.9243 51.6811 58.122C53.1572 58.4243 53.7035 58.3778 54.5868 57.8429C55.7259 57.1568 55.6794 57.3312 57.6902 48.424C59.6893 39.5516 59.7475 39.1912 59.2128 38.1679C58.9455 37.6562 58.4224 37.1446 57.7715 36.7725C57.5972 36.6678 57.5856 36.5399 57.7018 35.3771C58.1551 30.656 58.1667 25.6326 57.7134 23.1093C55.8654 12.6554 48.1477 4.16681 37.78 1.16672C35.2578 0.445763 33.3748 0.178314 30.3412 0.131802C28.5513 0.108543 27.2728 0.143433 26.4475 0.259712ZM33.2702 1.77139C43.5101 3.10864 51.9833 9.93443 55.2377 19.4464C56.6209 23.5395 56.8766 27.0512 56.307 34.2724C56.1443 36.3539 56.1443 36.3539 55.6562 36.2259C55.3307 36.1445 55.2726 36.0748 55.2726 35.7841C55.2726 34.8422 54.2381 33.6096 53.1688 33.2956C52.8318 33.191 52.4831 33.1096 52.4017 33.1096C52.2739 33.1096 52.2506 32.9584 52.2971 32.4351C52.4598 30.656 52.4947 29.9699 52.4831 27.8187C52.4831 26.3303 52.425 25.0744 52.3087 24.3419C51.7624 20.772 50.3444 17.33 48.2174 14.4462C47.183 13.0508 44.6608 10.5624 43.3009 9.59721C40.1859 7.38784 36.7571 6.01571 33.0378 5.49244C31.457 5.2715 28.3072 5.2715 26.6684 5.50406C17.2072 6.81806 9.47792 13.9694 7.62986 23.0744C7.13007 25.5163 7.07196 27.2489 7.35091 31.8537C7.40903 32.9119 7.3974 33.1096 7.2463 33.1096C7.15332 33.1096 6.81625 33.191 6.49081 33.284C5.43311 33.598 4.3638 34.8422 4.3638 35.7724C4.3638 36.1097 4.20107 36.2492 3.79427 36.2492C3.61992 36.2492 3.57343 36.1097 3.51532 35.5282C3.28286 33.2026 3.16663 30.7374 3.155 28.1676C3.14338 24.9582 3.27123 23.8767 3.92212 21.3069C6.084 12.8648 12.6859 5.81802 21.1126 2.99236C22.9606 2.37606 25.3317 1.85278 27.1449 1.67836C28.3653 1.55045 32.0266 1.60859 33.2702 1.77139ZM11.3027 34.1561C11.5119 34.2724 11.756 34.4933 11.849 34.6445C11.942 34.7957 13.0694 39.6563 14.3712 45.4472L16.7191 55.9824L16.4982 56.4242C16.382 56.6684 16.1495 56.9708 15.9868 57.0871C15.58 57.3778 12.0931 58.1452 11.5933 58.0522C11.3841 58.0173 11.047 57.8429 10.8494 57.6568C10.4426 57.2964 10.6867 58.308 7.4439 43.7378L5.72369 36.0399L5.94453 35.598C6.07238 35.3538 6.29322 35.0631 6.45594 34.9468C6.74651 34.7375 9.94284 33.9468 10.5821 33.9352C10.7797 33.9235 11.0935 34.0282 11.3027 34.1561ZM51.0651 34.3305C52.0646 34.5515 53.0177 34.8306 53.1805 34.9468C53.3432 35.0631 53.564 35.3538 53.6919 35.598L53.9127 36.0399L52.2041 43.6797C48.8567 58.6918 49.1938 57.2964 48.787 57.6568C48.5894 57.8313 48.2523 58.0173 48.0431 58.0522C47.5433 58.1452 44.0564 57.3778 43.6496 57.0871C43.4869 56.9708 43.2544 56.6684 43.1382 56.4242L42.9173 55.9824L45.2652 45.4472C46.567 39.6563 47.6944 34.7957 47.7874 34.6445C48.0082 34.3073 48.6242 33.9235 48.9729 33.9235C49.124 33.9235 50.0655 34.1096 51.0651 34.3305ZM4.63113 37.9586C4.66599 38.1446 5.59584 42.2843 6.6884 47.1798C7.78096 52.0753 8.68756 56.1568 8.69918 56.2498C8.72243 56.4242 7.43227 56.808 6.71165 56.8196C6.20023 56.8312 5.59584 56.5405 5.35175 56.1684C5.14254 55.8545 1.57427 40.0982 1.57427 39.4935C1.57427 39.04 1.93459 38.4353 2.31815 38.2376C2.56223 38.0981 4.07322 37.6911 4.43353 37.6562C4.50327 37.6446 4.59626 37.7841 4.63113 37.9586ZM56.1792 37.8772C56.7138 38.0051 57.2601 38.1911 57.388 38.2841C57.7715 38.54 58.0621 39.0632 58.0621 39.4819C58.0621 40.0749 54.4939 55.8545 54.2846 56.1684C54.0406 56.5405 53.4362 56.8312 52.9247 56.8196C52.2041 56.808 50.914 56.4242 50.9372 56.2498C50.9488 56.1568 51.8554 52.0753 52.948 47.1798C54.0406 42.2843 54.9704 38.1446 55.0053 37.9586C55.0401 37.7841 55.0982 37.6446 55.1447 37.6446C55.1796 37.6446 55.6562 37.7492 56.1792 37.8772Z" />
+    ),
+    viewBox: "0 0 60 60",
+  },
+  tenis: {
+    path: (
+      <path d="M42.1725 0.162895C40.91 0.562893 39.9225 1.4879 39.485 2.65039C39.2725 3.2254 39.2475 3.6129 39.2475 5.8504C39.26 8.0879 39.235 8.5254 38.9975 9.3629C38.535 11.0754 37.8975 12.0379 36.735 12.8254C35.4475 13.7004 34.0975 14.2879 32.5975 14.6504C31.2725 14.9504 31.135 14.9254 30.96 14.3004C30.56 12.7754 29.235 10.5629 28.135 9.5879C26.4975 8.1254 23.0975 7.3129 21.1225 7.9004C20.0725 8.2129 19.2725 9.0879 19.0475 10.1504C19.01 10.3504 18.7475 13.4129 18.4725 16.9504L17.96 23.3754L13.5225 34.0754C11.085 39.9629 9.01005 44.8754 8.93505 44.9879C8.84755 45.1004 7.32255 46.4379 5.53505 47.9629C3.74755 49.4754 2.01005 51.0379 1.68505 51.4379C0.0975483 53.3379 -0.414952 55.9879 0.347548 58.3379C0.672548 59.3129 1.07255 60.0004 2.28505 61.5879C3.67255 63.4129 4.41005 63.8129 6.61005 63.9254C9.92255 64.1004 13.7475 63.2879 17.0475 61.7129C19.4225 60.5879 16.535 62.6754 49.235 38.5004C58.385 31.7254 58.6725 31.5129 60.2225 29.8879C61.5225 28.5254 62.4225 27.3004 63.0975 25.9629C63.96 24.2504 64.16 23.1379 63.785 22.0754C63.51 21.3129 63.0975 20.8254 61.9725 19.9629C61.435 19.5379 60.71 18.8504 60.3725 18.4379C59.7725 17.7129 59.5725 17.3879 58.06 14.6254C56.21 11.2504 53.5975 7.8379 50.61 4.8629C48.785 3.0504 46.185 0.900394 45.2725 0.450394C44.335 -0.012104 43.0975 -0.137108 42.1725 0.162895ZM43.9725 2.21289C44.96 2.4879 49.2725 6.3379 51.46 8.9004C53.2475 10.9879 56.0225 14.9504 55.9475 15.2879C55.9225 15.3629 55.01 16.1004 53.91 16.9254C52.7475 17.7879 51.7725 18.6254 51.5725 18.9129C51.0975 19.6004 50.71 20.5129 50.61 21.1879L50.535 21.7629L49.285 22.4629C44.0225 25.4004 39.9975 29.5004 37.085 34.8879L36.41 36.1254L35.035 36.9504C29.8475 40.1004 27.385 42.2129 23.16 47.1504C17.1225 54.2254 10.785 58.0879 5.24755 58.0879C4.18505 58.0879 2.78505 57.9004 2.49755 57.7254C2.41005 57.6754 2.27255 57.2879 2.19755 56.8629C1.96005 55.5504 2.42255 53.8504 3.31005 52.7754C3.62255 52.4129 9.92255 46.9629 10.41 46.6379C10.5475 46.5504 12.885 45.5129 15.5975 44.3254C18.46 43.0879 20.885 41.9504 21.3725 41.6254C22.4225 40.9379 23.4475 39.8129 24.01 38.7379C24.2475 38.2754 26.085 33.2004 28.085 27.4754C30.0975 21.7379 31.7475 17.0254 31.76 17.0129C31.7725 16.9879 32.2225 16.8879 32.735 16.7754C34.085 16.5004 35.285 16.0754 36.56 15.4129C38.6475 14.3379 39.8225 13.1379 40.5725 11.3129C41.235 9.7129 41.3975 8.6879 41.3975 5.8754C41.41 3.0004 41.4475 2.90039 42.4725 2.3629C43.085 2.0629 43.3225 2.0379 43.9725 2.21289ZM24.6725 10.1379C26.1225 10.5254 27.0725 11.2879 27.9475 12.7504C28.385 13.4754 28.9975 14.8629 28.91 14.9379C28.885 14.9629 28.3975 14.9254 27.835 14.8504C24.8975 14.4504 23.1225 14.9379 21.4475 16.5879C20.9725 17.0379 20.5975 17.3379 20.5975 17.2504C20.5975 16.4379 21.135 10.5879 21.2225 10.3629C21.285 10.2129 21.4725 10.0254 21.6225 9.9629C21.985 9.8004 23.835 9.9129 24.6725 10.1379ZM28.0475 17.0004L29.435 17.1504L25.91 27.2254C23.9725 32.7629 22.235 37.5754 22.035 37.9129C21.5225 38.7879 20.51 39.7504 19.6225 40.2004C18.9725 40.5254 12.01 43.5879 11.91 43.5879C11.8975 43.5879 12.335 42.4754 12.8975 41.1254L13.9225 38.6754L16.9225 37.8254C20.16 36.9004 20.4725 36.7379 20.4725 35.9504C20.4725 35.4629 19.985 34.9629 19.51 34.9629C19.31 34.9629 18.2725 35.2129 17.1975 35.5254C16.1225 35.8379 15.185 36.0879 15.11 36.0879C15.0475 36.0879 15.235 35.5129 15.5225 34.8129L16.06 33.5254L17.9225 33.0004C21.91 31.8629 21.9725 31.8254 21.9725 31.0254C21.9725 30.4754 21.51 29.9629 21.035 29.9629C20.8475 29.9629 19.9225 30.1879 18.9725 30.4629C18.0225 30.7379 17.21 30.9629 17.185 30.9629C17.1225 30.9629 18.085 28.5629 18.21 28.4379C18.2475 28.3879 19.335 28.0504 20.5975 27.6879C23.1475 26.9754 23.4725 26.7879 23.4725 26.0379C23.4725 25.7129 23.385 25.5379 23.085 25.2879C22.8725 25.1129 22.6225 24.9629 22.51 24.9629C22.36 24.9629 21.4725 25.2004 19.4475 25.7879C19.285 25.8379 19.36 25.5754 19.7725 24.5754C20.0725 23.8754 20.3975 23.2629 20.485 23.2129C20.585 23.1629 21.51 22.8754 22.535 22.5879C23.96 22.2004 24.4725 22.0004 24.6975 21.7629C25.0475 21.3754 25.0475 20.8504 24.71 20.4129C24.385 19.9879 23.8725 19.9879 22.4975 20.3879C21.935 20.5504 21.4725 20.6379 21.4725 20.5754C21.4725 20.2504 22.2475 18.8129 22.6725 18.3379C23.9475 16.9379 24.9725 16.6754 28.0475 17.0004ZM58.9975 20.1379C59.385 20.5754 60.135 21.2504 60.66 21.6504C61.185 22.0379 61.6725 22.5129 61.735 22.7004C62.2475 24.0004 59.885 27.6129 56.935 30.0629C56.3475 30.5504 55.9725 30.7754 55.935 30.6754C55.8975 30.6004 55.1975 28.8879 54.3725 26.8879C52.685 22.8004 52.5475 22.3754 52.6475 21.6629C52.81 20.6004 53.2975 20.0254 55.2225 18.5879L57.0225 17.2504L57.6475 18.3004C57.9975 18.8754 58.61 19.7004 58.9975 20.1379ZM52.5225 27.9879C53.41 30.1379 54.135 31.9629 54.1475 32.0504C54.16 32.1254 50.085 35.2129 45.0975 38.8879C34.71 46.5754 35.71 46.0754 36.285 43.2879C37.835 35.6004 42.51 29.0004 49.285 24.9254C50.0475 24.4629 50.7225 24.0879 50.785 24.0879C50.86 24.0879 51.635 25.8504 52.5225 27.9879ZM35.0475 39.7379C34.31 42.3004 33.7225 45.3379 33.7225 46.6129C33.7225 46.9129 33.6475 47.2504 33.5725 47.3629C33.385 47.5879 19.2225 58.0504 18.285 58.6504C16.685 59.6754 14.4725 60.6254 12.535 61.1254C10.5725 61.6254 9.54755 61.7629 7.53505 61.7629C5.37255 61.7754 4.98505 61.6629 4.34755 60.7879L3.96005 60.2754L5.81005 60.1879C7.98505 60.1004 9.72255 59.7004 11.8475 58.8004C16.2225 56.9629 20.9225 53.1879 25.11 48.1504C26.9975 45.8754 28.885 43.9879 30.8225 42.4254C32.26 41.2754 34.81 39.4754 35.0225 39.4629C35.0725 39.4629 35.085 39.5879 35.0475 39.7379Z" />
+    ),
+    viewBox: "0 0 64 64",
+  },
+  logo: {
+    path: (
+      <path d="M2.71231 0.026886C2.04551 0.139038 1.4424 0.453062 0.955408 0.939053C0.595786 1.30168 0.442197 1.52598 0.243656 1.99328C-0.0148225 2.58768 0.000161746 2.20636 0.000161746 8.97284C0.000161746 15.5935 -0.00733038 15.3318 0.206195 15.8926C0.352292 16.2851 0.577056 16.6365 0.895471 16.9692C1.34874 17.444 1.83573 17.7281 2.48006 17.9001L2.79098 17.9823L8.76595 17.9973C13.0177 18.0048 14.8496 17.9973 15.1118 17.9674C15.891 17.8777 16.5203 17.5823 17.0597 17.0478C17.4606 16.6515 17.6966 16.2664 17.8914 15.687L18 15.3692V9.01396V2.65871L17.9138 2.36338C17.5992 1.27551 16.7825 0.4568 15.6774 0.109131L15.3403 0.00445557L9.12183 0.000717163C5.70167 -0.00302124 2.8172 0.00819397 2.71231 0.026886ZM6.70187 6.76719C7.96429 7.97843 8.98697 8.98406 8.98322 8.99901C8.97573 9.01396 7.93807 10.0196 6.67565 11.2346L4.37557 13.444L3.77994 12.872C3.45403 12.5617 3.18432 12.2851 3.18806 12.2664C3.18806 12.2439 3.94851 11.5037 4.87379 10.6215C5.79532 9.73547 6.55203 9.00275 6.55577 8.99153C6.55577 8.97658 5.79907 8.23638 4.87005 7.34664C3.94477 6.45691 3.18432 5.72045 3.18432 5.70923C3.18432 5.66063 4.33061 4.54659 4.36807 4.55407C4.3943 4.56155 5.44319 5.55596 6.70187 6.76719ZM14.872 12.7523V13.444H12.6993H10.5266V12.7523V12.0607H12.6993H14.872V12.7523Z" />
+    ),
+    viewBox: "0 0 18 18",
+  },
+  hamburguer: {
+    path: <path d="M1 9H21M1 1H21M1 17H21" />,
+    viewBox: "0 0 22 18",
+  },
+  cart: {
+    path: (
+      <path d="M5.42251 17.3204C5.84451 17.3204 6.18751 17.6634 6.18751 18.0854C6.18751 18.5074 5.84451 18.8494 5.42251 18.8494C5.00051 18.8494 4.65851 18.5074 4.65851 18.0854C4.65851 17.6634 5.00051 17.3204 5.42251 17.3204Z M16.6749 17.3204C17.0969 17.3204 17.4399 17.6634 17.4399 18.0854C17.4399 18.5074 17.0969 18.8494 16.6749 18.8494C16.2529 18.8494 15.9099 18.5074 15.9099 18.0854C15.9099 17.6634 16.2529 17.3204 16.6749 17.3204Z M0.750122 0.750122L2.83012 1.11012L3.79312 12.5831C3.87112 13.5181 4.65212 14.2361 5.59012 14.2361H16.5021C17.3981 14.2361 18.1581 13.5781 18.2871 12.6901L19.2361 6.13212C19.3531 5.32312 18.7261 4.59912 17.9091 4.59912H3.16412 M12.1256 8.29517H14.8986" />
+    ),
+    viewBox: "0 0 20 20",
+  },
+  search: {
+    path: (
+      <path d="M0.75 8.24047A7.49047 7.49047 0 1 0 15.73094 8.24047A7.49047 7.49047 0 1 0 0.75 8.24047 M13.4503 13.8392L16.3869 16.7683" />
+    ),
+    viewBox: "0 0 18 18",
+  },
+  facebook: {
+    path: (
+      <path d="M10.2 11.464L10.765 7.776H7.227V5.382C7.20225 5.10655 7.23978 4.82905 7.33681 4.57006C7.43384 4.31108 7.58788 4.07724 7.78752 3.88585C7.98717 3.69446 8.2273 3.55043 8.49015 3.46443C8.75301 3.37842 9.03184 3.35265 9.306 3.389H10.915V0.248997C9.97033 0.0965865 9.01579 0.0133685 8.059 0C5.144 0 3.24 1.766 3.24 4.963V7.775H0V11.463H3.239V20.379C3.89863 20.4824 4.56531 20.5342 5.233 20.534C5.90068 20.5342 6.56737 20.4824 7.227 20.379V11.463L10.2 11.464Z" />
+    ),
+    viewBox: "-3 0 18 18",
+  },
+  twitter: {
+    path: (
+      <path d="M22.0295 2.1827C21.314 2.48984 20.5623 2.70425 19.7925 2.8207C20.1535 2.7597 20.6815 2.1087 20.8925 1.8457C21.2238 1.44561 21.476 0.986097 21.6355 0.491703C21.6545 0.452703 21.6685 0.404702 21.6295 0.374702C21.6105 0.366484 21.5898 0.363096 21.5692 0.364841C21.5486 0.366586 21.5288 0.373413 21.5115 0.384704C20.6731 0.832014 19.7822 1.17298 18.8595 1.3997C18.8275 1.40971 18.7933 1.41042 18.7609 1.40175C18.7285 1.39307 18.6992 1.37537 18.6765 1.3507C18.6052 1.26602 18.5276 1.1868 18.4445 1.1137C18.0609 0.784229 17.6266 0.518816 17.1585 0.327701C16.5343 0.0739698 15.8607 -0.0347595 15.1885 0.00970429C14.5353 0.0536787 13.8985 0.233154 13.3185 0.536705C12.7374 0.840804 12.2243 1.25998 11.8105 1.7687C11.3824 2.29564 11.0752 2.91009 10.9105 3.5687C10.7714 4.19295 10.7554 4.83834 10.8635 5.4687C10.8775 5.5757 10.8695 5.5897 10.7715 5.5757C7.26196 5.21785 4.01231 3.56325 1.65846 0.935703C1.55146 0.814703 1.49446 0.814703 1.40746 0.945703C0.934025 1.81965 0.755001 2.82296 0.896953 3.80672C1.03891 4.79048 1.49427 5.70225 2.19546 6.4067C2.37346 6.5757 2.55746 6.7447 2.75446 6.8987C2.14197 6.85276 1.54474 6.68552 0.997463 6.4067C0.890463 6.3387 0.836456 6.3777 0.828456 6.4987C0.820833 6.6732 0.830211 6.84802 0.856456 7.0207C0.962275 7.8431 1.28497 8.62254 1.79142 9.27907C2.29788 9.9356 2.96987 10.4456 3.73846 10.7567C3.9256 10.8386 4.12156 10.8987 4.32246 10.9357C3.75475 11.0492 3.17207 11.0671 2.59846 10.9887C2.47246 10.9647 2.42346 11.0277 2.47246 11.1487C2.76737 11.9213 3.25497 12.6057 3.88893 13.1367C4.52288 13.6677 5.28212 14.0278 6.09446 14.1827C6.25846 14.2117 6.42146 14.2117 6.58646 14.2507C6.57646 14.2647 6.56746 14.2647 6.55746 14.2797C5.85392 14.9146 5.00386 15.365 4.08346 15.5907C2.87983 16.0203 1.59749 16.1844 0.324459 16.0717C0.124459 16.0427 0.0804631 16.0437 0.0244631 16.0717C-0.0315369 16.0997 0.0174618 16.1547 0.0824618 16.2067C0.339462 16.3757 0.599459 16.5257 0.864459 16.6717C1.66345 17.0966 2.50601 17.4338 3.37746 17.6777C5.61945 18.352 7.99912 18.4262 10.2788 17.8929C12.5584 17.3596 14.6582 16.2375 16.3685 14.6387C19.0315 11.9937 19.9685 8.3457 19.9685 4.6937C19.9685 4.5507 20.1375 4.4717 20.2385 4.3937C20.9134 3.86955 21.5087 3.25007 22.0055 2.5547C22.0837 2.4542 22.1253 2.33004 22.1235 2.2027V2.1827C22.1205 2.1267 22.1195 2.1447 22.0295 2.1827Z" />
+    ),
+    viewBox: "-2 -2 23 23",
+  },
+  instagram: {
+    path: (
+      <path d="M15.3801 3.58984C15.0674 3.58984 14.7675 3.71406 14.5464 3.93517C14.3253 4.15627 14.201 4.45615 14.201 4.76884C14.2009 4.92375 14.2313 5.07717 14.2905 5.22033C14.3497 5.36349 14.4365 5.49358 14.546 5.60317C14.6555 5.71275 14.7855 5.79969 14.9286 5.859C15.0717 5.91831 15.2251 5.94884 15.3801 5.94884C15.6927 5.94884 15.9926 5.82463 16.2137 5.60352C16.4348 5.38242 16.5591 5.08253 16.5591 4.76984C16.5592 4.61493 16.5288 4.46151 16.4696 4.31835C16.4104 4.17519 16.3236 4.0451 16.2141 3.93552C16.1046 3.82593 15.9746 3.739 15.8315 3.67968C15.6884 3.62037 15.535 3.58984 15.3801 3.58984Z M10.139 5.10205C8.82624 5.10337 7.5676 5.62539 6.63924 6.55357C5.71087 7.48174 5.1886 8.74028 5.18701 10.0531C5.1886 11.3659 5.71084 12.6246 6.63918 13.5529C7.56751 14.4812 8.82615 15.0035 10.139 15.0051C11.4519 15.0035 12.7105 14.4812 13.6388 13.5529C14.5672 12.6246 15.0894 11.3659 15.091 10.0531C15.0894 8.74028 14.5672 7.48174 13.6388 6.55357C12.7104 5.62539 11.4518 5.10337 10.139 5.10205ZM10.139 13.2251C9.29782 13.2243 8.49131 12.8897 7.89659 12.2948C7.30187 11.6999 6.96754 10.8932 6.96701 10.0521C6.9678 9.21103 7.30226 8.40468 7.89695 7.80999C8.49164 7.21529 9.29799 6.88084 10.139 6.88005C10.98 6.88084 11.7864 7.21529 12.3811 7.80999C12.9758 8.40468 13.3102 9.21103 13.311 10.0521C13.3105 10.8932 12.9762 11.6999 12.3814 12.2948C11.7867 12.8897 10.9802 13.2243 10.139 13.2251Z M14.071 20.107H6.039C4.43792 20.1051 2.90296 19.4683 1.77083 18.3362C0.638697 17.204 0.00185264 15.6691 0 14.068V6.04C0.00158799 4.43875 0.638318 2.90353 1.77048 1.77118C2.90264 0.638836 4.43775 0.00185312 6.039 0H14.067C15.6681 0.00185264 17.203 0.638697 18.3352 1.77083C19.4673 2.90296 20.1041 4.43793 20.106 6.039V14.067C20.1044 15.6676 19.4682 17.2022 18.3369 18.3344C17.2056 19.4666 15.6716 20.1041 14.071 20.107ZM6.039 1.892C4.93955 1.89332 3.88552 2.33066 3.10809 3.10809C2.33066 3.88552 1.89333 4.93955 1.892 6.039V14.067C1.89174 15.1675 2.32837 16.2231 3.10597 17.0018C3.88357 17.7805 4.93851 18.2187 6.039 18.22H14.067C15.1667 18.2189 16.2211 17.7818 16.9989 17.0043C17.7767 16.2269 18.2144 15.1727 18.216 14.073V6.045C18.2144 4.94529 17.7767 3.8911 16.9989 3.11367C16.2211 2.33625 15.1667 1.89906 14.067 1.898L6.039 1.892Z" />
+    ),
+    viewBox: "0 0 21 21",
+  },
+  arrowRight: {
+    path: (
+      <path
+        d="M12.4 9.89999L16.9 5.39999L12.4 0.899994M16.9 5.39999H0.900024"
+        stroke="#C92071"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="#FFFFFF"
+      />
+    ),
+    viewBox: "0 -6 24 24",
+  },star: {
+    path: (
+      <path d="M8.11294 0.730597L9.9622 5.15038L14.6966 5.56108C15.0249 5.58972 15.1585 6.00343 14.9092 6.22122L11.3182 9.36292L12.3943 14.0367C12.4689 14.3614 12.1204 14.6169 11.8383 14.4443L7.76965 11.9666L3.70097 14.4443C3.41814 14.6162 3.07037 14.3607 3.145 14.0367L4.22113 9.36292L0.629315 6.22047C0.38006 6.00268 0.512897 5.58896 0.842003 5.56033L5.57636 5.14962L7.42562 0.730597C7.55398 0.423134 7.98458 0.423134 8.11294 0.730597Z" />
+    ),
+    viewBox: "0 0 16 15",
+  },
+};
+
+export const Icon = ({
+  isActive,
+  name,
+  color,
+  size = "64px",
+  attributes,
+  className,
+}) => {
+  const selectedPath = Icons[name];
+  if (!selectedPath) return null;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={selectedPath.viewBox}
+      fill={isActive ? "#C92071" : color}
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...attributes}
+    >
+      {selectedPath.path}
+    </svg>
+  );
+};
+
+export default Icon;
+</file>
+
+<file path="src/components/ProductListItem/ProductListItem.jsx">
+import React from 'react'
+import { Link } from 'react-router-dom'
+import ProductCardd from '../ProductCardd/ProductCardd'
+const ProductListItem = ({product}) => {
+  
+  return (
+    <div className="col-6 col-lg-3">
+            <Link className="text-decoration-none text-reset">
+              <ProductCardd
+                imgSrc={product.image}
+                category={product.category}
+                name={product.name}
+                price={product.price}
+                discount={product.discount}
+                discountAmount={product.discountAmount}
+                alt={product.name}
+                path={`/product/${product.id}`}
+              />
+            </Link>
+          </div>
+  )
+}
+
+export default ProductListItem
+</file>
+
+<file path="src/components/SidebarFilter/SidebarFilter.jsx">
+function SidebarFilter() {
+  return (
+    <div className="bg-white p-4 rounded shadow-sm">
+      <h4 className="fw-bold mb-4">Filtrar por</h4>
+
+      <div className="mb-4">
+        <h6 className="fw-bold">Marca</h6>
+
+        <div className="form-check">
+          <input id="adidas" className="form-check-input" type="checkbox" />
+          <label htmlFor="adidas" className="form-check-label">
+            Adidas
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="calenciaga" className="form-check-input" type="checkbox" />
+          <label htmlFor="calenciaga" className="form-check-label">
+            Calenciaga
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="k-swiss" className="form-check-input" type="checkbox" />
+          <label htmlFor="k-swiss" className="form-check-label">
+            K-Swiss
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="nike" className="form-check-input" type="checkbox" />
+          <label htmlFor="nike" className="form-check-label">
+            Nike
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="puma" className="form-check-input" type="checkbox" />
+          <label htmlFor="puma" className="form-check-label">
+            Puma
+          </label>
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <h6 className="fw-bold">Categoria</h6>
+
+        <div className="form-check">
+          <input id="esporteelazer" className="form-check-input" type="checkbox" />
+          <label htmlFor="esporteelazer" className="form-check-label">
+            Esporte e lazer
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="casual" className="form-check-input" type="checkbox" />
+          <label htmlFor="casual" className="form-check-label">
+            Casual
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="utilitario" className="form-check-input" type="checkbox" />
+          <label htmlFor="utilitario" className="form-check-label">
+            Utilitário
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="corrida" className="form-check-input" type="checkbox" />
+          <label htmlFor="corrida" className="form-check-label">
+            Corrida
+          </label>
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <h6 className="fw-bold">Gênero</h6>
+
+        <div className="form-check">
+          <input id="masculino" className="form-check-input" type="checkbox" />
+          <label htmlFor="masculino" className="form-check-label">
+            Masculino
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="feminino" className="form-check-input" type="checkbox" />
+          <label htmlFor="feminino" className="form-check-label">
+            Feminino
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input id="unisex" className="form-check-input" type="checkbox" />
+          <label htmlFor="unisex" className="form-check-label">
+            Unisex
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <h6 className="fw-bold">Estado</h6>
+
+        <div className="form-check">
+          <input
+            id="novo"
+            className="form-check-input"
+            type="radio"
+            name="estado"
+          />
+          <label htmlFor="novo" className="form-check-label">
+            Novo
+          </label>
+        </div>
+
+        <div className="form-check">
+          <input
+            id="usado"
+            className="form-check-input"
+            type="radio"
+            name="estado"
+          />
+          <label htmlFor="usado" className="form-check-label">
+            Usado
+          </label>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SidebarFilter;
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.module.scss">
+.featuredProduct{
+  border-radius: 8px;
+}
+</file>
+
+<file path="src/pages/Home/components/SpecialOffer/SpecialOffer.jsx">
+import React from "react";
+import styles from "./SpecialOffer.module.scss";
+import Button from "../../../../components/Button/Button";
+import { Link } from "react-router-dom";
+const SpecialOffer = () => {
+  return (
+    <div className="container-fluid mt-5">
+      <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
+        <div
+          className={`bg-gradient-secondary rounded-circle d-flex justify-content-center align-items-center ${styles.containerImg}`}
+        >
+          <img
+            src="/assets/Sneaker-Black-White-Green.png"
+            className="img-fluid"
+          />
+        </div>
+
+        <div
+          className={`d-flex flex-column align-items-start ${styles.text}`}
+        >
+          <p className="text-warning fw-bold m-0">Oferta especial</p>
+          <h4 className="fw-bold text-dark-gray-2 fs-1 my-3">
+            Air Jordan edição de colecionador
+          </h4>
+          <p className="text-dark-gray-2 mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip
+          </p>
+          <Link to='/product/jordan'>
+            <Button
+              text="Ver Oferta"
+              style="btn btn-primary px-5 py-2 fw-bold text-white"
+              customStyle={{ fontSize: "14px" }}
+            />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SpecialOffer;
+</file>
+
+<file path="src/pages/Product/components/ProductInfo/ProductInfo.jsx">
+import React, { useState, useContext } from "react";
+import StarRating from "../StarRating/StarRating";
+import Icon from "../../../../components/Icons/Icons";
+import { CartContext } from "../../../../contexts/CartContext";
+import Button from "../../../../components/Button/Button";
+import { addToCart } from "../../../../api/cart";
+
+const ProductInfo = ({
+  product,
+  currentSize,
+  currentColor,
+  setCurrentColor,
+  setCurrentSize,
+}) => {
+  const { loadCart, MOCK_USER_ID } = useContext(CartContext);
+  const [adding, setAdding] = useState(false);
+
+  const handleAddToCart = async () => {
+    setAdding(true);
+    const finalPrice = product.discount
+      ? Math.round(product.price - product.price * (product.discountAmount / 100))
+      : product.price;
+
+    await addToCart(MOCK_USER_ID, product.id, 1, finalPrice);
+    await loadCart();
+    setAdding(false);
+  };
+
+  return (
+    <div className="h-100 d-flex flex-column justify-content-between align-content-between ms-lg-3">
+      <div className="d-flex flex-column mb-1 mb-lg-0">
+        <h1 className="fw-bold text-dark fs-2">{product.name}</h1>
+        <span className="small text-muted">
+          {product.productDetails.brand} | REF: {product.productDetails.ref}
+        </span>
+      </div>
+      <div className="d-flex gap-2 mb-1 mb-lg-0">
+        <StarRating rating={product.productDetails.rating} />
+        <div className="d-flex align-items-center justify-content-center  gap-2">
+          <span className="d-flex align-items-center bg-warning text-light px-2 rounded-2">
+            {product.productDetails.rating}
+            <Icon name="star" size="13" color="#FFFFFF" />
+          </span>
+          <span className="text-light-gray">
+            ({product.productDetails.reviews} avaliações )
+          </span>
+        </div>
+      </div>
+      <div className="d-flex align-items-baseline gap-2 mb-3 mb-lg-0">
+        <span className=" fw-bold text-dark">
+          <span className="fs-6">R$</span>
+          <span className="fs-2">
+            {product.discount
+              ? Math.round(
+                  product.price - product.price * (product.discountAmount / 100)
+                )
+              : product.price}
+          </span>
+          <span className="fs-6">,00</span>
+        </span>
+        {product.discount && (
+          <span className="fs-6 text-decoration-line-through text-light-gray-2">
+            {product.price},00
+          </span>
+        )}
+      </div>
+      <div className="justify-content-center align-content-center mb-3 mb-lg-0">
+        <h3 className="text-light-gray fs-6">Descrição do produto</h3>
+        <span className="text-muted mb-3" style={{ fontSize: "0.9rem" }}>
+          {product.productDetails.description}
+        </span>
+      </div>
+
+      <div className="d-flex flex-column">
+        <h6 className="fw-semibold text-secondary small text-uppercase">
+          Tamanho
+        </h6>
+        <div className="d-flex gap-2 mb-3 mb-lg-0">
+          {product.productDetails.availableSizes.map((size) => (
+            <button
+              onClick={() => {
+                setCurrentSize(size);
+              }}
+              key={size}
+              className="text-center btn rounded-3 fw-bold"
+              style={{
+                width: "fit-content",
+                height: "40px",
+                backgroundColor:
+                  size === currentSize ? "#C92071" : "transparent",
+                color: size === currentSize ? "#fff" : "#333",
+                border: `1px solid ${
+                  size === currentSize ? "#C92071" : "#ced4da"
+                }`,
+              }}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="d-flex flex-column mb-3 mb-lg-0">
+        <h6 className="fw-semibold text-secondary small text-uppercase">Cor</h6>
+        <div className="d-flex gap-3">
+          {product.productDetails.availableColors.map((color) => (
+            <button
+              onClick={() => {
+                setCurrentColor(color.name);
+              }}
+              key={color.name}
+              className="btn p-0 rounded-circle"
+              style={{
+                width: "36px",
+                height: "36px",
+                backgroundColor: color.hex,
+                border:
+                  currentColor === color.name
+                    ? `3px solid ${color.hex}`
+                    : "3px solid transparent",
+                outline:
+                  currentColor === color.name
+                    ? `3px solid ${color.hex}`
+                    : "none",
+                outlineOffset: "2px",
+                transformBox: "border-box",
+                transition: "all 0.2s ease",
+              }}
+              title={`Color ${color.name}`}
+            />
+          ))}
+        </div>
+      </div>
+      <Button
+        onClick={handleAddToCart}
+        disabled={adding}
+        text={adding ? "Adicionando..." : "Comprar"}
+        style="btn text-white w-100 rounded-1 py-2 fw-bold text-uppercase border-0 mt-1"
+        customStyle={{ backgroundColor: "#f19c3a", letterSpacing: "3px" }}
+      />
+    </div>
+  );
+};
+
+export default ProductInfo;
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"/>
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.5",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "sass": "^1.99.0",
+    "vite": "^8.0.10"
+  }
+}
+</file>
+
+<file path="src/components/Button/Button.jsx">
+import React from 'react';
+
+const Button = ({text, style, customStyle, onClick, disabled}) => {
+  return (
+    <button className={style} style={customStyle} onClick={onClick} disabled={disabled}>
+      {text}
+    </button>
+  );
+};
+
+export default Button;
+</file>
+
+<file path="src/components/ProductCard/ProductCard.jsx">
+import Card from 'react-bootstrap/Card'
+
+function ProductCard({ product }) {
+
+  return (
+
+    <Card className="border-0 shadow-sm h-100">
+
+      
+      {product.discount && (
+
+        <div
+          className="position-absolute mt-2 ms-2 px-2 py-1 rounded bg-success"
+          style={{
+            backgroundColor: '#d8ffb2',
+            fontSize: '12px',
+            fontWeight: 'bold'
+          }}
+        >
+          30% OFF
+        </div>
+
+      )}
+
+    
+      <div
+        className="bg-light d-flex justify-content-center align-items-center"
+        style={{
+          height: '200px'
+        }}
+      >
+
+        <Card.Img
+          src={product.image}
+          style={{
+            width: '90%',
+            objectFit: 'contain'
+          }}
+        />
+
+      </div>
+
+    
+      <Card.Body>
+
+        
+        <small className="text-secondary">
+          Tênis
+        </small>
+
+      
+        <Card.Title
+          className="mt-2"
+          style={{
+            fontSize: '18px'
+          }}
+        >
+          {product.name}
+        </Card.Title>
+
+        
+        <div className="d-flex gap-2 align-items-center">
+
+          
+          <span
+            className="text-secondary"
+            style={{
+              textDecoration: 'line-through'
+            }}
+          >
+            $200
+          </span>
+
+          
+          <span className="fw-bold fs-4">
+            ${product.price}
+          </span>
+
+        </div>
+
+      </Card.Body>
+
+    </Card>
+
+  )
+}
+
+export default ProductCard
+</file>
+
+<file path="src/pages/Home/components/CategoriesIcon/CategoriesIcon.jsx">
+import styles from "./CategoriesIcon.module.scss";
+import Icon from "../../../../components/Icons/Icons";
+
+const CategoriesIcon = ({ name, color, onClick, isActive }) => {
+  return (
+    <li onClick={onClick} className={styles.categoryItem}>
+      <div
+        style={isActive ? { boxShadow: "0px 4px 25px 0px #0000000D" } : {}}
+        className={`${styles.containerIcon}`}
+      >
+        <Icon isActive={isActive} name={name} color={color} />
+      </div>
+      <p className={`text-center fw-bold text-dark-gray-2 pt-2`}>
+        {name.toUpperCase()}
+      </p>
+    </li>
+  );
+};
+
+export default CategoriesIcon;
+</file>
+
+<file path="src/api/products.js">
+const BASE_URL = "http://localhost:3000";
+
+export const fetchProduct = async () => {
+  const response = await fetch(`${BASE_URL}/listarproducts`);
+  return response.json();
+};
+
+export const fetchProductById = async (id) => {
+  const response = await fetch(`${BASE_URL}/buscarproduct/${id}`);
+  return response.json();
+};
+
+export const fetchProductSearch = async (term) => {
+  const response = await fetch(`${BASE_URL}/buscarproducts?term=${term}`);
+  return response.json();
+};
+</file>
+
+<file path="src/components/Navbar/Navbar.jsx">
+import React, { useState } from "react";
+import { Nav } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+const Navb = () => {
+  const location = useLocation()
+  const navLinks = [
+    { path: "/", text: "Home" },
+    { path: "/produtos", text: "Produtos" },
+    { path: "/categories", text: "Categories" },
+    { path: "/orders", text: "Meus pedidos" },
+  ];
+return (
+  <Nav className="justify-content-end container flex-grow-1 gap-2 ms-2 gap-lg-5">
+    {navLinks.map((link) => (
+      <Link
+      key={link.text}
+        className="text-decoration-none"
+        to={link.path}
+      >
+        <span
+          className={`${location.pathname === link.path ? 'text-primary text-decoration-underline':'text-dark-gray-2'}`}
+        >
+          {link.text}
+        </span>
+      </Link>
+    ))}
+  </Nav>
+);
+}
+export default Navb;
+</file>
+
+<file path="src/components/ProductCardd/ProductCardd.jsx">
+import React from "react";
+import styles from "./ProductCardd.module.scss";
+import DiscountBadge from "../DiscountBadge/DiscountBadge";
+import { Link } from "react-router-dom";
+const ProductCardd = ({
+  imgSrc,
+  category,
+  name,
+  price,
+  discount,
+  discountAmount,
+  alt,
+  path,
+}) => {
+  return (
+    <Link to={path} className=" text-reset text-decoration-none">
+      <div
+        className={`d-flex flex-column align-items-start mb-3 ${styles.containerCard} `}
+      >
+        <div
+          className={`${styles.containerImg} bg-white p-3 position-relative`}
+        >
+          {discount && (
+            <div className={`position-absolute ${styles.badgeContainer}`}>
+              <DiscountBadge discountAmount={30} />
+            </div>
+          )}
+          <img src={imgSrc} alt={alt} className={`${styles.img} img-fluid`} />
+        </div>
+        <p className={`${styles.category} my-2`}>{category}</p>
+        <div className="d-flex flex-column w-100">
+          <h3
+            className={` pb-0 text-truncate w-100 h-100 ${styles.productName}`}
+          >
+            {name}
+          </h3>
+          <span className={`fw-bold ${styles.price}`}>
+            <span
+              className={`${
+                discount
+                  ? "fw-normal text-light-gray text-decoration-line-through"
+                  : "fw-bold"
+              }`}
+            >
+              R${price}
+            </span>
+            {discount && `  R$ ${Math.round(price - price * (discountAmount / 100))}`}
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export default ProductCardd;
+</file>
+
+<file path="src/components/ProductCardd/ProductCardd.module.scss">
+.img[alt='K-Swiss V8 Masculino']{
+  transform: rotate(-30deg);
+  left: -8%;
+  position: absolute;
+}
+.containerImg {
+  background-color: aquamarine;
+  aspect-ratio: 163/180;
+  width: clamp(140px, 100%, 292px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: 6px 16px 30px 0px #6962620D;
+  border-radius: 5px;
+  overflow: hidden;
+
+}
+
+.price{
+  font-size: clamp(1rem,2vw,1.5rem);
+}
+.category{
+  font-size: 12px;
+
+}
+.productName {
+  font-size: clamp(0.875rem,5vw,1.5rem);
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+}
+.containerCard{
+    max-width: clamp(163px, 50vw, 292px);
+}
+.badgeContainer{
+  top: 5%;
+}
+</file>
+
+<file path="src/components/SearchBar/SearchBar.jsx">
+import Form from "react-bootstrap/Form";
+import Icon from "../Icons/Icons";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from './SearchBar.module.scss'
+function SearchBar() {
+  const [inputValue,setInputValue] = useState('')
+  const navigate = useNavigate()
+  return (
+    <Form
+      onSubmit={(event) => {
+        event.preventDefault();
+        if(inputValue.trim() === '')return;
+        navigate(`/search?q=${encodeURIComponent(inputValue)}`)
+      }}
+      className="d-flex position-relative w-100"
+    >
+      <Form.Control
+        type="search"
+        value={inputValue}
+        onChange={(event)=>setInputValue(event.target.value)}
+        placeholder="Pesquisar produto..."
+        className={`border-0 bg-light-gray-3 py-3 pe-5 ${styles.Input}`}
+        aria-label="Search"
+      />
+      <button
+        type="submit"
+        className={`position-absolute border-0 bg-transparent ${styles.button}`}
+      >
+        <Icon
+          name="search"
+          size="22px"
+          attributes={{
+            stroke: "#8F8F8F",
+            strokeWidth: "1.5",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            fill: "none",
+          }}
+        />
+      </button>
+    </Form>
+  );
+}
+export default SearchBar;
+</file>
+
+<file path="src/Layouts/Layout.jsx">
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+
+const Layout = () => {
+  return (
+    <>
+    <ScrollToTop/>
+      <Header />
+        <Outlet />
+      <Footer />
+    </>
+  );
+};
+export default Layout;
+</file>
+
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.module.scss">
+.featuredProduct {
+  border-radius: 8px;
+  background-color: #d8e3f2;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 351/209;
+  width: 100%;
+  margin: 0 auto;
+}
+.textContainer {
+  width: 40%;
+}
+.title {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  white-space: pre-line;
+}
+
+
+.imageContainer {
+  width: 40%;
+}
+.image {
+  position: absolute;
+  z-index: 2;
+}
+
+.productContentContainer {
+  background-color: inherit;
+  width: 100%;
+}
+
+.Button {
+  position: relative;
+  z-index: 3;
+  letter-spacing: 0.75px;
+  min-width: 50%;
+  box-sizing: border-box;
+}
+</file>
+
+<file path="src/pages/Home/components/Gallery/Gallery.jsx">
+import React from "react";
+import { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import SlideContent from "../SlideContent/SlideContent";
+import styles from "./Gallery.module.scss";
+const slides = [
+  {
+    id:1,
+    upperText: "Melhores ofertas personalizadas",
+    title: "Queima de estoque Nike 🔥",
+    description:
+      "Consequat culpa exercitation mollit nisi excepteur do do tempor laboris eiusmod irure consectetur.",imageSrc:'assets/Sneaker-Red-White.png'
+  },
+  {
+    id:2,
+    upperText: "Melhores ofertas personalizadas",
+    title: "Queima de estoque Nike 🔥",
+    description:
+      "Consequat culpa exercitation mollit nisi excepteur do do tempor laboris eiusmod irure consectetur.",imageSrc:'assets/Sneaker-Red-White.png'
+  },
+  {
+    id:3,
+    upperText: "Melhores ofertas personalizadas",
+    title: "Queima de estoque Nike 🔥",
+    description:
+      "Consequat culpa exercitation mollit nisi excepteur do do tempor laboris eiusmod irure consectetur.",imageSrc:'assets/Sneaker-Red-White.png'
+  },
+];
+function Gallery() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  return (
+    <Carousel
+      className={styles.carousel}
+      activeIndex={index}
+      onSelect={handleSelect}
+      controls={false}
+    >
+      {slides.map(({upperText,title,description,imageSrc,id}) => (
+        <Carousel.Item key={id}>
+          <SlideContent upperText={upperText} title={title} description={description} imageSrc={imageSrc}/>
+        </Carousel.Item>
+      ))}
+    </Carousel>
+  );
+}
+
+export default Gallery;
+</file>
+
+<file path="src/pages/Home/components/SlideContent/SlideContent.jsx">
+import styles from "./SlideContent.module.scss";
+import Button from "../../../../components/Button/Button";
+import { Link } from "react-router-dom";
+function ContentSlide({upperText,title,description,imageSrc}) {
+  return (
+    <div className="bg-light-gray-3 w-100 pb-5 pb-lg-4 flex-lg-row">
+      <div className="container">
+        <div className="row align-items-center gap-3 gap-lg-0">
+          <div className="col-12 col-lg-5 order-2 order-lg-1">
+            <div className="d-flex flex-column gap-2 pb-4 align-items-lg-start align-items-center pt-5">
+              <p
+                className={`fw-bold m-0 text-center text-lg-start ${styles.upperText}`}
+              >
+                {upperText}
+              </p>
+              <h1
+                className={`fw-bolder text-dark-gray lh-1 text-center text-lg-start px-4 px-lg-0 ${styles.title}`}
+              >
+                {title}
+              </h1>
+              <p
+                className={`text-dark-gray-2 text-center text-lg-start px-4 px-lg-0 pe-lg-5 ${styles.bottomText}`}
+              >
+                {description}
+              </p>
+              <Link to='/search' className="w-50 text-reset text-decoration-none">
+                <Button
+                  text="Ver Ofertas"
+                  style=" btn btn-primary text-white py-2 w-50 mt-2"
+                />
+              </Link>
+            </div>
+          </div>
+
+          <div className="col-12 col-lg-7 position-relative text-center order-lg-1">
+            <img
+              className={`px-0 ${styles.productImg} w-75`}
+              src={imageSrc}
+              alt="Sneaker"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ContentSlide;
+</file>
+
+<file path="src/pages/Search/Search.jsx">
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import ProductCardd from "../../components/ProductCardd/ProductCardd";
+import SidebarFilter from "../../components/SidebarFilter/SidebarFilter";
+import { fetchProductSearch, fetchProduct } from "../../api/products";
+import { Offcanvas } from "react-bootstrap";
+import Head from "../../components/Head/Head";
+function Search() {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q") || "";
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
+
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        let resp;
+
+        if (query) {
+          resp = await fetchProductSearch(query);
+        } else {
+          resp = await fetchProduct();
+        }
+        setProducts(Array.isArray(resp) ? resp : []);
+        setCurrentPage(1);
+      } catch (error) {
+        console.log("Erro ao buscar produtos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [query]);
+  const currentProducts = products.slice(startIndex, endIndex);
+  return (
+    <>
+    <Head title={'Search'}/>
+      <div className="container py-4 mb-5">
+        <div className="bg-light p-4 mb-4 rounded d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+          <div>
+            <span className="fw-bold">
+              {query ? `Resultados para "${query}"` : "Todos os produtos"}
+            </span>
+            <span className="text-secondary ms-2">
+              - {products.length}{" "}
+              {products.length === 1 ? "produto" : "produtos"}
+            </span>
+          </div>
+
+          <div
+            className="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-2 w-100"
+            style={{ maxWidth: "350px" }}
+          >
+            <span className="text-nowrap">Ordenar por:</span>
+            <select className="form-select w-100">
+              <option>Mais relevantes</option>
+              <option>Menor preço</option>
+              <option>Maior preço</option>
+            </select>
+            <button
+              className="btn btn-outline-primary d-md-none w-100"
+              onClick={() => setShowMobileFilter(true)}
+            >
+              Filtrar
+            </button>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-md-3 d-none d-lg-block">
+            <SidebarFilter />
+          </div>
+          <Offcanvas
+            show={showMobileFilter}
+            onHide={() => setShowMobileFilter(false)}
+            placement="start"
+            className="d-md-none w-75"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title className="fw-bold">Filtros</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <SidebarFilter />
+            </Offcanvas.Body>
+          </Offcanvas>
+          <div className="col-md-9">
+            {loading ? (
+              <div className="d-flex justify-content-center py-5">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">A carregar...</span>
+                </div>
+              </div>
+            ) : products.length > 0 ? (
+              <div className="row g-4">
+                {currentProducts.map((product) => (
+                  <div key={product.id} className="col-6 col-md-4">
+                    <ProductCardd
+                      imgSrc={product.image}
+                      category={product.category}
+                      name={product.name}
+                      price={product.price}
+                      discount={product.discount}
+                      discountAmount={product.discountAmount}
+                      alt={product.name}
+                      path={`/product/${product.id}`}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-5">
+                <h4 className="text-muted">
+                  Nenhum produto encontrado para "{query}".
+                </h4>
+              </div>
+            )}
+            {totalPages > 1 && (
+              <div className="d-flex justify-content-center mt-5 gap-2">
+                <button
+                  className="btn btn-outline-primary"
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage((prev) => prev - 1)}
+                >
+                  Anterior
+                </button>
+                {Array.from(
+                  { length: totalPages },
+                  (_, index) => index + 1
+                ).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`btn ${
+                      currentPage === page
+                        ? "btn-primary text-white"
+                        : "btn-outline-primary"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+
+                <button
+                  className="btn btn-outline-primary"
+                  disabled={currentPage === totalPages}
+                  onClick={() => setCurrentPage((prev) => prev + 1)}
+                >
+                  Próximo
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Search;
+</file>
+
+<file path="src/pages/Home/components/Categories/Categories.module.scss">
+ul,
+li {
+  list-style: none;
+}
+.categories {
+  gap: 20px;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+    @media (max-width: 767px) {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: calc(50% - 50vw);
+    padding-right: calc(50% - 50vw);
+    }
+    }
+</file>
+
+<file path="src/styles/custom.scss">
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+$font-family-sans-serif: "Inter", sans-serif;
+$primary: #c92071;
+$secondary: #b5b6f2;
+$tertiary: #991956;
+$error: #ee4266;
+$success: #52ca76;
+$warning: #f6aa1c;
+$dark-gray: #1f1f1f;
+$dark-gray-2: #474747;
+$dark-gray-3: #666666;
+$light-gray: #8f8f8f;
+$light-gray-2: #cccccc;
+$light-gray-3: #f5f5f5;
+$white-pure: #ffffff;
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "tertiary": $tertiary,
+    "error": $error,
+    "success": $success,
+    "warning": $warning,
+    "dark-gray": $dark-gray,
+    "dark-gray-2": $dark-gray-2,
+    "dark-gray-3": $dark-gray-3,
+    "light-gray": $light-gray,
+    "light-gray-2": $light-gray-2,
+    "light-gray-3": $light-gray-3,
+    "white-pure": $white-pure,
+  )
+);
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/bootstrap";
+
+.bg-gradient-primary {
+  background: linear-gradient(
+    180deg,
+    $primary 0%,
+    rgba(201, 32, 113, 0) 100%
+  ) !important;
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(
+    180deg,
+    rgba(181, 182, 242, 0.5) 0%,
+    rgba(181, 182, 242, 0) 50%
+  ) !important;
+}
+body{
+  background-color: #F9F8FE;
+}
+.form-check-input:checked {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.form-check-input:focus {
+  border-color: $primary;
+
+  box-shadow: 0 0 0 0.25rem rgba(201, 32, 113, 0.25); 
+}
+
+
+.form-check-input {
+  border-color: $dark-gray-3; 
+}
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/index";
+import "./styles/custom.scss";
+import { CartContext, CartProvider } from "./contexts/CartContext";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  </StrictMode>
+);
+</file>
+
+<file path="src/components/Footer/Footer.jsx">
+import React from "react";
+import Icon from "../Icons/Icons";
+import { Link } from "react-router-dom";
+import styles from "./Footer.module.scss";
+const categories = ["Camisetas", "Calças", "Bonés", "Headphones", "Tênis"];
+const information = [
+  "Sobre Drip Store",
+  "Segurança",
+  "Wishlist",
+  "Blog",
+  "Trabalhe conosco",
+  "Meus Pedidos",
+];
+const Footer = () => {
+  return (
+    <footer className="text-center text-lg-start text-white bg-dark-gray py-4 mt-5">
+      <div className="container-fluid p-4 pb-0">
+        <section className="container-lg py-3">
+          <div className="row d-lg-flex align-items-start">
+            <div className="col-lg-4">
+              <div>
+                <div className="d-flex me-0 align-items-center text-white fw-bold gap-2 mb-4">
+                  <Icon
+                    name="logo"
+                    size="clamp(18px, 2vw + 0.5rem, 33px)"
+                    color="#FFFFFF"
+                  />
+                  <span className={styles.logoText}>Digital Store</span>
+                </div>
+              </div>
+              <div>
+                <p className="text-start pe-5">
+                  {" "}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore.
+                </p>
+              </div>
+              <div
+                className={`d-flex justify-content-start align-content-center gap-3`}
+              >
+                <Icon name="facebook" color={"#ffffff"} size="23" />
+                <Icon name="instagram" color={"#ffffff"} size="23" />
+                <Icon name="twitter" color={"#ffffff"} size="23" />
+              </div>
+            </div>
+            <div className="d-flex mt-5 mt-lg-0 col-lg-4">
+              <div className="col-6 text-start fw-bold">
+                <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
+                  Informação
+                </h3>
+                {information.map((informationLink) => (
+                  <Link
+                    to={informationLink}
+                    key={informationLink}
+                    className="fw-lighter mb-2 text-white d-block py-1 text-decoration-none"
+                  >
+                    {informationLink}
+                  </Link>
+                ))}
+              </div>
+              <div className="col-6 text-start fw-bold">
+                <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
+                  Categorias
+                </h3>
+                <div>
+                  {categories.map((category) => (
+                    <Link
+                      to={category}
+                      key={category}
+                      className="fw-lighter mb-2 text-white d-block py-1 text-decoration-none"
+                    >
+                      {category}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="text-start fw-bold mt-4 mt-lg-0 col-lg-4 pe-5">
+              <h3 className={`fw-bold mb-lg-5 ${styles.sectionTitle}`}>
+                Contato
+              </h3>
+              <div className="w-100 pe-lg-5">
+                <p className="fw-light pe-lg-5 fs-6" >
+                  Av. Santos Dumont, 1510 - 1 andar - Aldeota, Fortaleza - CE,
+                  60150-161
+                </p>
+                <p className="fw-light mt-5">(85) 3051-3411</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="m-0" />
+      </div>
+
+      <div className="text-center py-5 py-lg-4 fs-6" >
+        © 2020 Digital College
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="src/pages/Home/components/FeaturedProduct/FeaturedProduct.jsx">
+import React from "react";
+import styles from "./FeaturedProduct.module.scss";
+import Button from "../../../../components/Button/Button";
+import DiscountBadge from "../../../../components/DiscountBadge/DiscountBadge";
+import { Link } from "react-router-dom";
+const FeaturedProduct = ({ title, srcImage, customStyles, path }) => {
+  return (
+    <div className={`p-0 ps-3 ${styles.featuredProduct}`}>
+      <div
+        className={`row align-items-center py-4 ps-2 g-0 ${styles.productContentContainer} h-100`}
+      >
+        <div className={`col-9 align-items-center ${styles.textContainer}`}>
+          <div className="d-flex flex-column justify-content-center align-items-start gap-2 h-100">
+            <DiscountBadge discountAmount='30'/>
+
+            <h3 className={`${styles.title} fw-bold m-0 p-0 mb`}>{title}</h3>
+
+            <Link to={path}>
+              <Button
+                text="Comprar"
+                style={`btn bg-light-gray-3 text-primary fw-bold ${styles.Button}`}
+              />
+            </Link>
+          </div>
+        </div>
+        <div className={`col-3 ${styles.imageContainer} p-0`}>
+          <img
+            src={srcImage}
+            alt=""
+            className={`img-fluid ${styles.image}`}
+            style={{ ...customStyles }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FeaturedProduct;
+</file>
+
+<file path="src/pages/Product/Product.jsx">
+import React, { useState, useEffect } from "react";
+import TrendingProducts from "../../components/ProductList/ProductList";
+import { fetchProduct, fetchProductById } from "../../api/products";
+import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+import { useParams } from "react-router-dom";
+import NotFound from "../NotFound/NotFound";
+import Head from "../../components/Head/Head";
+
+const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentColor, setCurrentColor] = useState("");
+  const [currentSize, setCurrentSize] = useState("");
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const resp = await fetchProduct();
+        setData(resp);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const loadProduct = async () => {
+      try {
+        setLoading(true);
+        const resp = await fetchProductById(id);
+
+        if (resp && resp.productDetails) {
+          setProduct(resp);
+          setCurrentColor(resp.productDetails.availableColors[0].name);
+          setCurrentSize(resp.productDetails.availableSizes[0]);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+    loadProduct();
+  }, [id]);
+  const products = data.filter(
+    (dataItem) => dataItem.category == product.category
+  );
+  if (loading) {
+    return <div className="text-center py-5">Carregando produto...</div>;
+  }
+
+  // 2. Após o loading terminar (loading === false), validamos se o produto existe
+  // Se o produto estiver vazio ou faltar detalhes, mostramos o NotFound
+  if (
+    !product ||
+    Object.keys(product).length === 0 ||
+    !product.productDetails
+  ) {
+    return <NotFound />;
+  }
+  return (
+    <>
+    <Head title={product.productDetails.shortName}/>
+      <div className="min-vh-100 bg-light container">
+        <main>
+          <BreadCrumb
+            paths={[
+              "Home",
+              "Produtos",
+              product.category,
+              product.brand,
+              product.name,
+            ]}
+          />
+          <ProductDetails
+            product={product}
+            currentColor={currentColor}
+            setCurrentColor={setCurrentColor}
+            currentSize={currentSize}
+            setCurrentSize={setCurrentSize}
+          />
+        </main>
+        <section className="">
+          <TrendingProducts
+            limit={4}
+            data={products}
+            activeCategory={product.category}
+            text={"Produtos Relacionados"}
+          />
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default Product;
+</file>
+
+<file path="src/components/Header/Header.jsx">
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Offcanvas from "../OffCanvas/OffCanvas";
+import Icon from "../Icons/Icons";
+import styles from "./Header.module.scss";
+import { useState } from "react";
+import SearchBar from "../SearchBar/SearchBar";
+import Navb from "../Navbar/Navbar";
+import AuthUser from "../AuthUser/AuthUser";
+import { Link } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
+function Header() {
+  const [search, setSearch] = useState(false);
+  const [offCanvas, setOffCanvas] = useState(false);
+
+  return (
+    <header className="container-fluid bg-white position-relative" style={{ zIndex: 1051 }}>
+      <Navbar
+        expand="lg"
+        className="bg-white position-relative d-flex flex-column container-lg"
+      >
+        <Container fluid className="justify-content-between">
+          <Navbar.Toggle
+            className="border-0 p-0 shadow-none justify-content-center me-0"
+            aria-controls={`offcanvasNavbar-expand-lg`}
+            onClick={() => {
+              setOffCanvas(!offCanvas);
+              setSearch(false);
+            }}
+          >
+            <Icon
+              name="hamburguer"
+              size="20px"
+              color="#C92071"
+              attributes={{
+                stroke: "#1F1F1F",
+                strokeWidth: "2",
+                strokeLinecap: "round",
+              }}
+              className="me-2"
+            />
+          </Navbar.Toggle>
+          <Link to="/" className="text-decoration-none">
+            <Navbar.Brand
+              className="d-flex me-0 align-items-center text-primary fw-bold gap-2"
+            >
+              <Icon name="logo" size="clamp(18px, 3vw, 33px)" color="#C92071" />
+              <span
+                className={styles.logoTitle}
+              >
+                Digital Store
+              </span>
+            </Navbar.Brand>
+          </Link>
+          <Offcanvas offCanvas={offCanvas} setOffCanvas={setOffCanvas}/>
+          <div className=" mx-1 d-none d-lg-block w-50">
+            <SearchBar />
+          </div>
+          <div className="d-none d-lg-block">
+            <AuthUser />
+          </div>
+          <div className="d-flex align-items-center gap-2  me-1">
+            <div
+              className={`d-lg-none`}
+              onClick={() => {
+                setSearch(!search);
+                setOffCanvas(false);
+              }}
+            >
+              <Icon
+                name="search"
+                size="15px"
+                attributes={{
+                  stroke: "#CCCCCC",
+                  strokeWidth: "1.5",
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  fill: "none",
+                }}
+              />
+            </div>
+            <CartWidget/>
+          </div>
+          {search && (
+            <div className="w-100 mt-lg-0 my-2 d-lg-none">
+              <SearchBar />
+            </div>
+          )}
+        </Container>
+        <div className="align-self-start d-none d-lg-block mt-2">
+          <Navb />
+        </div>
+      </Navbar>
+    </header>
+  );
+}
+
+export default Header;
+</file>
+
+<file path="src/pages/Home/components/Categories/Categories.jsx">
+import React, { useState } from "react";
+import styles from "./Categories.module.scss";
+import CategoriesIcon from "../CategoriesIcon/CategoriesIcon";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+const Categories = ({ activeCategory, setActiveCategory, setLoading }) => {
+  const categories = ["camisetas", "calcas", "headphones", "bones", "tenis"];
+  return (
+    <section className={`${styles.container}`}>
+      <SectionTitle text={"Categorias"} className={"text-center"} />
+      <ul
+        className={`d-flex ps-0 justify-content-sm-center gap-5 ${styles.categories}`}
+      >
+        {categories.map((category) => (
+          <CategoriesIcon
+            onClick={() => {
+              setActiveCategory(category);
+              setLoading(true);
+              setTimeout(() => {
+                setLoading(false);
+              }, 1000);
+            }}
+            isActive={activeCategory === category}
+            name={category}
+            color={"#8F8F8F"}
+            key={category}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default Categories;
+</file>
+
+<file path="src/pages/Home/components/FeaturedCollection/FeaturedCollection.jsx">
+import React from "react";
+import FeaturedProduct from "../FeaturedProduct/FeaturedProduct";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+const featuredProducts = [
+  {
+    id: "Supreme",
+    srcImage: "/assets/Supreme-Tshirt.png",
+    title: "Novo drop\nSupreme",
+    customStyles: {
+      transform: "scale(0.78) rotate(-21.92deg)",
+      top: "11.91%",
+      left: "31.89%",
+    },
+    path: "/product/19",
+  },
+  {
+    id: "Sneaker-Black-White",
+    srcImage: "/assets/Sneaker-Black-White.png",
+    title: "Coleção\nAdidas",
+    customStyles: {
+      transform: "scaleX(-1) scale(0.6) rotate(12.18deg)",
+      top: "2.38%",
+      left: "27.57%",
+    },
+    path: "/product/1",
+  },
+  {
+    id: "Headphones",
+    srcImage: "/assets/Headphones.png",
+    title: "Novo\nBeats Bass",
+    customStyles: {
+      transform: "scale(0.45) rotate(30deg)",
+      top: "-30.98%",
+      left: "28.99%",
+    },
+    path: "/product/37",
+  },
+];
+const FeaturedCollection = () => {
+  return (
+    <section className="my-5">
+      <SectionTitle text={"Coleções em destaque"} />
+      <div>
+        <div className="row gy-2 gx-2 justify-content-center">
+          {featuredProducts.map((product) => {
+            return (
+              <div className="col-12 col-md-6 col-lg-4" key={product.id}>
+                <FeaturedProduct
+                  title={product.title}
+                  srcImage={product.srcImage}
+                  customStyles={product.customStyles}
+                  path={product.path}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedCollection;
+</file>
+
+<file path="src/routes/index.jsx">
+import { createBrowserRouter } from "react-router-dom";
+import Home from "../pages/Home/Home";
+import Search from "../pages/Search/Search";
+import Layout from '../Layouts/Layout'
+import { ErrorBoundary } from "../components/ErrorBoundary/ErrorBoundary";
+import Product from "../pages/Product/Product";
+import NotFound from "../pages/NotFound/NotFound";
+import Cart from "../pages/Cart/Cart";
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorBoundary />,
+    children: [
+      { path: "/", element: <Cart /> },
+      { path: "/produtos", element: <Search/> },
+      { path: "/search", element: <Search /> },
+      { path: "/product/:id", element: <Product /> },
+      { path: "/carrinho", element: <Cart /> },
+      { path: "*", element: <NotFound/> },
+    ],
+  },
+]);
+</file>
+
+<file path="Codigo.txt">
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
 .gitignore
 Codigo.txt
 eslint.config.js
@@ -8775,6 +12197,66 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+</file>
+
+<file path="src/pages/Home/Home.jsx">
+import Gallery from "./components/Gallery/Gallery";
+import FeaturedCollection from "./components/FeaturedCollection/FeaturedCollection";
+import Categories from "./components/Categories/Categories";
+import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
+import TrendingProducts from "../../components/ProductList/ProductList";
+import { use, useEffect, useState } from "react";
+import { fetchProduct } from "../../api/products";
+import Head from "../../components/Head/Head";
+const Home = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("camisetas");
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        const resp = await fetchProduct();
+        setData(resp);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setTimeout(() => setLoading(false), 2000);
+      }
+    };
+    loadData();
+  }, []);
+  useEffect(() => {
+    setActiveCategory("camisetas");
+  }, []);
+  return (
+    <>
+    <Head title='Digital Store'/>
+      <Gallery />
+      <main className={`container`}>
+        <FeaturedCollection />
+        <Categories
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          setLoading={setLoading}
+        />
+        <TrendingProducts
+          text={"Produtos em alta"}
+          activeCategory={activeCategory}
+          data={data}
+          limit={8}
+          loading={loading}
+        />
+        <SpecialOffer />
+      </main>
+    </>
+  );
+};
+
+export default Home;
+</file>
+
+</files>
 </file>
 
 <file path="src/pages/Home/Home.jsx">
