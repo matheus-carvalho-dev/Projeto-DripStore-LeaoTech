@@ -5,6 +5,8 @@ import Layout from '../Layouts/Layout'
 import { ErrorBoundary } from "../components/ErrorBoundary/ErrorBoundary";
 import Product from "../pages/Product/Product";
 import NotFound from "../pages/NotFound/NotFound";
+import AuthPage from "../pages/Auth/Auth";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -12,10 +14,11 @@ export const router = createBrowserRouter([
     errorElement: <ErrorBoundary />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/produtos", element: <Search/> },
+      { path: "/produtos", element: <Search /> },
       { path: "/search", element: <Search /> },
       { path: "/product/:id", element: <Product /> },
-      { path: "*", element: <NotFound/> },
+      { path: "/auth", element: <AuthPage /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
