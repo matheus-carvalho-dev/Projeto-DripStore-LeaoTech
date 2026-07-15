@@ -4,7 +4,7 @@ import Categories from "./components/Categories/Categories";
 import SpecialOffer from "./components/SpecialOffer/SpecialOffer";
 import TrendingProducts from "../../components/ProductList/ProductList";
 import { use, useEffect, useState } from "react";
-import { fetchProduct } from "../../api/products";
+import { fetchProduct } from "../../api/products"
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
