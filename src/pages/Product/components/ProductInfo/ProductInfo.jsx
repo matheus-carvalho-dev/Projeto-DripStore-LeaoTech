@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import StarRating from "../StarRating/StarRating";
 import Icon from "../../../../components/Icons/Icons";
-import { useContext } from "react";
 import { CartContext } from "../../../../contexts/CartContext";
 import Button from "../../../../components/Button/Button";
+import { addToCart } from "../../../../api/cart";
 
 const ProductInfo = ({
   product,
@@ -12,7 +12,20 @@ const ProductInfo = ({
   setCurrentColor,
   setCurrentSize,
 }) => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { loadCart, MOCK_USER_ID } = useContext(CartContext);
+  const [adding, setAdding] = useState(false);
+
+  const handleAddToCart = async () => {
+    setAdding(true);
+    const finalPrice = product.discount
+      ? Math.round(product.price - product.price * (product.discountAmount / 100))
+      : product.price;
+
+    await addToCart(MOCK_USER_ID, product.id, 1, finalPrice);
+    await loadCart();
+    setAdding(false);
+  };
+
   return (
     <div className="h-100 d-flex flex-column justify-content-between align-content-between ms-lg-3">
       <div className="d-flex flex-column mb-1 mb-lg-0">
@@ -119,11 +132,10 @@ const ProductInfo = ({
         </div>
       </div>
       <Button
-        onClick={() => setCartItems([...cartItems, 1])}
-        text={"Comprar"}
-        style={
-          "btn text-white w-100 ounded-1 py-2 fw-bold text-uppercase border-0 mt-1"
-        }
+        onClick={handleAddToCart}
+        disabled={adding}
+        text={adding ? "Adicionando..." : "Comprar"}
+        style="btn text-white w-100 rounded-1 py-2 fw-bold text-uppercase border-0 mt-1"
         customStyle={{ backgroundColor: "#f19c3a", letterSpacing: "3px" }}
       />
     </div>
